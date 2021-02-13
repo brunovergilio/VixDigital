@@ -1,0 +1,73 @@
+unit uselecionacredor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, DBAccess, Uni, MemDS,
+  Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, Vcl.StdCtrls;
+
+type
+  Tfselecionacredor = class(TForm)
+    Label2: TLabel;
+    JvDBGrid1: TJvDBGrid;
+    uniQScript: TUniQuery;
+    UniDSQScript: TUniDataSource;
+    unigetid: TUniQuery;
+    uniQScriptCODIGO: TFloatField;
+    uniQScriptNOME: TStringField;
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure JvDBGrid1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fselecionacredor: Tfselecionacredor;
+
+implementation
+
+uses ugrupogeralcadastro;
+
+{$R *.dfm}
+
+procedure Tfselecionacredor.FormActivate(Sender: TObject);
+begin
+  uniQScript.Close;
+  uniQScript.Sql.Text := 'select * from bancos order by nome';
+  uniQScript.Open;
+  uniQScript.First;
+end;
+
+procedure Tfselecionacredor.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  try
+    uniQScript.Edit;
+    uniQScript.Cancel;
+    uniQScript.Close;
+  except end;
+end;
+
+procedure Tfselecionacredor.JvDBGrid1DblClick(Sender: TObject);
+begin
+  frmgrupogeralcadastro.UniCampanha_Credores.Open;
+  frmgrupogeralcadastro.UniCampanha_Credores.insert;
+
+  unigetid.close;
+  unigetid.sql.text := 'SELECT SEQ_CAMPANHA_CREDORES.nextval as Sequences FROM DUAL';
+  unigetid.open;
+
+  frmgrupogeralcadastro.UniCampanha_Credores.FieldbyName('CODIGO').Value := unigetid.FieldByName('Sequences').Value;
+  frmgrupogeralcadastro.UniCampanha_Credores.FieldbyName('CODIGO_CAMPANHA').AsString := FRMGRUPOGERALCADASTRO.DBAdvLUEdit1.TEXT;
+  frmgrupogeralcadastro.UniCampanha_Credores.FieldbyName('CODIGO_CREDOR').Value := uniQScript.FieldByName('CODIGO').Value;
+  frmgrupogeralcadastro.UniCampanha_Credores.post;
+
+  unigetid.close;
+
+  CLOSE;
+end;
+
+end.

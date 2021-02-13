@@ -1,0 +1,14 @@
+﻿[frmDataModule.ZQuery1]
+Coordinates=940,140,133,51
+ExplicitSubNodes=
+
+[frmDataModule.DataSource1]
+Coordinates=523,166,155,33
+
+[frmDataModule.ZTable1]
+Coordinates=800,370,131,51
+
+[]
+Coordinates=309,328,77,33
+Visible=True
+

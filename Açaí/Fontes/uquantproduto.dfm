@@ -1,0 +1,54 @@
+object fquantproduto: Tfquantproduto
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  Caption = 'Quantidade'
+  ClientHeight = 202
+  ClientWidth = 433
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object MaskEdit1: TMaskEdit
+    Left = 72
+    Top = 56
+    Width = 289
+    Height = 47
+    Alignment = taCenter
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -32
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    Text = ''
+    OnKeyDown = MaskEdit1KeyDown
+    OnKeyPress = MaskEdit1KeyPress
+  end
+  object Button1: TButton
+    Left = 72
+    Top = 136
+    Width = 121
+    Height = 33
+    Caption = 'OK'
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 240
+    Top = 136
+    Width = 121
+    Height = 33
+    Caption = 'Cancela'
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+end

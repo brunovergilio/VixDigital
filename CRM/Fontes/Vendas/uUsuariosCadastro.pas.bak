@@ -1,0 +1,169 @@
+unit uUsuariosCadastro;
+
+interface
+
+uses
+ Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+ System.Classes, Vcl.Graphics,
+ Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AdvGlowButton, Vcl.ExtCtrls,
+ Vcl.StdCtrls, AdvEdit, advlued, DBAdvLe, Data.DB, AdvCombo, Lucombo, dblucomb,
+ AdvGraphicCheckLabel,
+ DBAdvGraphicCheckLabel, MemDS, DBAccess, Uni, Vcl.ComCtrls, Vcl.TabNotBk,
+ Vcl.DBCtrls, RzButton, acNoteBook, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+ JvDBGrid;
+
+type
+ TfrmUsuariosCadastro = class(TForm)
+  Panel1: TPanel;
+  Panel2: TPanel;
+  GroupBox2: TGroupBox;
+  DBAdvGraphicCheckLabel1: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel2: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel3: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel4: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel5: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel6: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel7: TDBAdvGraphicCheckLabel;
+  DBAdvGraphicCheckLabel9: TDBAdvGraphicCheckLabel;
+  UniDSQUsuarios: TUniDataSource;
+  uniQUsuarios: TUniQuery;
+  TabbedNotebook1: TTabbedNotebook;
+  Notebook1: TNotebook;
+  GroupBox1: TGroupBox;
+  Label1: TLabel;
+  DBAdvLUEdit1: TDBAdvLUEdit;
+  DBAdvLUEdit2: TDBAdvLUEdit;
+  DBLUCombo1: TDBLUCombo;
+  DBAdvLUEdit3: TDBAdvLUEdit;
+  Notebook2: TNotebook;
+  DBMemo1: TDBMemo;
+  DBLookupComboBox1: TDBLookupComboBox;
+  Label3: TLabel;
+  uniQGruposUsuarios: TUniQuery;
+  UniDSQGruposUsuarios: TUniDataSource;
+  uniQGruposUsuariosCODIGO: TFloatField;
+  uniQGruposUsuariosNOME_GRUPO: TStringField;
+  uniQGruposUsuariosUSR_CAD: TFloatField;
+  uniQGruposUsuariosDTA_CAD: TSQLTimeStampField;
+  uniQGruposUsuariosAGE_NR_MAXIMO_DIA: TFloatField;
+  uniQGruposUsuariosAGE_NR_DIA_PASSADO: TFloatField;
+  uniQGruposUsuariosOPERACAOSTATUS: TStringField;
+  uniQGruposUsuariosAGE_NR_MAXIMO_USUARIO_CLIENTE: TFloatField;
+  uniQGruposUsuariosFINALIZANEGOCIACAO: TFloatField;
+  uniQGruposUsuariosPERMITE_ENVIO_AVISO: TFloatField;
+  RzToolButton1: TRzToolButton;
+  RzToolButton2: TRzToolButton;
+  sNotebook1: TsNotebook;
+  Label2: TLabel;
+  JvDBGrid1: TJvDBGrid;
+  Label4: TLabel;
+  JvDBGrid2: TJvDBGrid;
+  UniQCampanha: TUniQuery;
+  UniDSQCampanha: TUniDataSource;
+  UniQGrupoOperador: TUniQuery;
+  UniDSQGrupoOperador: TUniDataSource;
+  UniQGrupoOperadorCODIGO: TFloatField;
+  UniQGrupoOperadorNOME_GRUPO: TStringField;
+  UniQGrupoOperadorOPERACAOSTATUS: TStringField;
+  UniQOperador_Grupo_Operador: TUniQuery;
+  UniDSQOperador_Grupo_Operador: TUniDataSource;
+  UniQOperador_Grupo_OperadorCODIGO: TFloatField;
+  UniQOperador_Grupo_OperadorGRUPO: TFloatField;
+  UniQOperador_Grupo_OperadorOPERADOR: TFloatField;
+  UniQCampanhaCODIGO: TFloatField;
+  UniQCampanhaCODIGO_CAMPANHA: TFloatField;
+  UniQCampanhaGRUPO_OPERADOR: TFloatField;
+  UniQCampanhaNOME: TStringField;
+  unigetid: TUniQuery;
+  DBEdtRegistro: TDBAdvLUEdit;
+  DBAdvGraphicCheckLabel10: TDBAdvGraphicCheckLabel;
+  procedure FormActivate(Sender: TObject);
+  procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  procedure RzToolButton1Click(Sender: TObject);
+  procedure RzToolButton2Click(Sender: TObject);
+ private
+  { Private declarations }
+ public
+  { Public declarations }
+ end;
+
+var
+ frmUsuariosCadastro: TfrmUsuariosCadastro;
+
+implementation
+
+uses udatamodule;
+
+{$R *.dfm}
+
+procedure TfrmUsuariosCadastro.FormActivate(Sender: TObject);
+begin
+ TabbedNotebook1.PageIndex := 0;
+ try
+  DBAdvLUEdit1.SetFocus;
+ except
+ end;
+ uniQGruposUsuarios.open;
+ uniQGruposUsuarios.first;
+ uniQGruposUsuarios.last;
+ uniQGruposUsuarios.first;
+
+ UniQGrupoOperador.open;
+ UniQGrupoOperador.first;
+ UniQGrupoOperador.last;
+ UniQGrupoOperador.first;
+
+ UniQOperador_Grupo_Operador.open;
+ UniQOperador_Grupo_Operador.first;
+ UniQOperador_Grupo_Operador.last;
+ UniQOperador_Grupo_Operador.first;
+
+ UniQCampanha.open;
+ UniQCampanha.first;
+ UniQCampanha.last;
+ UniQCampanha.first;
+end;
+
+procedure TfrmUsuariosCadastro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+ frmUsuariosCadastro.TabbedNotebook1.ActivePage := 'Dados Principais';
+ try
+  uniQUsuarios.Close;
+ except
+ end;
+ uniQGruposUsuarios.Close;
+ UniQGrupoOperador.Close;
+ UniQOperador_Grupo_Operador.Close;
+end;
+
+procedure TfrmUsuariosCadastro.RzToolButton1Click(Sender: TObject);
+begin
+// unigetid.Close;
+// unigetid.sql.text := 'SELECT USUARIOS_CODIGO.nextval as Sequences FROM DUAL';
+// unigetid.open;
+//
+// DBEdtRegistro.text := unigetid.FieldByName('Sequences').AsString;
+// unigetid.Close;
+
+ Try
+  uniQUsuarios.Edit;
+  uniQUsuarios.Post;
+  frmDataModule.UniConnection1.Commit;
+ except
+  showmessage('Erro ao gravar. Nl 58');
+ end;
+ Close;
+end;
+
+procedure TfrmUsuariosCadastro.RzToolButton2Click(Sender: TObject);
+begin
+ Try
+  uniQUsuarios.Cancel;
+ except
+  showmessage('Erro ao gravar. Nl 77');
+ end;
+ Close;
+end;
+
+end.

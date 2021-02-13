@@ -1,0 +1,589 @@
+unit FClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinsDefaultPainters,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
+  dxDateRanges, cxDataControllerConditionalFormattingRulesManagerDialog,
+  Data.DB, cxDBData, cxCalendar, cxCheckBox, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, cxGridLevel, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
+  Vcl.ComCtrls, 
+  System.Actions, Vcl.ActnList,
+  Vcl.Grids, Vcl.DBGrids, AdvGlowButton, JvExDBGrids, JvDBGrid, DBAccess, Uni,
+  MemDS, Vcl.TabNotBk, RzButton, math;
+
+type
+  TFrmClientes = class(TForm)
+    JvDBGrid1: TJvDBGrid;
+    Panel1: TPanel;
+    uniQClientes: TUniQuery;
+    UniDSQClientes: TUniDataSource;
+    uniDSClientesReferencia: TUniDataSource;
+    uniQClientesReferencia: TUniQuery;
+    uniQClientesOperacoes: TUniQuery;
+    uniDSClientesOperacoes: TUniDataSource;
+    uniDSClientesParcelas: TUniDataSource;
+    uniQClientesParcelas: TUniQuery;
+    uniDSClientesAgenda: TUniDataSource;
+    uniQClientesAgenda: TUniQuery;
+    UniDSScriptCobranca: TUniDataSource;
+    UniQScriptCobranca: TUniQuery;
+    UniDSQEventosCobranca: TUniDataSource;
+    UniQEventosCobranca: TUniQuery;
+    Panel3: TPanel;
+    RzToolButton1: TRzToolButton;
+    uniDSQClientesLista: TUniDataSource;
+    uniQClientesLista: TUniQuery;
+    Label1: TLabel;
+    Edit1: TEdit;
+    BitBtn1: TBitBtn;
+    Label10: TLabel;
+    Edit3: TEdit;
+    BitBtn2: TBitBtn;
+    Label11: TLabel;
+    Edit9: TEdit;
+    BitBtn9: TBitBtn;
+    Label13: TLabel;
+    Edit2: TEdit;
+    BitBtn3: TBitBtn;
+    Label14: TLabel;
+    Edit6: TEdit;
+    BitBtn5: TBitBtn;
+    BitBtn14: TBitBtn;
+    BitBtn15: TBitBtn;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    BitBtn6: TBitBtn;
+    BitBtn12: TBitBtn;
+    BitBtn13: TBitBtn;
+    RzToolButton2: TRzToolButton;
+    Button1: TButton;
+    Panel2: TPanel;
+    lblcampanha: TLabel;
+    UniQEventosCobrancaCLIENTE: TFloatField;
+    UniQEventosCobrancaNROPERACAO: TStringField;
+    UniQEventosCobrancaREMESSA: TFloatField;
+    UniQEventosCobrancaDATAHORA: TDateTimeField;
+    UniQEventosCobrancaUSUARIO: TFloatField;
+    UniQEventosCobrancaHISTORICO: TStringField;
+    UniQEventosCobrancaCOD_EVENTO: TFloatField;
+    UniQEventosCobrancaDATA_MODIF: TDateTimeField;
+    UniQEventosCobrancaENVIADOBB: TStringField;
+    UniQEventosCobrancaNRPROCESSO: TStringField;
+    UniQEventosCobrancaNOMECONTATO: TStringField;
+    UniQEventosCobrancaHISTORICO1: TStringField;
+    UniQEventosCobrancaNR_PROPOSTA: TFloatField;
+    UniQEventosCobrancaCONTA: TStringField;
+    UniQEventosCobrancaLISTA: TStringField;
+    UniQEventosCobrancaSALDO: TFloatField;
+    UniQEventosCobrancaOPER_COD_CLASSIFICACAO: TFloatField;
+    UniQEventosCobrancaTELEFONES_STATUS: TFloatField;
+    UniQEventosCobrancaSUCESSO: TStringField;
+    UniQEventosCobrancaREGISTRO: TFloatField;
+    UniQEventosCobrancaHISTORICOBLOB: TBlobField;
+    UniQEventosCobrancaCOD_EVENTO_1: TFloatField;
+    UniQEventosCobrancaDESC_EVENTO: TStringField;
+    UniQEventosCobrancaDATA_MODIF_1: TDateTimeField;
+    UniQEventosCobrancaSOLUCAO: TStringField;
+    UniQEventosCobrancaCLASSIFICACAO: TFloatField;
+    UniQEventosCobrancaINSERIR_ACORDO: TStringField;
+    UniQEventosCobrancaPAGA_COMISSAO: TStringField;
+    UniQEventosCobrancaPERMITE_AGENDAR: TStringField;
+    UniQEventosCobrancaATIVO: TStringField;
+    UniQEventosCobrancaDTA_CAD: TDateTimeField;
+    UniQEventosCobrancaUSR_CAD: TFloatField;
+    UniQEventosCobrancaCOD_EXTERNO: TStringField;
+    UniQEventosCobrancaMOSTRAR_SOLUCAO: TStringField;
+    UniQEventosCobrancaAGENDAR_DIAS: TFloatField;
+    UniQEventosCobrancaCOD_EXTERNO1: TStringField;
+    UniQEventosCobrancaCLASS_CLIENTE: TStringField;
+    UniQEventosCobrancaPERMITE_SEGUNDO_EVENTO_DIA: TStringField;
+    UniQEventosCobrancaFIXA_AGENDAR_DIAS: TStringField;
+    UniQEventosCobrancaCLASS_OPERACAO: TStringField;
+    UniQEventosCobrancaCLASS_CLIENTE_CODIGO: TFloatField;
+    UniQEventosCobrancaCLASS_OPERACAO_CODIGO: TFloatField;
+    UniQEventosCobrancaMOTIVOINADIMPLENCIA: TFloatField;
+    UniQEventosCobrancaFIXAR_MOTIVOINADIMPLENCIA: TStringField;
+    UniQEventosCobrancaPRIORIDADE_EXPORTACAO: TFloatField;
+    UniQEventosCobrancaVALIDO_CONTATO: TStringField;
+    UniQEventosCobrancaFONE_CONTATO: TStringField;
+    UniQEventosCobrancaFIXAR_CONTROLE_IMP: TStringField;
+    UniQEventosCobrancaCONTROLE_IMP: TFloatField;
+    UniQEventosCobrancaPESO: TFloatField;
+    UniQEventosCobrancaMOTIVORETORNO: TFloatField;
+    UniQEventosCobrancaFIXAR_MOTIVORETORNO: TStringField;
+    UniQEventosCobrancaFIXAR_CONTROLE_IMP_OPERACAO: TStringField;
+    UniQEventosCobrancaCONTROLE_IMP_OPERACAO: TFloatField;
+    UniQEventosCobrancaCOR_EVENTO: TStringField;
+    UniQEventosCobrancaFIXAR_REMOVER_CONTROLEIMP: TFloatField;
+    UniQEventosCobrancaFIXAR_PREFERENCIAL: TFloatField;
+    UniQEventosCobrancaFIXAR_MENSAGEIRO_INSTANTANEO: TFloatField;
+    UniQEventosCobrancaVALIDACAO_CAMPO: TFloatField;
+    UniQEventosCobrancaOCULTAR_EVENTO_CLIENTE: TStringField;
+    UniQEventosCobrancanome_usuario: TStringField;
+    uniQClientesParcelasCLIENTE: TFloatField;
+    uniQClientesParcelasNROPERACAO: TStringField;
+    uniQClientesParcelasREMESSA: TStringField;
+    uniQClientesParcelasDATAVENCTO: TStringField;
+    uniQClientesParcelasAUT_: TFloatField;
+    uniQClientesParcelasNRLINHAC: TFloatField;
+    uniQClientesParcelasNRLINHAR: TFloatField;
+    uniQClientesParcelasNRREM: TFloatField;
+    uniQClientesParcelasDATAREFERENCIA: TStringField;
+    uniQClientesParcelasSTATUS: TStringField;
+    uniQClientesParcelasVALORPREVISTO: TFloatField;
+    uniQClientesParcelasVALORREALIZADO: TFloatField;
+    uniQClientesParcelasVALORJUROS: TFloatField;
+    uniQClientesParcelasVALORMULTA: TFloatField;
+    uniQClientesParcelasVALORDESCONTO: TFloatField;
+    uniQClientesParcelasPAGOCOB: TStringField;
+    uniQClientesParcelasVALORPAGTOCOB: TFloatField;
+    uniQClientesParcelasRECBANCO: TStringField;
+    uniQClientesParcelasCOMIEMP: TFloatField;
+    uniQClientesParcelasAGENCIA: TStringField;
+    uniQClientesParcelasNUMERO: TFloatField;
+    uniQClientesParcelasNUMERONOTA: TFloatField;
+    uniQClientesParcelasRESUMO: TFloatField;
+    uniQClientesParcelasCOBRADOR: TFloatField;
+    uniQClientesParcelasBOL_DATA_EMISSAO: TStringField;
+    uniQClientesParcelasBOL_DATA_ENVIO_REM: TStringField;
+    uniQClientesParcelasBOL_REMESSA_ENVIO: TFloatField;
+    uniQClientesParcelasBOL_NUMERO: TStringField;
+    uniQClientesParcelasBOL_NOSSO_NUMERO: TStringField;
+    uniQClientesParcelasBOL_SITUACAO: TStringField;
+    uniQClientesParcelasBOL_DESC_SITUACAO: TStringField;
+    uniQClientesParcelasBOL_DATA_CANCELAMENTO: TStringField;
+    uniQClientesParcelasBOL_DATA_ATU: TStringField;
+    uniQClientesParcelasDATARECEBIMENTO: TStringField;
+    uniQClientesParcelasVALORATRAZO: TFloatField;
+    uniQClientesParcelasVALORHONORARIO: TFloatField;
+    uniQClientesParcelasVALORPROTESTO: TFloatField;
+    uniQClientesParcelasBOL_NR_DOCUMENTO: TStringField;
+    uniQClientesParcelasVALORORIGINAL: TFloatField;
+    uniQClientesParcelasOPERACAONOVA: TStringField;
+    uniQClientesParcelasDATA_MODIF: TStringField;
+    uniQClientesParcelasDATAFIMTERCEIRIZACAO: TDateTimeField;
+    uniQClientesParcelasUSUARIO_REC: TFloatField;
+    uniQClientesParcelasDATARESUMO: TStringField;
+    uniQClientesParcelasREC_DATA_EMISSAO: TStringField;
+    uniQClientesParcelasBOL_LINHA_DIGITAVEL: TStringField;
+    uniQClientesParcelasFASE: TFloatField;
+    uniQClientesParcelasATUALIZADOATE: TDateTimeField;
+    uniQClientesParcelasUSUARIO_REPASSE: TFloatField;
+    uniQClientesParcelasDATA_REPASSE: TStringField;
+    uniQClientesParcelasBOL_DATA_RETORNO_REM: TStringField;
+    uniQClientesParcelasBOL_CODBARRAS: TStringField;
+    uniQClientesParcelasNRREM50: TFloatField;
+    uniQClientesParcelasNRREM40: TFloatField;
+    uniQClientesParcelasNRREM97: TFloatField;
+    uniQClientesParcelasUSER_ID_97: TStringField;
+    uniQClientesParcelasCOMISSAOBRUTA: TFloatField;
+    uniQClientesParcelasREDUTOR: TFloatField;
+    uniQClientesParcelasCOMISSAOLIQUIDA: TFloatField;
+    uniQClientesParcelasUFATUACAO: TStringField;
+    uniQClientesParcelasTIPOPAGAMENTO: TStringField;
+    uniQClientesParcelasPAGOATE30: TStringField;
+    uniQClientesParcelasPERFORMANCE: TFloatField;
+    uniQClientesParcelasLOCATION: TStringField;
+    uniQClientesParcelasTIPOREMUNERACAO: TStringField;
+    uniQClientesParcelasNRREM41: TFloatField;
+    uniQClientesParcelasVALORCORRECAO: TFloatField;
+    uniQClientesParcelasCHQ_BANCO: TStringField;
+    uniQClientesParcelasCHQ_AGENCIA: TStringField;
+    uniQClientesParcelasCHQ_CONTA: TStringField;
+    uniQClientesParcelasCHQ_NUMERO: TStringField;
+    uniQClientesParcelasNRREM51: TFloatField;
+    uniQClientesParcelasNRREM52: TFloatField;
+    uniQClientesParcelasBOL_CONVENIO: TStringField;
+    uniQClientesParcelasBOL_DATA_ENVIO: TStringField;
+    uniQClientesParcelasVALOR_TAXA_ATUALIZACAO: TFloatField;
+    uniQClientesParcelasBOL_COD_REGISTRO: TStringField;
+    uniQClientesParcelasVALOR_DESCONTO_PRINCIPAL: TFloatField;
+    uniQClientesParcelasVALORATUALIZADO: TFloatField;
+    uniQClientesParcelasBOL_VALOR_DESCONTO_ANTECIP: TFloatField;
+    uniQClientesParcelasBOL_DATA_MAX_DESCONTO_ANTECIP: TStringField;
+    uniQClientesParcelasREGISTRO: TFloatField;
+    procedure FormActivate(Sender: TObject);
+    procedure AdvGlowButton2Click(Sender: TObject);
+    procedure AdvGlowButton5Click(Sender: TObject);
+    procedure JvDBGrid1DblClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn9Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure BitBtn12Click(Sender: TObject);
+    procedure BitBtn14Click(Sender: TObject);
+    procedure BitBtn15Click(Sender: TObject);
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure UniQEventosCobrancaHISTORICOBLOBGetText(Sender: TField;
+      var Text: string; DisplayText: Boolean);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmClientes: TFrmClientes;
+
+implementation
+
+{$R *.dfm}
+
+uses uDataModule, UCliente, UMENU, uagendacadastro, uclientesnegociacao;
+
+procedure TFrmClientes.FormActivate(Sender: TObject);
+begin
+edit1.setfocus;
+//SELECIONAR APENAS OS CLIENTES DA CAMPANHA
+{
+    uniQClientesLista.Close;
+    uniQClientesLista.Open;
+    uniQClientesLista.First;
+    uniQClientes.Close;
+    uniQClientes.Open;
+}
+
+
+{  try
+    uniQClientesLista.Close;
+    uniQClientesLista.Sql.Text := 'select clientes.codigo, clientes.nome, clientes.tipopessoa, ' +
+                             'clientes.cpf_cnpj, clientes.cidade, clientes.uf, clientes.fone, clientes.faxcel, ' +
+                             'clientes.contato ' +
+                             'from clientes inner join operacoes on to_char(operacoes.cliente) = to_char(clientes.cpf_cnpj) ' +
+                             'where operacoes.credor = :pcredor ' +
+                             'group by clientes.codigo, clientes.nome, clientes.tipopessoa, clientes.cpf_cnpj, clientes.cidade, ' +
+                             'clientes.uf, clientes.fone, clientes.faxcel, clientes.contato ' +
+                             'order by nome';
+                             uniQClientesLista.parambyname('pcredor').asfloat := FRMMENU.script.FIELDBYNAME('CREDOR').ASFLOAT;
+    uniQClientesLista.Open;
+    uniQClientesLista.First;
+    uniQClientes.Close;
+    uniQClientes.Open;
+  except
+    IF (FRMmenu.USUARIOLOGADO_NIVEL = 'S') OR (FRMmenu.USUARIOLOGADO_NIVEL = 'M') THEN BEGIN
+      uniQClientesLista.Close;
+      uniQClientesLista.Sql.Text := 'select clientes.codigo, clientes.nome, clientes.tipopessoa, ' +
+                               'clientes.cpf_cnpj, clientes.cidade, clientes.uf, clientes.fone, clientes.faxcel, ' +
+                               'clientes.contato ' +
+                               'from clientes inner join operacoes on to_char(operacoes.cliente) = to_char(clientes.cpf_cnpj) ' +
+                               'group by clientes.codigo, clientes.nome, clientes.tipopessoa, clientes.cpf_cnpj, clientes.cidade, ' +
+                               'clientes.uf, clientes.fone, clientes.faxcel, clientes.contato ' +
+                               'order by nome';
+      uniQClientesLista.Open;
+      uniQClientesLista.First;
+      uniQClientes.Close;
+      uniQClientes.Open;
+    END ELSE CLOSE;
+  end;
+}
+end;
+
+procedure TFrmClientes.AdvGlowButton2Click(Sender: TObject);
+begin
+try
+  uniQClientesLista.Edit;
+  uniQClientesLista.Cancel;
+except end;
+Close;
+end;
+
+procedure TFrmClientes.AdvGlowButton5Click(Sender: TObject);
+begin
+  UniQClientesReferencia.Open;
+  UniQClientesOperacoes.Open;
+  UniQClientesParcelas.Open;
+  UniQClientesAgenda.Open;
+  UniQScriptCobranca.Open;
+  UniQEventosCobranca.Close;
+  UniQEventosCobranca.Open;
+  UniQEventosCobranca.First;
+  UniQEventosCobranca.Last;
+  UniQEventosCobranca.First;
+
+  frmClientesCadastro.ShowModal;
+end;
+
+procedure TFrmClientes.BitBtn12Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from operacoes ' +
+                           'inner join clientes on clientes.codigo = operacoes.cliente ' +
+                           'where UPPER(operacoes.nrficha) like :ppar';
+                           uniQClientesLista.ParambyName('ppar').ASSTRING := EDIT12.TEXT + '%';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn14Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from operacoes ' +
+                           'inner join clientes on clientes.codigo = operacoes.cliente ' +
+                           'where UPPER(operacoes.nr_carta_acordo) like :ppar';
+                           uniQClientesLista.ParambyName('ppar').ASSTRING := EDIT14.TEXT + '%';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn15Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from operacoes ' +
+                           'inner join clientes on clientes.codigo = operacoes.cliente ' +
+                           'where UPPER(operacoes.conta) like :ppar';
+                           uniQClientesLista.ParambyName('ppar').ASSTRING := EDIT15.TEXT + '%';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn1Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from clientes where upper(nome) like (''%' + EDIT1.TEXT + '%'') order by nome';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn2Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from clientes where upper(codigo) like (''%' + EDIT3.TEXT + '%'') order by nome';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn3Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from clientes where upper(cnpj) like (''%' + EDIT3.TEXT + '%'') order by nome';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn6Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from operacoes ' +
+                           'inner join clientes on clientes.codigo = operacoes.cliente ' +
+                           'where UPPER(operacoes.nroperacao) like :ppar';
+                           uniQClientesLista.ParambyName('ppar').ASSTRING := EDIT6.TEXT + '%';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.BitBtn9Click(Sender: TObject);
+begin
+  uniQClientesLista.Close;
+  uniQClientesLista.Sql.Text := 'select * from clientes where upper(cpf_cnpj) like (''%' + EDIT9.TEXT + '%'') order by nome';
+  uniQClientesLista.Open;
+  uniQClientesLista.First;
+end;
+
+procedure TFrmClientes.Edit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if key = vk_return then FrmClientes.BitBtn1Click(Sender);
+end;
+
+procedure TFrmClientes.JvDBGrid1DblClick(Sender: TObject);
+begin
+if uniQClientesLista.recordcount > 0 then RzToolButton1Click(Sender);
+end;
+
+procedure TFrmClientes.RzToolButton1Click(Sender: TObject);
+var
+	var_valornominal,
+	var_dias_atraso,
+	var_perc_desconto,
+	var_perc_multa,
+	var_valormulta,
+	var_perc_honorarios,
+	var_valorhonorario,
+	var_perc_juros,
+	var_valorjuro,
+  var_valorabatimento,
+  var_subtotal,
+  var_valorminimo,
+  var_valordivida,
+  emser,
+  emser_corrigido,
+  negociadas,
+  renegociadas,
+  liquidadas,
+  ematraso : double;
+  titulosemaberto : integer;
+begin
+  if uniQClientesLista.recordcount = 0 then exit;
+
+  UniQClientesReferencia.Open;
+
+  UniQClientesOperacoes.close;
+  Uniqclientesoperacoes.sql.text := 'select operacoes.*, bancos.codigo, bancos.nome ' +
+                                    'from operacoes inner join bancos on operacoes.credor = bancos.codigo ' +
+                                    'where operacoes.status <> ''X'' ';// +
+                                    //'order by cast(operacoes.datavencto as date)';
+  UniQClientesOperacoes.Open;
+  UniQClientesParcelas.Open;
+  UniQScriptCobranca.Open;
+  UniQEventosCobranca.Close;
+  UniQEventosCobranca.Open;
+{  UniQEventosCobranca.First;
+  UniQEventosCobranca.Last;
+  UniQEventosCobranca.First;
+}
+//  try UniQClientes.Edit; except end;
+  //frmClientesCadastro.ShowModal;
+
+
+//era do ucliente activate
+  frmclientescadastro.lblemser.Caption := 'Em ser (Nominal): 0';
+  frmclientescadastro.lblrenegociados.Caption := 'Renegociados: 0';
+  frmclientescadastro.lblemaberto.Caption := 'Títulos em Aberto: 0';
+{  lblemser_corrigido.Caption := 'Em ser (Atualizado): 0';
+  lblnegociada.Caption := 'Negociado: 0';
+  lblliquidada.Caption := 'Liquidado: 0';
+  lbatraso.Caption := 'Acordo Quebrado';
+}
+
+ // try
+    //calcular as dívidas com base nos credores
+    frmclientes.uniQClientesOperacoes.first;
+
+    emser := 0;
+    emser_corrigido := 0;
+    negociadas := 0;
+    liquidadas := 0;
+    ematraso := 0;
+    titulosemaberto := 0;
+    renegociadas := 0;
+
+    frmclientes.uniQClientesOperacoes.disablecontrols;
+    while not frmclientes.uniQClientesOperacoes.eof do begin
+
+      if frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'S' then titulosemaberto := titulosemaberto + 1;
+      if frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'S' then emser := emser + frmclientes.uniQClientesOperacoes.fieldbyname('valornominal').AsFloat;
+      if frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'R' then RENEGOCIADAS := RENEGOCIADAS + frmclientes.uniQClientesOperacoes.fieldbyname('valornominal').AsFloat;
+      if frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'N' then negociadas := negociadas + frmclientes.uniQClientesOperacoes.fieldbyname('valornominal').AsFloat;
+      if frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'L' then liquidadas := emser + frmclientes.uniQClientesOperacoes.fieldbyname('valornominal').AsFloat;
+      if frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'A' then ematraso := ematraso + frmclientes.uniQClientesOperacoes.fieldbyname('valornominal').AsFloat;
+
+      frmclientescadastro.uniqcredores.close;
+      frmclientescadastro.uniqcredores.SQL.Text := 'select * from bancos where codigo = :pcodigo';
+      frmclientescadastro.uniqcredores.parambyname('pcodigo').AsString := frmclientes.uniQClientesOperacoes.fieldbyname('credor').AsString;
+      frmclientescadastro.uniqcredores.open;
+
+      try
+      var_perc_desconto    := frmclientescadastro.uniqcredores.fieldbyname('descontomaximo_valor').AsFloat; except var_perc_desconto := 0; end;
+      try
+      var_valornominal     := frmclientes.uniQClientesOperacoes.fieldbyname('valornominal').AsFloat;except var_valornominal := 0; end;
+      try
+      var_dias_atraso      := now - frmclientes.uniQClientesOperacoes.fieldbyname('datavencto').AsDateTime;except var_dias_atraso := 0; end;
+      try
+      var_perc_multa       := frmclientescadastro.uniqcredores.fieldbyname('multa_a').AsFloat;except var_perc_multa := 0; end;
+      try
+      var_valormulta       := roundto(var_valornominal*var_perc_multa/100,-2);except var_valormulta := 0; end;
+      try
+      var_perc_juros       := frmclientescadastro.uniqcredores.fieldbyname('juros_a').AsFloat;except var_perc_juros := 0; end;
+      try
+      var_valorjuro        := roundto(var_valornominal*var_perc_juros/100,-2);except var_valorjuro := 0; end;
+      try
+      var_subtotal         := var_valornominal+var_valormulta+var_valorjuro;except var_subtotal := 0; end;
+      try
+      var_perc_honorarios  := frmclientescadastro.uniqcredores.fieldbyname('honorario_a').AsFloat;except var_perc_honorarios := 0; end;
+      try
+      var_valorhonorario   := roundto(var_subtotal * var_perc_honorarios / 100,-2);except var_valorhonorario := 0; end;
+      try
+      var_valordivida      := var_subtotal + var_valorhonorario;except var_valordivida := 0; end;
+      try
+      var_valorabatimento  := roundto(var_valordivida * var_perc_desconto / 100,-2);except var_valorabatimento := 0; end;
+      try
+      var_valorminimo      := var_valordivida - var_valorabatimento;except var_valorminimo := 0; end;
+
+      frmclientes.uniQClientesOperacoes.edit;
+
+      frmclientes.uniQClientesOperacoes.fieldbyname('valorvencido').AsFloat := var_subtotal;
+      frmclientes.uniQClientesOperacoes.fieldbyname('data_modif').AsFloat := now;
+
+      if (frmclientes.uniQClientesOperacoes.fieldbyname('status').AsString = 'S') AND (ROUNDTO(now - frmclientes.uniQClientesOperacoes.fieldbyname('datavencto').AsDateTime,0)>0)
+      then
+      frmclientes.uniQClientesOperacoes.fieldbyname('DIAS_ATRASO').AsFloat := ROUNDTO(now - frmclientes.uniQClientesOperacoes.fieldbyname('datavencto').AsDateTime,0);
+
+      frmclientes.uniQClientesOperacoes.edit;
+
+      try frmclientes.uniQClientesOperacoes.post; except end;
+
+      frmclientes.uniQClientesOperacoes.next;
+    end;
+      frmclientes.uniQClientesOperacoes.first;
+      frmclientes.uniQClientesOperacoes.enablecontrols;
+
+      frmclientescadastro.lblemser.Caption := 'Em ser: R$ ' + formatfloat('###,###,###,###,##0.00',roundto(emser,-2));
+      frmclientescadastro.lblrenegociados.Caption := 'Renegociados: R$ ' + formatfloat('###,###,###,###,##0.00',roundto(renegociadas,-2));
+      frmclientescadastro.lblemaberto.Caption := 'Títulos em Aberto: ' + inttostr(titulosemaberto);
+      frmclientesnegociacao.label26.Caption := 'Títulos em Aberto: ' + inttostr(titulosemaberto);
+
+  //except frmdatamodule.uniconnection1.RollBack; end;
+
+  try
+    UniQEventosCobranca.Close;
+    UniQEventosCobranca.Open;
+  except end;
+{  UniQEventosCobranca.First;
+  UniQEventosCobranca.Last;
+  UniQEventosCobranca.First;
+}
+  frmDataModule.UniConnection1.Commit;
+  UniQClientes.open;
+//fim era do ucliente activate
+  Close;
+end;
+
+procedure TFrmClientes.RzToolButton2Click(Sender: TObject);
+begin
+if uniQClientesLista.recordcount = 0 then exit;
+
+frmagendacadastro.unigetid.close;
+frmagendacadastro.unigetid.sql.text := 'SELECT SEQ_AGENDA.nextval as Sequences FROM DUAL';
+frmagendacadastro.unigetid.open;
+
+frmagendacadastro.UniQagenda.Open;
+frmagendacadastro.UniQagenda.Insert;
+frmagendacadastro.DBEditRegistro.Text := frmagendacadastro.unigetid.FieldByName('Sequences').AsString;
+
+frmagendacadastro.AdvDBDateTimePicker1.Date := NOW;
+frmagendacadastro.AdvDBDateTimePicker2.Time := NOW;
+frmagendacadastro.AdvDBDateTimePicker3.Date := NOW;
+frmagendacadastro.DBAdvLUEdit1.Text := uniQClientesLista.fieldbyname('CODIGO').AsString;
+frmagendacadastro.DBAdvLUEdit3.Text := uniQClientesLista.fieldbyname('NOME').AsString;
+frmagendacadastro.DBAdvLUEdit5.Text := FRMMenu.usuariologado_codigo;
+frmagendacadastro.DBAdvLUEdit4.Text := FRMMenu.usuariologado_codigo;
+
+frmagendacadastro.alterainsere := 'INSERE';
+frmagendacadastro.showmodal;
+frmagendacadastro.unigetid.close;
+frmagendacadastro.UniQagenda.cLOSE;
+end;
+
+procedure TFrmClientes.UniQEventosCobrancaHISTORICOBLOBGetText(Sender: TField;
+  var Text: string; DisplayText: Boolean);
+begin
+Text := Sender.AsString;
+end;
+
+end.

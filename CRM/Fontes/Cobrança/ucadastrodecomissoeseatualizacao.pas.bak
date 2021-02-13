@@ -1,0 +1,183 @@
+unit ucadastrodecomissoeseatualizacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.TabNotBk, AdvEdit, advlued, DBAdvLe, Vcl.DBCtrls, RzButton,
+  AdvCombo, Lucombo, dblucomb, Data.DB, MemDS, DBAccess, Uni, ACBrBase,
+  ACBrEnterTab, JvComponentBase, JvEnterTab, AdvOfficeTabSet,
+  AdvOfficeTabSetStylers, RzTabs, AdvOfficeButtons, DBAdvOfficeButtons,
+  AdvDBComboBox, Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid;
+
+type
+  Tfrmcomissaoeatualizacao = class(TForm)
+    Panel3: TPanel;
+    Panel4: TPanel;
+    RzToolButton1: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    unigetid: TUniQuery;
+    DBAdvLUEdit1: TDBAdvLUEdit;
+    DBAdvLUEdit2: TDBAdvLUEdit;
+    DBAdvLUEdit3: TDBAdvLUEdit;
+    DBAdvLUEdit4: TDBAdvLUEdit;
+    DBAdvLUEdit5: TDBAdvLUEdit;
+    Label6: TLabel;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    DBAdvLUEdit13: TDBAdvLUEdit;
+    DBAdvLUEdit14: TDBAdvLUEdit;
+    DBAdvLUEdit15: TDBAdvLUEdit;
+    DBAdvLUEdit16: TDBAdvLUEdit;
+    DBAdvLUEdit17: TDBAdvLUEdit;
+    Label1: TLabel;
+    Bevel3: TBevel;
+    Bevel4: TBevel;
+    DBAdvOfficeCheckBox16: TDBAdvOfficeCheckBox;
+    DBAdvLUEdit7: TDBAdvLUEdit;
+    DBAdvLUEdit8: TDBAdvLUEdit;
+    DBAdvLUEdit9: TDBAdvLUEdit;
+    DBAdvLUEdit10: TDBAdvLUEdit;
+    DBAdvLUEdit11: TDBAdvLUEdit;
+    Bevel5: TBevel;
+    RzToolButton3: TRzToolButton;
+    procedure ChecaChecks;
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit2KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit3KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit4KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit5KeyPress(Sender: TObject; var Key: Char);
+    procedure AdvDBComboBox1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure RzToolButton3Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure DBAdvOfficeCheckBox16Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ALTERAINSERE: STRING;
+  end;
+
+var
+  frmcomissaoeatualizacao: Tfrmcomissaoeatualizacao;
+
+implementation
+
+{$R *.dfm}
+
+uses ucadastrodebancosempresas, ulegendacomissoes,uDataModule;
+
+procedure Tfrmcomissaoeatualizacao.ChecaChecks;
+begin
+  DBAdvLUEdit7.Enabled := False;
+  DBAdvLUEdit8.Enabled := False;
+  DBAdvLUEdit9.Enabled := False;
+  DBAdvLUEdit10.Enabled := False;
+  DBAdvLUEdit11.Enabled := False;
+
+  if DBAdvOfficeCheckBox16.Checked = true then begin
+    DBAdvLUEdit7.Enabled := True;
+    DBAdvLUEdit8.Enabled := True;
+    DBAdvLUEdit9.Enabled := True;
+    DBAdvLUEdit10.Enabled := True;
+    DBAdvLUEdit11.Enabled := True;
+  end;
+end;
+
+procedure Tfrmcomissaoeatualizacao.AdvDBComboBox1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+key := 0;
+end;
+
+procedure Tfrmcomissaoeatualizacao.DBAdvLUEdit2KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcomissaoeatualizacao.DBAdvLUEdit3KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcomissaoeatualizacao.DBAdvLUEdit4KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcomissaoeatualizacao.DBAdvLUEdit5KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcomissaoeatualizacao.DBAdvOfficeCheckBox16Click(Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcomissaoeatualizacao.FormActivate(Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcomissaoeatualizacao.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  alterainsere := '';
+end;
+
+procedure Tfrmcomissaoeatualizacao.FormKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcomissaoeatualizacao.RzToolButton1Click(Sender: TObject);
+begin
+  IF ALTERAINSERE = 'INSERE' THEN BEGIN
+    unigetid.close;
+    unigetid.sql.text := 'SELECT SEQ_COMISSOESEATUALIZACAO.nextval as Sequences FROM DUAL';
+    unigetid.open;
+
+    frmcadastrodebancosempresas.uniQCadastroComissoes.EDIT;
+    frmcadastrodebancosempresas.uniQCadastroComissoes.fieldbyname('CODIGO').Value := unigetid.FieldByName('Sequences').Value;
+    try frmcadastrodebancosempresas.uniQCadastroComissoes.post; except showmessage('Erro ao gravar. Ln 155'); end;
+
+    frmDataModule.UniConnection1.Commit;
+
+    unigetid.close;
+
+    ALTERAINSERE := '';
+  END
+  ELSE BEGIN
+    frmcadastrodebancosempresas.uniQCadastroComissoes.EDIT;
+    frmcadastrodebancosempresas.uniQCadastroComissoes.post;
+    frmDataModule.UniConnection1.Commit;
+  END;
+
+  try frmcadastrodebancosempresas.uniQCadastroComissoes.Refresh; except end;
+
+  Close;
+end;
+
+procedure Tfrmcomissaoeatualizacao.RzToolButton2Click(Sender: TObject);
+begin
+  frmcadastrodebancosempresas.uniQCadastroComissoes.Cancel;
+  Close;
+end;
+
+procedure Tfrmcomissaoeatualizacao.RzToolButton3Click(Sender: TObject);
+begin
+frmlegendacomissoes.showmodal;
+end;
+
+end.

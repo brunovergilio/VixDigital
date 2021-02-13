@@ -1,0 +1,144 @@
+unit uagendacadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.TabNotBk, AdvEdit, advlued, DBAdvLe, Vcl.DBCtrls, RzButton,
+  AdvCombo, Lucombo, dblucomb, Data.DB, MemDS, DBAccess, Uni, ACBrBase,
+  ACBrEnterTab, JvComponentBase, JvEnterTab, AdvOfficeTabSet,
+  AdvOfficeTabSetStylers, RzTabs, AdvOfficeButtons, DBAdvOfficeButtons,
+  AdvDBComboBox, Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid,
+  AdvDateTimePicker, AdvDBDateTimePicker, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, cxCustomListBox,
+  cxCheckListBox, cxDBCheckListBox, AdvDBLookupComboBox;
+
+type
+  Tfrmagendacadastro = class(TForm)
+    Panel3: TPanel;
+    Panel4: TPanel;
+    RzToolButton1: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    DBAdvLUEdit2: TDBAdvLUEdit;
+    unigetid: TUniQuery;
+    uniqagenda: TUniQuery;
+    AdvDBDateTimePicker1: TAdvDBDateTimePicker;
+    AdvDBDateTimePicker2: TAdvDBDateTimePicker;
+    DBAdvLUEdit1: TDBAdvLUEdit;
+    DBAdvLUEdit3: TDBAdvLUEdit;
+    DBCheckBox1: TDBCheckBox;
+    DBCheckBox2: TDBCheckBox;
+    udsqagenda: TUniDataSource;
+    DBAdvLUEdit4: TDBAdvLUEdit;
+    DBAdvLUEdit5: TDBAdvLUEdit;
+    DBEditRegistro: TDBAdvLUEdit;
+    AdvDBDateTimePicker3: TAdvDBDateTimePicker;
+    uniqagendaDATA: TDateTimeField;
+    uniqagendaHORA: TDateTimeField;
+    uniqagendaUSUARIO: TFloatField;
+    uniqagendaBLOQUEADO: TStringField;
+    uniqagendaCLIENTE: TFloatField;
+    uniqagendaCUMPRIDO: TStringField;
+    uniqagendaAVISAR: TStringField;
+    uniqagendaTEMPOANTESDEAVISAR: TFloatField;
+    uniqagendaNOME: TStringField;
+    uniqagendaOBS: TBlobField;
+    uniqagendaPRIORIDADE: TStringField;
+    uniqagendaDATA_MODIF: TDateTimeField;
+    uniqagendaDTA_CAD: TDateTimeField;
+    uniqagendaUSR_CAD: TFloatField;
+    uniqagendaUSR_CUMPRIDO: TFloatField;
+    uniqagendaDTA_CUMPRIDO: TStringField;
+    uniqagendaREGISTRO: TFloatField;
+    uniqagendaEVENTO: TStringField;
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure AdvDBComboBox2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ALTERAINSERE: STRING;
+  end;
+
+var
+  frmagendacadastro: Tfrmagendacadastro;
+
+implementation
+
+{$R *.dfm}
+
+uses uDataModule, uagenda, FClientes, ueventosoperador, uCliente, umenu;
+
+procedure Tfrmagendacadastro.AdvDBComboBox2KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+KEY := 0;
+end;
+
+procedure Tfrmagendacadastro.FormActivate(Sender: TObject);
+begin
+DBAdvLUEdit2.setfocus;
+end;
+
+procedure Tfrmagendacadastro.RzToolButton1Click(Sender: TObject);
+begin
+//try
+  uniqagenda.edit;
+  uniqagenda.post;
+
+  unigetid.close;
+  uniqagenda.close;
+
+  ALTERAINSERE := '';
+
+  //insere o evento
+  frmclientes.UniQEventosCobranca.Open;
+  frmclientes.UniQEventosCobranca.Insert;
+  frmclientes.uniQClientesOperacoes.Open;
+  frmeventosoperador.DBAdvLUEdit1.Text := datetostr(now) + ' ' + timetostr(now);
+  frmeventosoperador.DBAdvLUEdit2.Text := FRMMenu.USUARIOLOGADO_CODIGO;
+  frmeventosoperador.DBAdvLUEdit14.Text := frmclientes.uniQClientesOperacoes.fieldbyname('Nroperacao').asstring;
+  frmeventosoperador.DBAdvLUEdit4.Text := frmclientescadastro.Edt_CPF.Text;
+  frmeventosoperador.dbmemo1.Lines.Add('Agendamento: ' + Datetostr(AdvDBDateTimePicker1.Date));
+  //frmeventosoperador.dbRadiogroup1.itemindex := 0;
+  frmclientes.UniQEventosCobranca.fieldbyname('Lista').asstring := 'Agendamento: ' + Datetostr(AdvDBDateTimePicker1.Date);
+
+  if frmeventosoperador.DBAdvLUEdit14.Text = '' then frmeventosoperador.DBAdvLUEdit14.Text := '0';
+
+  unigetid.close;
+  unigetid.sql.text := 'SELECT SEQ_EVENTOSCOBRANCA.nextval as Sequences FROM DUAL';
+  unigetid.open;
+
+  frmeventosoperador.DBEdtRegistro.Text := unigetid.FieldByName('Sequences').AsString;
+
+  unigetid.close;
+
+  try
+    frmclientes.UniQEventosCobranca.eDIT;
+    frmeventosoperador.DBAdvLUEdCod_evento.Text := frmeventosoperador.DBAdvLUEdit3.Text;
+    if frmeventosoperador.DBAdvLUEdit3.text = '' then frmeventosoperador.DBAdvLUEdCod_evento.Text := '42';
+    frmclientes.UniQEventosCobranca.post;
+  except showmessage('Erro ao gravar. Ln 126'); end;
+  //fim insere o evento
+
+//except Application.MessageBox('Ocorreu um erro. ln 127','Atenção',MB_ICONHAND + MB_OK + MB_ICONQUESTION); end;
+
+  frmDataModule.UniConnection1.Commit;
+
+  Close;
+end;
+
+procedure Tfrmagendacadastro.RzToolButton2Click(Sender: TObject);
+begin
+  uniqagenda.edit;
+  uniqagenda.cancel;
+  uniqagenda.close;
+  frmDataModule.UniConnection1.Rollback;
+  Close;
+end;
+
+end.

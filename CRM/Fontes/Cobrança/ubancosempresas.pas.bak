@@ -1,0 +1,299 @@
+unit ubancosempresas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinsDefaultPainters,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
+  dxDateRanges, cxDataControllerConditionalFormattingRulesManagerDialog,
+  Data.DB, cxDBData, cxCalendar, cxCheckBox, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, cxGridLevel, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
+  Vcl.ComCtrls, 
+  System.Actions, Vcl.ActnList, Vcl.Grids, Vcl.DBGrids, AdvGlowButton, JvExDBGrids,
+  JvDBGrid, DBAccess, Uni, MemDS, RzButton, System.ImageList, Vcl.ImgList,
+  cxImageList;
+
+type
+  Tfrmcredores = class(TForm)
+    JvDBGrid1: TJvDBGrid;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Label1: TLabel;
+    Edit1: TEdit;
+    UniDSQCredores: TUniDataSource;
+    RzToolButton3: TRzToolButton;
+    btnalterar: TRzToolButton;
+    Label2: TLabel;
+    RzToolButton1: TRzToolButton;
+    UniQCredores: TUniQuery;
+    UniQCredoresCODIGO: TFloatField;
+    UniQCredoresNOME: TStringField;
+    UniQCredoresCOMISSAOFIXA: TStringField;
+    UniQCredoresCOMISSAO: TFloatField;
+    UniQCredoresCENTRALIZADORA: TStringField;
+    UniQCredoresCC_TIPO: TStringField;
+    UniQCredoresCE_C1: TFloatField;
+    UniQCredoresCE_C2: TFloatField;
+    UniQCredoresCE_C3: TFloatField;
+    UniQCredoresCE_C4: TFloatField;
+    UniQCredoresCE_C5: TFloatField;
+    UniQCredoresCE_C6: TFloatField;
+    UniQCredoresCE_C7: TFloatField;
+    UniQCredoresCE_C8: TFloatField;
+    UniQCredoresCE_C9: TFloatField;
+    UniQCredoresPREFCONT: TStringField;
+    UniQCredoresCONTADOR: TFloatField;
+    UniQCredoresENDERECO: TStringField;
+    UniQCredoresSETOR: TStringField;
+    UniQCredoresNUMERO: TStringField;
+    UniQCredoresCIDADE: TStringField;
+    UniQCredoresUF: TStringField;
+    UniQCredoresCEP: TStringField;
+    UniQCredoresCPF: TStringField;
+    UniQCredoresCNPJ: TStringField;
+    UniQCredoresMETA_CAIXA: TFloatField;
+    UniQCredoresMETA_REGULARIZACAO: TFloatField;
+    UniQCredoresMULTA_PADRAO: TFloatField;
+    UniQCredoresJUROS_PADRAO: TFloatField;
+    UniQCredoresHONORARIOS_PADRAO: TFloatField;
+    UniQCredoresDESCONTO_PADRAO: TFloatField;
+    UniQCredoresCUSTO_BOLETO_PADRAO: TFloatField;
+    UniQCredoresFATOR_PARC_PADRAO: TFloatField;
+    UniQCredoresVALOR_PROTESTO_PADRAO: TFloatField;
+    UniQCredoresPESO_CAIXA: TFloatField;
+    UniQCredoresPESO_REGULARIZACAO: TFloatField;
+    UniQCredoresINCLUIRDESPESAS: TStringField;
+    UniQCredoresRETENCAO: TFloatField;
+    UniQCredoresDT_CONTRATO: TSQLTimeStampField;
+    UniQCredoresUSA_TAB_ATUALIZACAO: TStringField;
+    UniQCredoresREPRESENTANTE: TStringField;
+    UniQCredoresREP_ENDERECO: TStringField;
+    UniQCredoresREP_SETOR: TStringField;
+    UniQCredoresREP_CIDADE: TStringField;
+    UniQCredoresREP_UF: TStringField;
+    UniQCredoresREP_CEP: TStringField;
+    UniQCredoresREP_CPF: TStringField;
+    UniQCredoresREP_PROFISSAO: TStringField;
+    UniQCredoresREP_CARGO: TStringField;
+    UniQCredoresREP_NACIONALIDADE: TStringField;
+    UniQCredoresREP_ESTADOCIVIL: TStringField;
+    UniQCredoresFONE: TStringField;
+    UniQCredoresFAX: TStringField;
+    UniQCredoresDIAS_COB_HONORARIOS: TFloatField;
+    UniQCredoresEMAIL1: TStringField;
+    UniQCredoresEMAIL2: TStringField;
+    UniQCredoresNRCONTRATO: TStringField;
+    UniQCredoresOBJETOCONTRATUAL: TStringField;
+    UniQCredoresTIPOPROTESTO_PADRAO: TStringField;
+    UniQCredoresDESCONTO_SOBRE_PADRAO: TFloatField;
+    UniQCredoresGRAVA_VLRDIVIDA_EVENTO: TStringField;
+    UniQCredoresGRAVA_NEGOCIACAO_EVENTO: TStringField;
+    UniQCredoresCONTADOR_NP: TFloatField;
+    UniQCredoresENTRADA_PADRAO: TFloatField;
+    UniQCredoresTIPO_HONORARIO_PADRAO: TStringField;
+    UniQCredoresTIPO_ATUALIZACAO_DIVIDA: TStringField;
+    UniQCredoresTIPO_JUROS_PADRAO: TStringField;
+    UniQCredoresMENSAGEM_SMS: TStringField;
+    UniQCredoresPEDIR_SENHA_DESC: TStringField;
+    UniQCredoresJUROS_MINIMO: TFloatField;
+    UniQCredoresDESCONTO_MAXIMO: TFloatField;
+    UniQCredoresVALOR_MINIMO_PARCELA: TFloatField;
+    UniQCredoresDIAS_MAXIMO_ENTRADA: TFloatField;
+    UniQCredoresBOL_CONVENIO_PADRAO: TStringField;
+    UniQCredoresFASE_COBRANCA: TStringField;
+    UniQCredoresATIVO: TStringField;
+    UniQCredoresMULTA_MINIMA: TFloatField;
+    UniQCredoresNRPRESTACAO_MAXIMO: TFloatField;
+    UniQCredoresTIPO_CALCULO_PADRAO: TFloatField;
+    UniQCredoresMOSTRAR_QUEBRA_ACORDO: TStringField;
+    UniQCredoresTAB_ATU_DIVIDA_PADRAO: TFloatField;
+    UniQCredoresHONORARIO_SOBRE_PADRAO: TFloatField;
+    UniQCredoresBLOQUEIO_LUPA: TStringField;
+    UniQCredoresBLOQUEIO_NIVEL: TStringField;
+    UniQCredoresCOMISSAO_TIPOATRASO: TStringField;
+    UniQCredoresDATA_MIN_EVENTO: TSQLTimeStampField;
+    UniQCredoresJUROS_PARCELA: TFloatField;
+    UniQCredoresQUEBRA_ACORDO_DIAS: TFloatField;
+    UniQCredoresQUEBRA_ACORDO_COD_EVENTO: TFloatField;
+    UniQCredoresLIQUIDADA_COD_EVENTO: TFloatField;
+    UniQCredoresTIPODIVISAOENCARGOS_PADRAO: TStringField;
+    UniQCredoresMODELO_RECIBO_PADRAO: TStringField;
+    UniQCredoresBLOQUEIO_END1: TStringField;
+    UniQCredoresBLOQUEIO_END2: TStringField;
+    UniQCredoresBLOQUEIO_NIVEL_END1: TStringField;
+    UniQCredoresBLOQUEIO_NIVEL_END2: TStringField;
+    UniQCredoresJUROS_MAXIMO: TFloatField;
+    UniQCredoresMULTA_MAXIMO: TFloatField;
+    UniQCredoresBLOQUEIO_DIVIDIR_SEM_JUROS: TStringField;
+    UniQCredoresDIAS_EMCOBRANCA_PADRAO: TFloatField;
+    UniQCredoresNEGATIVACAO_CODIGO: TFloatField;
+    UniQCredoresTIPO_DESCONTO_PADRAO: TStringField;
+    UniQCredoresEVENTOS_NRMAXIMO: TFloatField;
+    UniQCredoresEVENTOS_NRDIASMAXIMO: TFloatField;
+    UniQCredoresAGRUPAR_HON_COM_PRIMEIRA_PARC: TStringField;
+    UniQCredoresFORMAPGTO_NEGOCIACAO: TStringField;
+    UniQCredoresNEGATIVACAO_SERASA_CODIGO: TFloatField;
+    UniQCredoresBLOQUEIA_TELEFONE_BLACKLIST: TStringField;
+    UniQCredoresPROTESTO_PRIMEIRA_PARC: TStringField;
+    UniQCredoresCOMISSAO_INTERVALO: TStringField;
+    UniQCredoresJUROS_BOLETO_REGISTRADO: TFloatField;
+    UniQCredoresMULTA_BOLETO_REGISTRADO: TFloatField;
+    UniQCredoresDADOS_BANCARIOS: TStringField;
+    UniQCredoresDTA_CAD: TSQLTimeStampField;
+    UniQCredoresUSR_CAD: TFloatField;
+    UniQCredoresREBATES_TIPO_INTERVALO: TStringField;
+    UniQCredoresTIPO_MULTA_PADRAO: TStringField;
+    UniQCredoresCARTA_BOLETO: TStringField;
+    UniQCredoresTIPO_HONORARIO_ORIGEM: TStringField;
+    UniQCredoresATRIBUI_COBRADOR_ACORDO: TStringField;
+    UniQCredoresRETORNA_PARCELAS_ACORDO: TStringField;
+    UniQCredoresMANTER_PARCELAS_ACORDO: TStringField;
+    UniQCredoresBLACKLIST_NIVEL_BLOQ_RETORNO: TStringField;
+    UniQCredoresTAXA_ATUALIZACAO: TFloatField;
+    UniQCredoresBOLETO_GERA_NOVO_NUMERO_RECALC: TStringField;
+    UniQCredoresBLOQUEIO_BOLETO_INCOMPLETO: TStringField;
+    UniQCredoresATU_PARC_ATRASO: TStringField;
+    UniQCredoresATU_PARC_ATRASO_NRDIASMAXIMO: TFloatField;
+    UniQCredoresPORTALWEB_PADRAO: TFloatField;
+    UniQCredoresEMITIR_UM_BOLETO_POR_VEZ: TStringField;
+    UniQCredoresPERC_JUROS_DIF_POR_PERIODO: TStringField;
+    UniQCredoresEXCLUIR_TEL_CAD_CLIENTE_NIVEL: TStringField;
+    UniQCredoresBLOQUEIO_EMISSAO_PARC_VENCIDA: TStringField;
+    UniQCredoresBLOQUEIO_ATU_BOLETO_EMITIDO: TStringField;
+    UniQCredoresBLOQUEIO_NEGOCIACAO_VENC_PARC: TStringField;
+    UniQCredoresBLOQUEIO_NEGOCIACAO_VLR_PARC: TStringField;
+    UniQCredoresNUMERO_PREST_C0NTAS: TFloatField;
+    UniQCredoresATU_PARC_ATRASO_BLOQ_ENCARGOS: TStringField;
+    UniQCredoresID_1: TStringField;
+    UniQCredoresEVENTO_COBRANCA: TStringField;
+    UniQCredoresMULTA_CHECK: TStringField;
+    UniQCredoresMULTA_DE: TFloatField;
+    UniQCredoresMULTA_A: TFloatField;
+    UniQCredoresJUROS_CHECK: TStringField;
+    UniQCredoresJUROS_DE: TFloatField;
+    UniQCredoresJUROS_A: TFloatField;
+    UniQCredoresHONORARIO_CHECK: TStringField;
+    UniQCredoresHONORARIO_DE: TFloatField;
+    UniQCredoresHONORARIO_A: TFloatField;
+    UniQCredoresDESCONTOMAXIMO_CHECK: TStringField;
+    UniQCredoresDESCONTOMAXIMO_VALOR: TFloatField;
+    UniQCredoresJUROSPARCELAMENTO_CHECK: TStringField;
+    UniQCredoresJUROSPARCELAMENTO_DE: TFloatField;
+    UniQCredoresJUROSPARCELAMENTO_A: TFloatField;
+    UniQCredoresMAXIMODIASPARCELAMENTO_CHECK: TStringField;
+    UniQCredoresMAXIMODIASPARCELAMENTO_VALOR: TFloatField;
+    UniQCredoresMAXIMOPARCELAS_CHECK: TStringField;
+    UniQCredoresMAXIMOPARCELAS_VALOR: TFloatField;
+    UniQCredoresCANCELARNEGOCIACAOAPOS_CHECK: TStringField;
+    UniQCredoresCANCELARNEGOCIACAOAPOS_VALOR: TFloatField;
+    UniQCredoresCALCULARJUROSSOBREMULTA_CHECK: TStringField;
+    UniQCredoresINDICEDECORRECAO: TStringField;
+    UniQCredoresHONORARIOREAL_A: TFloatField;
+    UniQCredoresHONORARIOREAL_CHECK: TStringField;
+    UniQCredoresHONORARIOREAL_DE: TFloatField;
+    UniQCredoresPERMITENAOMENSAIS_CHECK: TStringField;
+    UniQCredoresUTILIZARJUROSCOMPOSTOS_CHECK: TStringField;
+    UniQCredoresCALCMULTASOBRECORRECAO_CHECK: TStringField;
+    UniQCredoresCALCJUROSSOBRECORRECAO_CHECK: TStringField;
+    UniQCredoresCOMISSOPERVRRECEB_CHECK: TStringField;
+    UniQCredoresCOMISSOPERVRCOMISS_CHECK: TStringField;
+    UniQCredoresINFORMACOES_ADICIONAIS: TBlobField;
+    UniQCredoresMAX_DIAS_PRIM_BOLETO: TFloatField;
+    UniQCredoresPARCELA_MINIMA: TFloatField;
+    procedure FormActivate(Sender: TObject);
+    procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure JvDBGrid1DblClick(Sender: TObject);
+    procedure btnalterarClick(Sender: TObject);
+    procedure RzToolButton3Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure RzToolButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmcredores: Tfrmcredores;
+
+implementation
+
+{$R *.dfm}
+
+uses uDataModule, ucadastrodebancosempresas;
+
+procedure Tfrmcredores.FormActivate(Sender: TObject);
+begin
+  uniQCredores.Close;
+  uniQCredores.Sql.Text := 'select * from bancos';
+  uniQCredores.Open;
+  uniQCredores.First;
+end;
+
+procedure Tfrmcredores.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  try
+    uniQCredores.Edit;
+    uniQCredores.Cancel;
+  except end;
+end;
+
+procedure Tfrmcredores.Edit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if key = vk_return then RzToolButton1Click(Sender);
+end;
+
+procedure Tfrmcredores.btnalterarClick(Sender: TObject);
+begin
+  uniQCredores.Edit;
+  frmcadastrodebancosempresas.ShowModal;
+  frmcredores.FormActivate(Sender);
+end;
+
+procedure Tfrmcredores.JvDBGrid1DblClick(Sender: TObject);
+begin
+  btnalterarClick(Sender);
+end;
+
+procedure Tfrmcredores.RzToolButton1Click(Sender: TObject);
+begin
+  uniQCredores.Close;
+  uniQCredores.Sql.Text := 'select * from bancos where upper(nome) like (''%' + EDIT1.TEXT + '%'')';
+  uniQCredores.Open;
+  uniQCredores.First;
+end;
+
+procedure Tfrmcredores.RzToolButton3Click(Sender: TObject);
+begin
+  uniQCredores.Open;
+  uniQCredores.Insert;
+
+  uniQCredores.FIELDBYNAME('MULTA_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('JUROS_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('HONORARIO_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('DESCONTOMAXIMO_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('JUROSPARCELAMENTO_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('MAXIMODIASPARCELAMENTO_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('MAXIMOPARCELAS_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('CANCELARNEGOCIACAOAPOS_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('CALCULARJUROSSOBREMULTA_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('HONORARIOREAL_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('PERMITENAOMENSAIS_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('UTILIZARJUROSCOMPOSTOS_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('CALCMULTASOBRECORRECAO_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('CALCJUROSSOBRECORRECAO_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('COMISSOPERVRRECEB_CHECK').Value := 'FALSE';
+  uniQCredores.FIELDBYNAME('COMISSOPERVRCOMISS_CHECK').Value := 'FALSE';
+
+  frmcadastrodebancosempresas.alterainsere := 'INSERE';
+  frmcadastrodebancosempresas.ShowModal;
+  frmcadastrodebancosempresas.alterainsere := '';
+  frmcredores.FormActivate(Sender);
+end;
+
+end.

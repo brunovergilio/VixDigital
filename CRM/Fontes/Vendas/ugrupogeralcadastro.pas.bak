@@ -1,0 +1,874 @@
+unit ugrupogeralcadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.TabNotBk, AdvEdit, advlued, DBAdvLe, Vcl.DBCtrls, RzButton,
+  AdvCombo, Lucombo, dblucomb, Data.DB, MemDS, DBAccess, Uni, ACBrBase,
+  ACBrEnterTab, JvComponentBase, JvEnterTab, AdvOfficeTabSet,
+  AdvOfficeTabSetStylers, RzTabs, AdvOfficeButtons, DBAdvOfficeButtons,
+  AdvDBComboBox, Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid,
+  AdvDateTimePicker, AdvDBDateTimePicker, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, cxCustomListBox,
+  cxCheckListBox, cxDBCheckListBox, AdvDBLookupComboBox, uImportExcel, Vcl.Mask,
+  RzEdit, Datasnap.DBClient, JvExMask, JvToolEdit, JvMaskEdit,
+  JvCheckedMaskEdit, JvDatePickerEdit, JvDBDatePickerEdit;
+
+type
+  Tfrmgrupogeralcadastro = class(TForm)
+    Panel3: TPanel;
+    Panel4: TPanel;
+    TabbedNotebook1: TTabbedNotebook;
+    Notebook8: TNotebook;
+    Notebook9: TNotebook;
+    DBAdvLUEdit1: TDBAdvLUEdit;
+    DBAdvLUEdit2: TDBAdvLUEdit;
+    RzToolButton1: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    unigetid: TUniQuery;
+    DBAdvLUEdit4: TDBAdvLUEdit;
+    DBAdvLUEdit5: TDBAdvLUEdit;
+    Label6: TLabel;
+    Bevel1: TBevel;
+    DBAdvOfficeCheckBox1: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox3: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox5: TDBAdvOfficeCheckBox;
+    AdvDBComboBox1: TAdvDBComboBox;
+    DBMemo2: TDBMemo;
+    DBAdvLUEdit3: TDBAdvLUEdit;
+    DBAdvLUEdit6: TDBAdvLUEdit;
+    Label1: TLabel;
+    UniQOperador: TUniQuery;
+    UniDSQOperador: TUniDataSource;
+    Label2: TLabel;
+    DBAdvOfficeCheckBox6: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox7: TDBAdvOfficeCheckBox;
+    Label4: TLabel;
+    UniQEstados: TUniQuery;
+    UniDSQEstados: TUniDataSource;
+    JvDBGrid1: TJvDBGrid;
+    JvDBGrid3: TJvDBGrid;
+    RzToolButton3: TRzToolButton;
+    btnalterar: TRzToolButton;
+    RzToolButton6: TRzToolButton;
+    RzToolButton7: TRzToolButton;
+    UniQEstadosESTADO: TStringField;
+    UniQEstadosCODIGO: TFloatField;
+    uniscript: TUniQuery;
+    RzToolButton8: TRzToolButton;
+    RzToolButton9: TRzToolButton;
+    Bevel2: TBevel;
+    Bevel3: TBevel;
+    Label3: TLabel;
+    UniDSQOperadorGrupo: TUniDataSource;
+    UniQOperadorGrupo: TUniQuery;
+    UniQOperadorGrupoCODIGO: TFloatField;
+    UniQOperadorGrupoCODIGO_CAMPANHA: TFloatField;
+    UniQOperadorGrupoGRUPO_OPERADOR: TFloatField;
+    UniQOperadorGrupoNOME_GRUPO: TStringField;
+    UniQEstadosCODIGO_CAMPANHA: TFloatField;
+    UniQOperadorCODIGO: TFloatField;
+    UniQOperadorCODIGO_CAMPANHA: TFloatField;
+    UniQOperadorGRUPO_OPERADOR: TFloatField;
+    RzToolButton4: TRzToolButton;
+    ImportExcel1: TImportExcel;
+    uniscriptexportar: TUniQuery;
+    AdvDBComboBox2: TAdvDBComboBox;
+    JvDBGrid2: TJvDBGrid;
+    RzToolButton5: TRzToolButton;
+    RzToolButton10: TRzToolButton;
+    RzToolButton11: TRzToolButton;
+    UniDSCampanha_Credores: TUniDataSource;
+    UniCampanha_Credores: TUniQuery;
+    UniCampanha_CredoresCODIGO: TFloatField;
+    UniCampanha_CredoresCODIGO_CREDOR: TFloatField;
+    UniCampanha_CredoresCODIGO_CAMPANHA: TFloatField;
+    UniCampanha_CredoresNOME: TStringField;
+    RzToolButton12: TRzToolButton;
+    Panel5: TPanel;
+    Label30: TLabel;
+    Label31: TLabel;
+    RzNumericEdit1: TRzNumericEdit;
+    RzEditPrimeira: TRzNumericEdit;
+    RzToolButton13: TRzToolButton;
+    UniProcDias_Atraso: TUniStoredProc;
+    UniProcATT_ULTIMO_CONTATO: TUniStoredProc;
+    JvDBDatePickerEdit1: TJvDBDatePickerEdit;
+    JvDBDatePickerEdit2: TJvDBDatePickerEdit;
+    JvDBDatePickerEdit3: TJvDBDatePickerEdit;
+    JvDBDatePickerEdit4: TJvDBDatePickerEdit;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Notebook2: TNotebook;
+    UniDSQLista: TUniDataSource;
+    UniQLista: TUniQuery;
+    DBGrid1: TDBGrid;
+    Label10: TLabel;
+    RzNumericEdit2: TRzNumericEdit;
+    UniQListaCLIENTE: TStringField;
+    UniQListaNOME: TStringField;
+    UniQListaNROPERACAO: TStringField;
+    UniQListaREMESSA: TStringField;
+    UniQListaSTATUS: TStringField;
+    UniQListaDATAVENCTO: TDateTimeField;
+    UniQListaVALORVENCIDO: TFloatField;
+    UniQListaVALORNOMINAL: TFloatField;
+    UniQListaDIAS_ATRASO: TFloatField;
+    UniQListaCREDOR: TStringField;
+    UniQListaULTIMO_ACIONAMENTO: TDateTimeField;
+    UniQListaTIPOPESSOA: TStringField;
+    UniQListaCPF_CNPJ: TStringField;
+    UniQListaENDERECO: TStringField;
+    UniQListaNUMERO: TStringField;
+    UniQListaSETOR: TStringField;
+    UniQListaCIDADE: TStringField;
+    UniQListaUF: TStringField;
+    UniQListaCEP: TStringField;
+    UniQListaFONE: TStringField;
+    UniQListaFAXCEL: TStringField;
+    UniQListaFONE_1: TStringField;
+    UniQListaFAXCEL_1: TStringField;
+    UniQListaE_MAIL: TStringField;
+    UniQListaE_MAIL1: TStringField;
+    RzToolButton14: TRzToolButton;
+    RzToolButton15: TRzToolButton;
+    procedure FormShow(Sender: TObject);
+    procedure ChecaChecks;
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit2KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit3KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit4KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit5KeyPress(Sender: TObject; var Key: Char);
+    procedure AdvDBComboBox1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBAdvOfficeCheckBox15Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox16Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox1Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox3Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox5Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox9Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox11Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox10Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox12Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox13Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox14Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox7Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox2Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox4Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox8Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox6Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure RzToolButton6Click(Sender: TObject);
+    procedure RzToolButton7Click(Sender: TObject);
+    procedure AdvDBComboBox2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btnalterarClick(Sender: TObject);
+    procedure RzToolButton8Click(Sender: TObject);
+    procedure RzToolButton3Click(Sender: TObject);
+    procedure RzToolButton9Click(Sender: TObject);
+    procedure RzToolButton4Click(Sender: TObject);
+    procedure RzToolButton10Click(Sender: TObject);
+    procedure RzToolButton5Click(Sender: TObject);
+    procedure RzToolButton11Click(Sender: TObject);
+    procedure RzToolButton12Click(Sender: TObject);
+    procedure RzToolButton13Click(Sender: TObject);
+    procedure RzToolButton14Click(Sender: TObject);
+    procedure RzToolButton15Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ALTERAINSERE: STRING;
+  end;
+
+var
+  frmgrupogeralcadastro: Tfrmgrupogeralcadastro;
+
+implementation
+
+{$R *.dfm}
+
+uses uselecionacredor, ugrupogeral, uselecionaestado, uoperadoresselecaodegrupo,uDataModule;
+
+procedure Tfrmgrupogeralcadastro.AdvDBComboBox2KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+KEY := 0;
+end;
+
+procedure Tfrmgrupogeralcadastro.btnalterarClick(Sender: TObject);
+begin
+IF DBAdvLUEdit1.Text <> '' then
+    frmoperadoresselecaodegrupo.showmodal else
+    showmessage('Antes de inserir, grave a campanha.');
+UniQOperadorGrupo.Refresh;
+end;
+
+procedure Tfrmgrupogeralcadastro.ChecaChecks;
+begin
+{  DBAdvLUEdit13.Enabled := False;
+  DBAdvLUEdit14.Enabled := False;
+  DBAdvLUEdit15.Enabled := False;
+  DBAdvLUEdit16.Enabled := False;
+  DBAdvLUEdit17.Enabled := False;
+  DBAdvLUEdit18.Enabled := False;
+  DBAdvLUEdit19.Enabled := False;
+  DBAdvLUEdit20.Enabled := False;
+  DBAdvLUEdit21.Enabled := False;
+  DBAdvLUEdit22.Enabled := False;
+  DBAdvLUEdit23.Enabled := False;
+  DBAdvLUEdit24.Enabled := False;
+  DBAdvLUEdit25.Enabled := False;
+  DBAdvLUEdit26.Enabled := False;
+
+  if DBAdvOfficeCheckBox1.Checked = true then begin
+    DBAdvLUEdit13.Enabled := True;
+    DBAdvLUEdit14.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox2.Checked = true then begin
+    DBAdvLUEdit15.Enabled := True;
+    DBAdvLUEdit16.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox3.Checked = true then begin
+    DBAdvLUEdit17.Enabled := True;
+    DBAdvLUEdit18.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox4.Checked = true then begin
+    DBAdvLUEdit20.Enabled := True;
+    DBAdvLUEdit21.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox5.Checked = true then begin
+    DBAdvLUEdit19.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox9.Checked = true then begin
+    DBAdvLUEdit22.Enabled := True;
+    DBAdvLUEdit23.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox8.Checked = true then begin
+    DBAdvLUEdit24.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox6.Checked = true then begin
+    DBAdvLUEdit25.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox7.Checked = true then begin
+    DBAdvLUEdit26.Enabled := True;
+  end;
+}
+end;
+
+procedure Tfrmgrupogeralcadastro.AdvDBComboBox1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+key := 0;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvLUEdit2KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvLUEdit3KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvLUEdit4KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvLUEdit5KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox10Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox11Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox12Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox13Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox14Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox15Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox16Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox1Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox2Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox3Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox4Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox5Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox6Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox7Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox8Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.DBAdvOfficeCheckBox9Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmgrupogeralcadastro.FormActivate(Sender: TObject);
+begin
+  checachecks;
+//  frmgrupogeralcadastro.RzToolButton13Click(Sender);
+  RzNumericEdit1.Clear;
+  RzNumericEdit2.Clear;
+  RzEditPrimeira.Clear;
+end;
+
+procedure Tfrmgrupogeralcadastro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  alterainsere := '';
+  Uniqlista.Close;
+  UniCampanha_Credores.close;
+  UniQOperadorGrupo.close;
+end;
+
+procedure Tfrmgrupogeralcadastro.FormKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmgrupogeralcadastro.FormShow(Sender: TObject);
+begin
+  TabbedNotebook1.PageIndex := 0;
+
+  frmgrupogeralcadastro.UniQOperadorGrupo.close;
+  frmgrupogeralcadastro.UniQOperadorGrupo.sql.text := 'select campanha_grupo_operador.*, operador_grupo.nome_grupo from campanha_grupo_operador ' +
+                                                      'inner join operador_grupo on campanha_grupo_operador.grupo_operador = operador_grupo.codigo ' +
+                                                      'where codigo_campanha = :codigocampanha';
+                                                      frmgrupogeralcadastro.UniQOperadorGrupo.ParamByName('codigocampanha').AsString := DBADVLUEDIT1.Text;
+  frmgrupogeralcadastro.UniQOperadorGrupo.open;
+
+  frmgrupogeralcadastro.UniCampanha_Credores.close;
+  frmgrupogeralcadastro.UniCampanha_Credores.sql.text := 'select campanha_credores.*, bancos.nome from campanha_credores ' +
+                                                         'inner join bancos on campanha_credores.codigo_credor = bancos.codigo ' +
+                                                         'where codigo_campanha = :codigocampanha';
+                                                         frmgrupogeralcadastro.UniCampanha_Credores.ParamByName('codigocampanha').AsString := DBADVLUEDIT1.Text;
+  frmgrupogeralcadastro.UniCampanha_Credores.open;
+
+  DBAdvLUEdit2.SETFOCUS;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton10Click(Sender: TObject);
+begin
+IF DBAdvLUEdit1.Text <> '' then
+    fselecionacredor.showmodal else
+    showmessage('Antes de inserir, grave a campanha.');
+UniCampanha_Credores.Refresh;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton11Click(Sender: TObject);
+begin
+  if Application.MessageBox('Esta operação é irreversível. Deseja continuar?','Atenção',MB_ICONHAND + MB_YESNO + MB_ICONQUESTION) = mrYES then
+    try UniCampanha_Credores.Delete; except end;
+  UniQOperadorGrupo.Refresh;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton12Click(Sender: TObject);
+begin
+//
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton13Click(Sender: TObject);
+var
+  var_credores, var_estados, var_tipopessoa: string;
+begin
+//colocando os campos credores, estados e tipopessoa
+  UniCampanha_Credores.First;
+  while not UniCampanha_Credores.eof do begin
+    var_credores := var_credores + quotedstr(UniCampanha_Credores.fieldbyname('codigo_credor').asstring) + ',';
+    UniCampanha_Credores.Next;
+  end;
+  UniQEstados.First;
+  while not UniQEstados.eof do begin
+    var_estados := var_estados + quotedstr(UniQEstados.fieldbyname('estado').asstring) + ',';
+    UniQEstados.Next;
+  end;
+  if DBAdvOfficeCheckBox6.Checked then var_tipopessoa := var_tipopessoa + quotedstr('F') + ',';
+  if DBAdvOfficeCheckBox7.Checked then var_tipopessoa := var_tipopessoa + quotedstr('J') + ',';
+//deletando o último ','
+  try Delete(var_credores,Length(var_credores),1) except end;
+  try Delete(var_estados,Length(var_estados),1) except end;
+  try Delete(var_tipopessoa,Length(var_tipopessoa),1) except end;
+
+//atualizar campos dias_atraso
+  UniProcDias_Atraso.ExecProc;
+//atualizar campo ultimo_acionamento
+  UniProcATT_ULTIMO_CONTATO.ExecProc;
+
+  if DBAdvLUEdit4.Text = '' then DBAdvLUEdit4.Text := '0';
+  if DBAdvLUEdit5.Text = '' then DBAdvLUEdit5.Text := '1000000000';
+  if DBAdvLUEdit3.Text = '' then DBAdvLUEdit3.Text := '0';
+  if DBAdvLUEdit6.Text = '' then DBAdvLUEdit6.Text := '1000000000';
+//  sleep(500);
+  //fazendo o filtro total $$$
+  try
+    uniscript.close;
+    uniscript.sql.clear;
+    uniscript.sql.add('select sum(operacoes.valorvencido) as totaldividas');
+    uniscript.sql.add('from operacoes inner join clientes on operacoes.cliente = clientes.cpf_cnpj');
+    uniscript.sql.add('where operacoes.cliente is not null');
+    if var_credores <> '' then uniscript.sql.add('and operacoes.credor in ('+var_credores+')');
+    if var_estados <> '' then uniscript.sql.add('and clientes.uf in ('+var_estados+')');
+    if var_tipopessoa <> '' then uniscript.sql.add('and clientes.tipopessoa in ('+var_tipopessoa+')');
+    if AdvDBComboBox2.Text <> 'Todos' then begin
+      uniscript.sql.add('and operacoes.status = :pstatus');
+      uniscript.parambyname('pstatus').AsString := AdvDBComboBox2.Text;
+    end;
+    uniscript.sql.add('and operacoes.datavencto between :pdatavencto1 and :pdatavencto2');
+    uniscript.sql.add('and operacoes.valorvencido between :pvalorvencido1 and :pvalorvencido2');
+    uniscript.sql.add('and operacoes.dias_atraso between :pdias_atraso1 and :pdias_atraso2');
+    uniscript.sql.add('and operacoes.ultimo_acionamento between :pultimoacionamento1 and :pultimoacionamento2');
+                      uniscript.parambyname('pdatavencto1').AsDate := JvDBDatePickerEdit1.Date;
+                      uniscript.parambyname('pdatavencto2').AsDate := JvDBDatePickerEdit2.Date;
+                      uniscript.parambyname('pvalorvencido1').AsFloat := strtofloat(DBAdvLUEdit3.Text);
+                      uniscript.parambyname('pvalorvencido2').AsFloat := strtofloat(DBAdvLUEdit6.Text);
+                      uniscript.parambyname('pdias_atraso1').AsFloat := strtofloat(DBAdvLUEdit4.Text);
+                      uniscript.parambyname('pdias_atraso2').AsFloat := strtofloat(DBAdvLUEdit5.Text);
+                      uniscript.parambyname('pultimoacionamento1').AsDate := JvDBDatePickerEdit3.Date;
+                      uniscript.parambyname('pultimoacionamento2').AsDate := JvDBDatePickerEdit4.Date;
+    uniscript.open;
+    uniscript.first;
+    uniscript.last;
+    uniscript.first;
+
+    RzEditPrimeira.Value := uniscript.fieldbyname('totaldividas').AsFloat;
+
+  except showmessage('Erro ln 490. "Cálculo Filtro Total Dívidas".') end;
+
+  //fazendo o filtro total cpf_cnpj
+  try
+    uniscript.close;
+    uniscript.sql.clear;
+    uniscript.sql.add('select distinct operacoes.cliente');
+    uniscript.sql.add('from operacoes inner join clientes on operacoes.cliente = clientes.cpf_cnpj');
+    uniscript.sql.add('where operacoes.cliente is not null');
+    if var_credores <> '' then uniscript.sql.add('and operacoes.credor in ('+var_credores+')');
+    if var_estados <> '' then uniscript.sql.add('and clientes.uf in ('+var_estados+')');
+    if var_tipopessoa <> '' then uniscript.sql.add('and clientes.tipopessoa in ('+var_tipopessoa+')');
+    if AdvDBComboBox2.Text <> 'Todos' then begin
+      uniscript.sql.add('and operacoes.status = :pstatus');
+      uniscript.parambyname('pstatus').AsString := AdvDBComboBox2.Text;
+    end;
+    uniscript.sql.add('and operacoes.datavencto between :pdatavencto1 and :pdatavencto2');
+    uniscript.sql.add('and operacoes.valorvencido between :pvalorvencido1 and :pvalorvencido2');
+    uniscript.sql.add('and operacoes.dias_atraso between :pdias_atraso1 and :pdias_atraso2');
+    uniscript.sql.add('and operacoes.ultimo_acionamento between :pultimoacionamento1 and :pultimoacionamento2');
+                      uniscript.parambyname('pdatavencto1').AsDate := JvDBDatePickerEdit1.Date;
+                      uniscript.parambyname('pdatavencto2').AsDate := JvDBDatePickerEdit2.Date;
+                      uniscript.parambyname('pvalorvencido1').AsFloat := strtofloat(DBAdvLUEdit3.Text);
+                      uniscript.parambyname('pvalorvencido2').AsFloat := strtofloat(DBAdvLUEdit6.Text);
+                      uniscript.parambyname('pdias_atraso1').AsFloat := strtofloat(DBAdvLUEdit4.Text);
+                      uniscript.parambyname('pdias_atraso2').AsFloat := strtofloat(DBAdvLUEdit5.Text);
+                      uniscript.parambyname('pultimoacionamento1').AsDate := JvDBDatePickerEdit3.Date;
+                      uniscript.parambyname('pultimoacionamento2').AsDate := JvDBDatePickerEdit4.Date;
+    uniscript.open;
+    uniscript.first;
+    uniscript.last;
+    uniscript.first;
+
+    RzNumericEdit1.Value := uniscript.recordcount;
+
+  except showmessage('Erro ln 526. "Total Filtro Total CPF/CNPJ".') end;
+
+  //fazendo o filtro total operacoes
+  try
+    uniscript.close;
+    uniscript.sql.clear;
+    uniscript.sql.add('select operacoes.registro');
+    uniscript.sql.add('from operacoes inner join clientes on operacoes.cliente = clientes.cpf_cnpj');
+    uniscript.sql.add('where operacoes.cliente is not null');
+    if var_credores <> '' then uniscript.sql.add('and operacoes.credor in ('+var_credores+')');
+    if var_estados <> '' then uniscript.sql.add('and clientes.uf in ('+var_estados+')');
+    if var_tipopessoa <> '' then uniscript.sql.add('and clientes.tipopessoa in ('+var_tipopessoa+')');
+    if AdvDBComboBox2.Text <> 'Todos' then begin
+      uniscript.sql.add('and operacoes.status = :pstatus');
+      uniscript.parambyname('pstatus').AsString := AdvDBComboBox2.Text;
+    end;
+    uniscript.sql.add('and operacoes.datavencto between :pdatavencto1 and :pdatavencto2');
+    uniscript.sql.add('and operacoes.valorvencido between :pvalorvencido1 and :pvalorvencido2');
+    uniscript.sql.add('and operacoes.dias_atraso between :pdias_atraso1 and :pdias_atraso2');
+    uniscript.sql.add('and operacoes.ultimo_acionamento between :pultimoacionamento1 and :pultimoacionamento2');
+                      uniscript.parambyname('pdatavencto1').AsDate := JvDBDatePickerEdit1.Date;
+                      uniscript.parambyname('pdatavencto2').AsDate := JvDBDatePickerEdit2.Date;
+                      uniscript.parambyname('pvalorvencido1').AsFloat := strtofloat(DBAdvLUEdit3.Text);
+                      uniscript.parambyname('pvalorvencido2').AsFloat := strtofloat(DBAdvLUEdit6.Text);
+                      uniscript.parambyname('pdias_atraso1').AsFloat := strtofloat(DBAdvLUEdit4.Text);
+                      uniscript.parambyname('pdias_atraso2').AsFloat := strtofloat(DBAdvLUEdit5.Text);
+                      uniscript.parambyname('pultimoacionamento1').AsDate := JvDBDatePickerEdit3.Date;
+                      uniscript.parambyname('pultimoacionamento2').AsDate := JvDBDatePickerEdit4.Date;
+    uniscript.open;
+    uniscript.first;
+    uniscript.last;
+    uniscript.first;
+
+    RzNumericEdit2.Value := uniscript.recordcount;
+
+  except showmessage('Erro ln 526. "Total Filtro Total CPF/CNPJ".') end;
+
+  //fazendo a lista
+  try
+    uniqlista.close;
+    uniqlista.sql.clear;
+    uniqlista.sql.add('select');
+    uniqlista.sql.add('operacoes.cliente,');
+    uniqlista.sql.add('clientes.nome,');
+    uniqlista.sql.add('operacoes.nroperacao,');
+    uniqlista.sql.add('operacoes.remessa,');
+    uniqlista.sql.add('operacoes.status,');
+    uniqlista.sql.add('operacoes.datavencto,');
+    uniqlista.sql.add('operacoes.valorvencido,');
+    uniqlista.sql.add('operacoes.valornominal,');
+    uniqlista.sql.add('operacoes.dias_atraso,');
+    uniqlista.sql.add('operacoes.credor,');
+    uniqlista.sql.add('operacoes.ultimo_acionamento,');
+    uniqlista.sql.add('clientes.tipopessoa,');
+    uniqlista.sql.add('clientes.cpf_cnpj,');
+    uniqlista.sql.add('clientes.endereco,');
+    uniqlista.sql.add('clientes.numero,');
+    uniqlista.sql.add('clientes.setor,');
+    uniqlista.sql.add('clientes.cidade,');
+    uniqlista.sql.add('clientes.uf,');
+    uniqlista.sql.add('clientes.cep,');
+    uniqlista.sql.add('clientes.fone,');
+    uniqlista.sql.add('clientes.faxcel,');
+    uniqlista.sql.add('clientes.fone_1,');
+    uniqlista.sql.add('clientes.faxcel_1,');
+    uniqlista.sql.add('clientes.e_mail,');
+    uniqlista.sql.add('clientes.e_mail1');
+    uniqlista.sql.add('from operacoes inner join clientes on operacoes.cliente = clientes.cpf_cnpj');
+    uniqlista.sql.add('where operacoes.cliente is not null');
+    if var_credores <> '' then uniqlista.sql.add('and operacoes.credor in ('+var_credores+')');
+    if var_estados <> '' then uniqlista.sql.add('and clientes.uf in ('+var_estados+')');
+    if var_tipopessoa <> '' then uniqlista.sql.add('and clientes.tipopessoa in ('+var_tipopessoa+')');
+    if AdvDBComboBox2.Text <> 'Todos' then begin
+      uniqlista.sql.add('and operacoes.status = :pstatus');
+      uniqlista.parambyname('pstatus').AsString := AdvDBComboBox2.Text;
+    end;
+    uniqlista.sql.add('and operacoes.datavencto between :pdatavencto1 and :pdatavencto2');
+    uniqlista.sql.add('and operacoes.valorvencido between :pvalorvencido1 and :pvalorvencido2');
+    uniqlista.sql.add('and operacoes.dias_atraso between :pdias_atraso1 and :pdias_atraso2');
+    uniqlista.sql.add('and operacoes.ultimo_acionamento between :pultimoacionamento1 and :pultimoacionamento2');
+                      uniqlista.parambyname('pdatavencto1').AsDate := JvDBDatePickerEdit1.Date;
+                      uniqlista.parambyname('pdatavencto2').AsDate := JvDBDatePickerEdit2.Date;
+                      uniqlista.parambyname('pvalorvencido1').AsFloat := strtofloat(DBAdvLUEdit3.Text);
+                      uniqlista.parambyname('pvalorvencido2').AsFloat := strtofloat(DBAdvLUEdit6.Text);
+                      uniqlista.parambyname('pdias_atraso1').AsFloat := strtofloat(DBAdvLUEdit4.Text);
+                      uniqlista.parambyname('pdias_atraso2').AsFloat := strtofloat(DBAdvLUEdit5.Text);
+                      uniqlista.parambyname('pultimoacionamento1').AsDate := JvDBDatePickerEdit3.Date;
+                      uniqlista.parambyname('pultimoacionamento2').AsDate := JvDBDatePickerEdit4.Date;
+    uniqlista.open;
+  except showmessage('Erro ln 588. "Cálculo Filtro Lista".') end;
+
+  uniscript.close;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton14Click(Sender: TObject);
+begin
+showmessage('Aguardando layout do discador.');
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton15Click(Sender: TObject);
+begin
+showmessage('Aguardando layout do SMS.');
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton1Click(Sender: TObject);
+begin
+  IF ALTERAINSERE = 'INSERE' THEN BEGIN
+    unigetid.close;
+    unigetid.sql.text := 'SELECT SEQ_CAMPANHA_CRM.nextval as Sequences FROM DUAL';
+    unigetid.open;
+
+    FRMGRUPOGERAL.uniQGrupoGeral.edit;
+    DBAdvLUEdit1.Text := unigetid.FieldByName('Sequences').AsString;
+    FRMGRUPOGERAL.uniQGrupoGeral.post;
+
+    try frmDataModule.UniConnection1.Commit; except end;
+
+    try
+    UniQEstados.Edit;
+    UniQEstados.Post;
+    except end;
+
+    try frmDataModule.UniConnection1.Commit; except end;
+
+    try
+    UniQOperador.Edit;
+    UniQOperador.Post;
+    except end;
+
+    try frmDataModule.UniConnection1.Commit; except end;
+
+    unigetid.close;
+
+    ALTERAINSERE := '';
+  END
+  ELSE BEGIN
+
+{    TRY FRMGRUPOGERAL.uniQGrupoGeral.EDIT; EXCEPT END;
+    TRY FRMGRUPOGERAL.uniQGrupoGeral.post; EXCEPT END;
+    TRY FRMGRUPOGERAL.uniQGrupoGeral.close; EXCEPT END;
+
+    try frmDataModule.UniConnection1.Commit; except end;
+
+}
+    FRMGRUPOGERAL.uniQGrupoGeral.EDIT;
+    FRMGRUPOGERAL.uniQGrupoGeral.Post;
+    FRMGRUPOGERAL.uniQGrupoGeral.close;
+
+    try
+    UniQEstados.Edit;
+    UniQEstados.Post;
+    except end;
+
+    try
+    UniQOperador.Edit;
+    UniQOperador.Post;
+    except end;
+
+    frmDataModule.UniConnection1.Commit;
+  END;
+
+  Close;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton2Click(Sender: TObject);
+begin
+  FRMGRUPOGERAL.uniQGrupoGeral.Cancel;
+  UniCampanha_Credores.Cancel;
+  Close;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton3Click(Sender: TObject);
+begin
+  if Application.MessageBox('Esta operação é irreversível. Deseja continuar?','Atenção',MB_ICONHAND + MB_YESNO + MB_ICONQUESTION) = mrYES then
+    try UniQOperadorGrupo.Delete; except end;
+UniQOperadorGrupo.Refresh;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton4Click(Sender: TObject);
+begin
+  importexcel1.ExportarParaExcel(uniqlista, 'Lista Discador');
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton5Click(Sender: TObject);
+begin
+  IF DBAdvLUEdit1.Text <> '' then begin
+    uniscript.Close;
+    uniscript.Sql.Clear;
+    uniscript.Sql.Text := 'delete from campanha_credores where codigo_campanha = :codigocampanha';
+                          uniscript.ParamByName('codigocampanha').AsString := DBADVLUEDIT1.Text;
+    uniscript.ExecSQL;
+
+    uniscript.Close;
+    uniscript.Sql.Clear;
+    uniscript.Sql.Text := 'select * from bancos';
+    uniscript.Open;
+    uniscript.First;
+
+    UniCampanha_Credores.open;
+
+    while not uniscript.Eof do begin
+      UniCampanha_Credores.insert;
+      unigetid.close;
+      unigetid.sql.text := 'SELECT SEQ_CAMPANHA_CREDORES.nextval as Sequences FROM DUAL';
+      unigetid.open;
+
+      UniCampanha_Credores.FieldbyName('CODIGO').Value := unigetid.FieldByName('Sequences').Value;
+      UniCampanha_Credores.FieldbyName('CODIGO_CAMPANHA').AsString := DBAdvLUEdit1.TEXT;
+      UniCampanha_Credores.FieldbyName('CODIGO_CREDOR').Value := uniscript.FieldByName('CODIGO').Value;
+      UniCampanha_Credores.post;
+
+      uniscript.Next;
+    end;
+
+    uniscript.Close;
+    unigetid.close;
+  end
+  else showmessage('Antes de inserir, grave a campanha.');
+
+  UniCampanha_Credores.REFRESH;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton6Click(Sender: TObject);
+begin
+IF DBAdvLUEdit1.Text <> '' then frmselecionaestado.showmodal else showmessage('Antes de inserir, grave a campanha.');
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton7Click(Sender: TObject);
+begin
+  if Application.MessageBox('Esta operação é irreversível. Deseja continuar?','Atenção',MB_ICONHAND + MB_YESNO + MB_ICONQUESTION) = mrYES then
+    try uniQEstados.Delete; except end;
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton8Click(Sender: TObject);
+begin
+  IF DBAdvLUEdit1.Text <> '' then begin
+    uniscript.Close;
+    uniscript.Sql.Clear;
+    uniscript.Sql.Text := 'delete from campanha_estado where codigo_campanha = :codigocampanha';
+                          uniscript.ParamByName('codigocampanha').AsString := DBADVLUEDIT1.Text;
+    uniscript.ExecSQL;
+
+    uniscript.Close;
+    uniscript.Sql.Clear;
+    uniscript.Sql.Text := 'select * from estado';
+    uniscript.Open;
+    uniscript.First;
+
+    while not uniscript.Eof do begin
+      frmgrupogeralcadastro.UniQEstados.open;
+      frmgrupogeralcadastro.UniQEstados.insert;
+
+      unigetid.close;
+      unigetid.sql.text := 'SELECT SEQ_CAMPANHA_ESTADO.nextval as Sequences FROM DUAL';
+      unigetid.open;
+
+      UniQEstados.FieldbyName('CODIGO').Value := unigetid.FieldByName('Sequences').Value;
+      UniQEstados.FieldbyName('CODIGO_CAMPANHA').AsString := DBAdvLUEdit1.TEXT;
+      UniQEstados.FieldbyName('ESTADO').Value := uniscript.FieldByName('UF').Value;
+      UniQEstados.post;
+
+      uniscript.Next;
+    end;
+
+    uniscript.Close;
+    unigetid.close;
+  end
+  else showmessage('Antes de inserir, grave a campanha.');
+end;
+
+procedure Tfrmgrupogeralcadastro.RzToolButton9Click(Sender: TObject);
+begin
+  IF DBAdvLUEdit1.Text <> '' then begin
+    uniscript.Close;
+    uniscript.Sql.Clear;
+    uniscript.Sql.Text := 'delete from campanha_grupo_operador where codigo_campanha = :codigocampanha';
+                          uniscript.ParamByName('codigocampanha').AsString := DBADVLUEDIT1.Text;
+    uniscript.ExecSQL;
+
+    uniscript.Close;
+    uniscript.Sql.Clear;
+    uniscript.Sql.Text := 'select * from operador_grupo';
+    uniscript.Open;
+    uniscript.First;
+
+    UniQOperadorGrupo.open;
+
+    while not uniscript.Eof do begin
+      UniQOperadorGrupo.insert;
+      unigetid.close;
+      unigetid.sql.text := 'SELECT SEQ_CAMPANHA_GRUPO_OPERADOR.nextval as Sequences FROM DUAL';
+      unigetid.open;
+
+      UniQOperadorGrupo.FieldbyName('CODIGO').Value := unigetid.FieldByName('Sequences').Value;
+      UniQOperadorGrupo.FieldbyName('CODIGO_CAMPANHA').AsString := DBAdvLUEdit1.TEXT;
+      UniQOperadorGrupo.FieldbyName('GRUPO_OPERADOR').AsString := uniscript.FieldByName('CODIGO').AsString;
+      UniQOperadorGrupo.FieldbyName('NOME_GRUPO').AsString := uniscript.FieldByName('NOME_GRUPO').AsString;
+      UniQOperadorGrupo.post;
+
+      uniscript.Next;
+    end;
+
+    uniscript.Close;
+    unigetid.close;
+  end
+  else showmessage('Antes de inserir, grave a campanha.');
+UniQOperadorGrupo.REFRESH;
+end;
+
+end.

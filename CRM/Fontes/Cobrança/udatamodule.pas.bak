@@ -1,0 +1,63 @@
+unit udatamodule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, FireDAC.Comp.Client,
+  DBAccess, Uni, UniProvider, OracleUniProvider, MemDS, DAScript, UniScript,
+  IniFiles, Winapi.Windows, Forms, Dialogs, MySQLUniProvider;
+
+type
+  TfrmDataModule = class(TDataModule)
+    UniConnection1: TUniConnection;
+    OracleUniProvider1_: TOracleUniProvider;
+    UniTransaction1: TUniTransaction;
+    MySQLUniProvider1: TMySQLUniProvider;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDataModule: TfrmDataModule;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TfrmDataModule.DataModuleCreate(Sender: TObject);
+var
+  iArq: TIniFile;
+begin
+      UniConnection1.Connected := False;
+  try
+    if fileexists(ExtractFilePath(Application.ExeName) + 'oracle_path.ini') then begin
+      iArq := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'oracle_path.ini');
+      UniConnection1.Server := iArq.ReadString('BD', 'Server', '');
+      UniConnection1.Port := strtoint(iArq.ReadString('BD', 'Port', ''));
+      UniConnection1.Database := 'crmvix';
+    end
+    else begin
+      Application.MessageBox('Arquivo ausente, desconhecido ou não configurado: ''oracle_path.ini''.','Atenção',MB_ICONHAND + MB_OK + MB_ICONQUESTION);
+      halt;
+      Application.Terminate;
+    end;
+
+    try
+      UniConnection1.Connected := true;
+    Except
+      Application.MessageBox('Não foi possível acessar o banco de dados!' + sLineBreak +
+        'Verifique o arquivo oracle_path.ini.' + sLineBreak + ' Se o erro persistir entre em contato com o Suporte.','Atenção',MB_ICONHAND + MB_OK + MB_ICONQUESTION);
+      halt;
+      Application.Terminate;
+    end;
+  Finally
+    iArq.Free;
+  end;
+end;
+
+end.

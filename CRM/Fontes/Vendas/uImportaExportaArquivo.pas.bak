@@ -1,0 +1,1573 @@
+unit uImportaExportaArquivo;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  ExtCtrls, ComCtrls, StdCtrls, Buttons, RxLookup, Db, Gauges, DBClient,
+  AdvGlowButton, DALoader, UniLoader, MemDS, DBAccess, Uni, Vcl.Grids,
+  uImportExcel, Vcl.DBGrids, MidasLib, Vcl.DBCtrls;
+
+type
+  TFImportaExportaArquivo = class(TForm)
+    OpenDialog: TOpenDialog;
+    Panel1: TPanel;
+    Shape2: TShape;
+    Label_ProgressGeral: TLabel;
+    Label1: TLabel;
+    uniscript: TUniQuery;
+    cdsxls: TClientDataSet;
+    StringGrid1: TStringGrid;
+    ProgressBarGeral: TProgressBar;
+    DBGrid1: TDBGrid;
+    dsxls: TDataSource;
+    cdsxlsTIPO: TStringField;
+    cdsxlsNROPERAÇÃO: TStringField;
+    cdsxlsNOMEOPERAÇÃO: TStringField;
+    cdsxlsAGENCIA: TStringField;
+    cdsxlsCONTA: TStringField;
+    cdsxlsPRODUTO: TStringField;
+    cdsxlsDTATUALIZADO: TDateField;
+    cdsxlsDTVENCIMENTO: TDateField;
+    cdsxlsVALOROPERAÇÃO: TCurrencyField;
+    cdsxlsVALORVENCIDO: TCurrencyField;
+    cdsxlsCONDNEGOCIAIS: TStringField;
+    cdsxlsCPFCNPJ: TStringField;
+    cdsxlsMCI: TIntegerField;
+    cdsxlsNRFICHA: TIntegerField;
+    cdsxlsNOMEDOCLIENTE: TStringField;
+    cdsxlsENDEREÇO: TStringField;
+    cdsxlsNUMERO: TStringField;
+    cdsxlsBAIRRO: TStringField;
+    cdsxlsCEP: TStringField;
+    cdsxlsCIDADE: TStringField;
+    cdsxlsUF: TStringField;
+    cdsxlsTELEFONE1: TStringField;
+    cdsxlsTELEFONE2: TStringField;
+    cdsxlsTELEFONE3: TStringField;
+    cdsxlsTELEFONE4: TStringField;
+    cdsxlsTELEFONE5: TStringField;
+    cdsxlsTELEFONE6: TStringField;
+    cdsxlsDATANASCIMENTO: TDateField;
+    cdsxlsNATURALIDADE: TStringField;
+    cdsxlsSEXO: TStringField;
+    cdsxlsESTADOCIVIL: TStringField;
+    cdsxlsNOMEDOPAI: TStringField;
+    cdsxlsNOMEDAMÃE: TStringField;
+    cdsxlsNOMEAVALISTA1: TStringField;
+    cdsxlsCPFCNPJAVALISTA1: TStringField;
+    cdsxlsENDEREÇOAVALISTA1: TStringField;
+    cdsxlsBAIRROAVALISTA1: TStringField;
+    cdsxlsCEPAVALISTA1: TStringField;
+    cdsxlsCIDADEAVALISTA1: TStringField;
+    cdsxlsUFAVALISTA1: TStringField;
+    cdsxlsTELEFONE1AVALISTA1: TStringField;
+    cdsxlsTELEFONE2AVALISTA1: TStringField;
+    cdsxlsNOMEAVALISTA2: TStringField;
+    cdsxlsCPFCNPJAVALISTA2: TStringField;
+    cdsxlsENDEREÇOAVALISTA2: TStringField;
+    cdsxlsBAIRROAVALISTA2: TStringField;
+    cdsxlsCEPAVALISTA2: TStringField;
+    cdsxlsCIDADEAVALISTA2: TStringField;
+    cdsxlsUFAVALISTA2: TStringField;
+    cdsxlsTELEFONE1AVALISTA2: TStringField;
+    cdsxlsTELEFONE2AVALISTA2: TStringField;
+    cdsxlsNOMEAVALISTA3: TStringField;
+    cdsxlsCPFCNPJAVALISTA3: TStringField;
+    cdsxlsENDEREÇOAVALISTA3: TStringField;
+    cdsxlsBAIRROAVALISTA3: TStringField;
+    cdsxlsCEPAVALISTA3: TStringField;
+    cdsxlsCIDADEAVALISTA3: TStringField;
+    cdsxlsUFAVALISTA3: TStringField;
+    cdsxlsTELEFONE1AVALISTA3: TStringField;
+    cdsxlsTELEFONE2AVALISTA3: TStringField;
+    cdsxlsNOMEAVALISTA4: TStringField;
+    cdsxlsCPFCNPJAVALISTA4: TStringField;
+    cdsxlsENDEREÇOAVALISTA4: TStringField;
+    cdsxlsBAIRROAVALISTA4: TStringField;
+    cdsxlsCEPAVALISTA4: TStringField;
+    cdsxlsCIDADEAVALISTA4: TStringField;
+    cdsxlsUFAVALISTA4: TStringField;
+    cdsxlsTELEFONE1AVALISTA4: TStringField;
+    cdsxlsTELEFONE2AVALISTA4: TStringField;
+    cdsxlsNOMEAVALISTA5: TStringField;
+    cdsxlsCPFCNPJAVALISTA5: TStringField;
+    cdsxlsENDEREÇOAVALISTA5: TStringField;
+    cdsxlsBAIRROAVALISTA5: TStringField;
+    cdsxlsCEPAVALISTA5: TStringField;
+    cdsxlsCIDADEAVALISTA5: TStringField;
+    cdsxlsUFAVALISTA5: TStringField;
+    cdsxlsTELEFONE1AVALISTA5: TStringField;
+    cdsxlsTELEFONE2AVALISTA5: TStringField;
+    cdsxlsNOMEAVALISTA6: TStringField;
+    cdsxlsCPFCNPJAVALISTA6: TStringField;
+    cdsxlsENDEREÇOAVALISTA6: TStringField;
+    cdsxlsBAIRROAVALISTA6: TStringField;
+    cdsxlsCEPAVALISTA6: TStringField;
+    cdsxlsCIDADEAVALISTA6: TStringField;
+    cdsxlsUFAVALISTA6: TStringField;
+    cdsxlsTELEFONE1AVALISTA6: TStringField;
+    cdsxlsTELEFONE2AVALISTA6: TStringField;
+    cdsxlsPROFISSÃO: TStringField;
+    cdsxlsNOMELOCALDETRABALHO: TStringField;
+    cdsxlsENDEREÇOLOCALDETRABALHO: TStringField;
+    cdsxlsBAIRROLOCALDETRABALHO: TStringField;
+    cdsxlsCEPLOCALDETRABALHO: TStringField;
+    cdsxlsCIDADELOCALDETRABALHO: TStringField;
+    cdsxlsUFLOCALDETRABALHO: TStringField;
+    cdsxlsTELEFONE1LOCALDETRABALHO: TStringField;
+    cdsxlsTELEFONE2LOCALDETRABALHO: TStringField;
+    cdsxlsREFERENCIAPESSOAL: TStringField;
+    cdsxlsTELEFONE1REFERENCIA: TStringField;
+    cdsxlsTELEFONE2REFERENCIA: TStringField;
+    cdsxlsREFERENCIAPESSOAL2: TStringField;
+    cdsxlsTELEFONE1REFERENCIA2: TStringField;
+    cdsxlsTELEFONE2REFERENCIA2: TStringField;
+    cdsxlsREFERENCIAPESSOAL3: TStringField;
+    cdsxlsTELEFONE1REFERENCIA3: TStringField;
+    cdsxlsTELEFONE2REFERENCIA3: TStringField;
+    cdsxlsSPCSERASA: TStringField;
+    cdsxlsEMAIL: TStringField;
+    cdsxlsDTEMISSÃO: TDateField;
+    cdsxlsVALORPROTESTO: TCurrencyField;
+    cdsxlsOBSOPERAÇÃO: TStringField;
+    cdsxlsDTFIMTERCERIZAÇÃO: TDateField;
+    cdsxlsVALORJUROS: TCurrencyField;
+    cdsxlsCOD_CLASSIFICACAO_CLIENTE: TStringField;
+    cdsxlsCOD_CLASSIFICACAO_OPERACAO: TStringField;
+    Memo2: TMemo;
+    ednome: TEdit;
+    Panel2: TPanel;
+    AdvGlowButton5: TAdvGlowButton;
+    AdvGlowButton3: TAdvGlowButton;
+    Label2: TLabel;
+    btimporta_cada: TButton;
+    cdscadas: TClientDataSet;
+    cdscadas1: TStringField;
+    cdscadas3: TStringField;
+    cdscadas4: TStringField;
+    cdscadas5: TStringField;
+    cdscadas6: TStringField;
+    cdscadas7: TStringField;
+    cdscadas8: TStringField;
+    cdscadas9: TStringField;
+    cdscadas10: TStringField;
+    cdscadas11: TStringField;
+    cdscadas12: TStringField;
+    cdscadas13: TStringField;
+    cdscadas14: TStringField;
+    cdscadas15: TStringField;
+    cdscadas16: TStringField;
+    cdscadas17: TStringField;
+    cdscadas18: TStringField;
+    cdscadas19: TStringField;
+    cdscadas20: TStringField;
+    cdscadas2: TStringField;
+    dscadas: TDataSource;
+    btimporta_inad: TButton;
+    Memo1: TMemo;
+    cdsinad: TClientDataSet;
+    inad1: TStringField;
+    inad2: TStringField;
+    inad3: TStringField;
+    inad4: TStringField;
+    inad5: TStringField;
+    inad6: TStringField;
+    inad7: TStringField;
+    inad8: TStringField;
+    inad9: TStringField;
+    inad10: TStringField;
+    inad11: TStringField;
+    inad12: TStringField;
+    inad13: TStringField;
+    inad14: TStringField;
+    inad15: TStringField;
+    inad16: TStringField;
+    inad17: TStringField;
+    inad18: TStringField;
+    inad19: TStringField;
+    inad20: TStringField;
+    dsinad: TDataSource;
+    inad21: TStringField;
+    inad22: TStringField;
+    btimporta_oper: TButton;
+    cdsoper: TClientDataSet;
+    cdsoper1: TStringField;
+    cdsoper2: TStringField;
+    cdsoper3: TStringField;
+    cdsoper4: TStringField;
+    cdsoper5: TStringField;
+    cdsoper6: TStringField;
+    cdsoper7: TStringField;
+    cdsoper8: TStringField;
+    cdsoper9: TStringField;
+    dsoper: TDataSource;
+    btimporta_tele: TButton;
+    cdstele: TClientDataSet;
+    cdstele1: TStringField;
+    cdstele2: TStringField;
+    cdstele3: TStringField;
+    cdstele4: TStringField;
+    cdstele5: TStringField;
+    cdstele6: TStringField;
+    cdstele7: TStringField;
+    cdstele8: TStringField;
+    dstele: TDataSource;
+    btimporta_xls: TButton;
+    pnlgeral: TPanel;
+    Label3: TLabel;
+    Label4: TLabel;
+    ImportExcel1: TImportExcel;
+    btimporta_clioper: TButton;
+    dsxlsclioper: TDataSource;
+    cdsxlsclioper: TClientDataSet;
+    cdsxlsclioperCLIENTE: TStringField;
+    cdsxlsclioperDTNASCIMENTO: TDateField;
+    cdsxlsclioperEMAIL: TStringField;
+    cdsxlsclioperFONE: TStringField;
+    cdsxlsclioperFONE2: TStringField;
+    cdsxlsclioperENDERECO: TStringField;
+    cdsxlsclioperNUMERO: TStringField;
+    cdsxlsclioperSETOR: TStringField;
+    cdsxlsclioperCIDADE: TStringField;
+    cdsxlsclioperUF: TStringField;
+    cdsxlsclioperCEP: TStringField;
+    cdsxlsclioperCPF_CNPJ: TStringField;
+    cdsxlsclioperIDENTIDADE: TStringField;
+    cdsxlsclioperFONE3: TStringField;
+    cdsxlsclioperFONE4: TStringField;
+    cdsxlsclioperOPERACAO: TStringField;
+    cdsxlsclioperVENCIMENTO: TDateField;
+    cdsxlsclioperVALOR_NOMINAL: TFloatField;
+    cdsxlsclioperSITUACAO: TStringField;
+    cdsxlsclioperRECEBIMENTO: TDateField;
+    cdsxlsclioperVALOR_RECEBIDO: TFloatField;
+    uniscriptimporta: TUniQuery;
+    uniscriptconsulta: TUniQuery;
+    unigetid: TUniQuery;
+    cdsxlsclioperCREDOR: TStringField;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label13: TLabel;
+    UniDSQCredor: TUniDataSource;
+    uniQCredor: TUniQuery;
+    uniQCredorCODIGO: TFloatField;
+    uniQCredorNOME: TStringField;
+    btn_novo: TButton;
+    cdsxlsx_nov2019: TClientDataSet;
+    dscdsxlsx_nov2019: TDataSource;
+    cdsxlsx_nov2019NOME: TStringField;
+    cdsxlsx_nov2019CPFCNPJ: TStringField;
+    cdsxlsx_nov2019TIPO: TStringField;
+    cdsxlsx_nov2019SEXO: TStringField;
+    cdsxlsx_nov2019DTNASCIMENTO: TStringField;
+    cdsxlsx_nov2019DOCIDENTIDADE: TStringField;
+    cdsxlsx_nov2019EMAIL1: TStringField;
+    cdsxlsx_nov2019EMAIL2: TStringField;
+    cdsxlsx_nov2019EMAIL3: TStringField;
+    cdsxlsx_nov2019EMAIL4: TStringField;
+    cdsxlsx_nov2019TELEFONE1: TStringField;
+    cdsxlsx_nov2019TELEFONE2: TStringField;
+    cdsxlsx_nov2019TELEFONE3: TStringField;
+    cdsxlsx_nov2019TELEFONE4: TStringField;
+    cdsxlsx_nov2019TELEFONE5: TStringField;
+    cdsxlsx_nov2019TELEFONE6: TStringField;
+    cdsxlsx_nov2019LOGRADOURO: TStringField;
+    cdsxlsx_nov2019NUMERO: TStringField;
+    cdsxlsx_nov2019COMPLEMENTO: TStringField;
+    cdsxlsx_nov2019BAIRRO: TStringField;
+    cdsxlsx_nov2019CIDADE: TStringField;
+    cdsxlsx_nov2019ESTADO: TStringField;
+    cdsxlsx_nov2019CEP: TStringField;
+    cdsxlsx_nov2019OPERACAO: TStringField;
+    cdsxlsx_nov2019DTVCTO: TStringField;
+    cdsxlsx_nov2019VRNOMINAL: TStringField;
+    cdsxlsx_nov2019SITUACAO: TStringField;
+    cdsxlsx_nov2019DIASVENCIDOS: TStringField;
+    cdsxlsx_nov2019DTRECEBIMENTO: TStringField;
+    cdsxlsx_nov2019VRRECEBIDO: TStringField;
+    cdsxlsx_nov2019FORMADEPGTO: TStringField;
+    cdsxlsx_nov2019OBSERVACAO: TStringField;
+    Memo3: TMemo;
+    edtremessa: TEdit;
+    edtdata: TEdit;
+    edtregistros: TEdit;
+    uniscriptupdate: TUniQuery;
+    procedure FormShow(Sender: TObject);
+    procedure AdvGlowButton5Click(Sender: TObject);
+    procedure AdvGlowButton3Click(Sender: TObject);
+    procedure btimporta_cadaClick(Sender: TObject);
+    procedure btimporta_inadClick(Sender: TObject);
+    procedure btimporta_operClick(Sender: TObject);
+    procedure btimporta_teleClick(Sender: TObject);
+    procedure btimporta_xlsClick(Sender: TObject);
+    procedure btimporta_clioperClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn_novoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+var
+  FImportaExportaArquivo: TFImportaExportaArquivo;
+
+implementation
+
+uses udatamodule, umenu;
+
+{$R *.DFM}
+
+procedure TFImportaExportaArquivo.AdvGlowButton3Click(Sender: TObject);
+begin
+  FImportaExportaArquivo.FormShow(Sender);
+
+  cdsxls.close;
+  cdscadas.close;
+  cdsinad.close;
+  cdsoper.close;
+  cdstele.close;
+
+  fimportaexportaarquivo.cursor := crhourglass;
+
+  if opendialog.execute then begin
+    ednome.clear;
+    memo2.clear;
+    ednome.text := ExtractFileName(OpenDialog.FileName);
+  end;
+
+  progressbargeral.position := 0;
+
+  fimportaexportaarquivo.cursor := crdefault;
+
+  DBLookupComboBox1.KeyValue := 0;
+end;
+
+procedure TFImportaExportaArquivo.AdvGlowButton5Click(Sender: TObject);
+var
+  nome_arquivo, extensao_arquivo, tipo_arquivo: string;
+begin
+  if dblookupcombobox1.Text = '' then begin
+    showmessage('Selecione um credor.');
+    exit;
+  end;
+
+  pnlgeral.enabled := false;
+
+  Screen.Cursor := crHourGlass;
+
+  cdsxls.close;
+  cdscadas.close;
+  cdsinad.close;
+  cdsoper.close;
+  cdstele.close;
+  cdsxlsx_nov2019.close;
+
+  label_progressgeral.caption := 'Progresso Geral: (Carregando arquivo na memória)';
+
+  nome_arquivo := ExtractFileName(OpenDialog.FileName);
+  extensao_arquivo := ExtractFileExt(OpenDialog.FileName);
+  tipo_arquivo := copy(nome_arquivo,0,4);
+
+{  if tipo_arquivo = 'CLIE' then begin FImportaExportaArquivo.btimporta_clioperClick(Sender); end else
+  if ExtractFileExt(OpenDialog.FileName) = '.xls' then begin FImportaExportaArquivo.btimporta_xlsClick(Sender); end else
+  if tipo_arquivo = 'cada' then begin FImportaExportaArquivo.btimporta_cadaClick(Sender); end else
+  if tipo_arquivo = 'inad' then begin FImportaExportaArquivo.btimporta_inadClick(Sender); end else
+  if tipo_arquivo = 'oper' then begin FImportaExportaArquivo.btimporta_operClick(Sender); end else
+  if tipo_arquivo = 'tele' then begin FImportaExportaArquivo.btimporta_teleClick(Sender); end else begin
+
+    showmessage('Arquivo inválido.');
+    ProgressBarGeral.Position := 0;
+    label_progressgeral.caption := 'Progresso Geral:';
+    Screen.Cursor := crDefault;
+    exit;
+  end;
+}
+  btn_novoclick(sender);
+
+  ProgressBarGeral.Position := Progressbargeral.max;
+
+  label_progressgeral.caption := 'Progresso Geral:';
+
+  Screen.Cursor := crDefault;
+
+  pnlgeral.enabled := true;
+
+  DBLookupComboBox1.KeyValue := 0;
+end;
+
+procedure TFImportaExportaArquivo.btimporta_cadaClick(Sender: TObject);
+Var
+  Arq, Str_Lista : TStringList;
+  i: integer;
+  quantidade_registros: string;
+begin
+  try
+    cdsxls.close;
+    cdscadas.close;
+    cdsinad.close;
+    cdsoper.close;
+    cdstele.close;
+
+    label_progressgeral.caption := 'Progresso Geral:';
+
+    Application.ProcessMessages;
+
+    cdscadas.disablecontrols;
+
+    dbgrid1.DataSource := dscadas;
+
+    Arq := TStringList.Create;
+    Str_Lista := TStringList.Create;
+    Arq.LoadFromFile(OpenDialog.Filename);
+
+    Arq.Text := StringReplace(Arq.Text, '; ', ';', [rfReplaceAll]);
+
+    label_progressgeral.caption := 'Progresso Geral: (Carregando arquivo na memória. Aguarde, por favor!)';
+    Application.ProcessMessages;
+    ProgressBarGeral.Max := Arq.Count;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(Arq.Count);
+
+    Str_Lista.Delimiter := ';';
+    Str_Lista.QuoteChar := ' ';
+    Str_Lista.StrictDelimiter := true;
+
+    try cdscadas.createdataset; except end;
+    cdscadas.EmptyDataSet;
+    cdscadas.open;
+
+    for I := 0 to Arq.Count -1 do
+    begin
+      ProgressBarGeral.Position := I;
+      label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+      Application.ProcessMessages;
+
+      Str_Lista.DelimitedText := Arq.Strings[I];
+
+      cdscadas.Append;
+
+      cdscadas1.AsString  := Str_Lista[0];
+      cdscadas2.AsString  := Str_Lista[1];
+      cdscadas3.AsString  := Str_Lista[2];
+      cdscadas4.AsString  := Str_Lista[3];
+      cdscadas5.AsString  := Str_Lista[4];
+      cdscadas6.AsString  := Str_Lista[5];
+      cdscadas7.AsString  := Str_Lista[6];
+      cdscadas8.AsString  := Str_Lista[7];
+      cdscadas9.AsString  := Str_Lista[8];
+      cdscadas10.AsString := Str_Lista[9];
+      cdscadas11.AsString := Str_Lista[10];
+      cdscadas12.AsString := Str_Lista[11];
+      cdscadas13.AsString := Str_Lista[12];
+      cdscadas14.AsString := Str_Lista[13];
+      cdscadas15.AsString := Str_Lista[14];
+      cdscadas16.AsString := Str_Lista[15];
+      cdscadas17.AsString := Str_Lista[16];
+      cdscadas18.AsString := Str_Lista[17];
+      cdscadas19.AsString := Str_Lista[18];
+      cdscadas20.AsString := Str_Lista[19];
+
+      cdscadas.post;
+    end;
+
+    cdscadas.first;
+    cdscadas.enablecontrols;
+
+    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+    DBGRID1.COLUMNS[8].WIDTH := 100;
+    DBGRID1.COLUMNS[9].WIDTH := 100;
+    DBGRID1.COLUMNS[10].WIDTH := 100;
+    DBGRID1.COLUMNS[11].WIDTH := 100;
+    DBGRID1.COLUMNS[12].WIDTH := 100;
+    DBGRID1.COLUMNS[13].WIDTH := 100;
+    DBGRID1.COLUMNS[14].WIDTH := 100;
+    DBGRID1.COLUMNS[15].WIDTH := 100;
+    DBGRID1.COLUMNS[16].WIDTH := 100;
+    DBGRID1.COLUMNS[17].WIDTH := 100;
+    DBGRID1.COLUMNS[18].WIDTH := 100;
+    DBGRID1.COLUMNS[19].WIDTH := 100;
+
+    dbgrid1.columns[0].title.Caption := cdscadas.fieldbyname('1').asstring;
+    dbgrid1.columns[1].title.Caption := cdscadas.fieldbyname('2').asstring;
+    dbgrid1.columns[2].title.Caption := cdscadas.fieldbyname('3').asstring;
+    dbgrid1.columns[3].title.Caption := cdscadas.fieldbyname('4').asstring;
+    dbgrid1.columns[4].title.Caption := cdscadas.fieldbyname('5').asstring;
+    dbgrid1.columns[5].title.Caption := cdscadas.fieldbyname('6').asstring;
+    dbgrid1.columns[6].title.Caption := cdscadas.fieldbyname('7').asstring;
+    dbgrid1.columns[7].title.Caption := cdscadas.fieldbyname('8').asstring;
+    dbgrid1.columns[8].title.Caption := cdscadas.fieldbyname('9').asstring;
+    dbgrid1.columns[9].title.Caption := cdscadas.fieldbyname('10').asstring;
+    dbgrid1.columns[10].title.Caption := cdscadas.fieldbyname('11').asstring;
+    dbgrid1.columns[11].title.Caption := cdscadas.fieldbyname('12').asstring;
+    dbgrid1.columns[12].title.Caption := cdscadas.fieldbyname('13').asstring;
+    dbgrid1.columns[13].title.Caption := cdscadas.fieldbyname('14').asstring;
+    dbgrid1.columns[14].title.Caption := cdscadas.fieldbyname('15').asstring;
+    dbgrid1.columns[15].title.Caption := cdscadas.fieldbyname('16').asstring;
+    dbgrid1.columns[16].title.Caption := cdscadas.fieldbyname('17').asstring;
+    dbgrid1.columns[17].title.Caption := cdscadas.fieldbyname('18').asstring;
+    dbgrid1.columns[18].title.Caption := cdscadas.fieldbyname('19').asstring;
+    dbgrid1.columns[19].title.Caption := cdscadas.fieldbyname('20').asstring;
+
+    cdscadas.delete;
+
+    Arq.Free;
+    Str_Lista.Free;
+  except showmessage('Ocorreu um erro na importação. Ln465'); end;
+end;
+
+procedure TFImportaExportaArquivo.btimporta_inadClick(Sender: TObject);
+Var
+  Arq, Str_Lista : TStringList;
+  i: integer;
+  quantidade_registros: string;
+begin
+  try
+    cdsxls.close;
+    cdscadas.close;
+    cdsinad.close;
+    cdsoper.close;
+    cdstele.close;
+
+    label_progressgeral.caption := 'Progresso Geral:';
+
+    cdsinad.disablecontrols;
+
+    dbgrid1.DataSource := dsinad;
+
+    Arq := TStringList.Create;
+    Str_Lista := TStringList.Create;
+    Arq.LoadFromFile(OpenDialog.Filename);
+
+    Arq.Text := StringReplace(Arq.Text, '; ', ';', [rfReplaceAll]);
+
+    Str_Lista.Delimiter := ';';
+    Str_Lista.QuoteChar := ' ';
+    Str_Lista.StrictDelimiter := true;
+
+    try cdsinad.createdataset; except end;
+    cdsinad.EmptyDataSet;
+    cdsinad.open;
+
+    label_progressgeral.caption := 'Progresso Geral: (Carregando arquivo na memória. Aguarde, por favor!)';
+    ProgressBarGeral.Max := Arq.Count;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(Arq.Count);
+
+    for I := 0 to Arq.Count -1 do
+    begin
+      Str_Lista.DelimitedText := Arq.Strings[I];
+
+      ProgressBarGeral.Position := I;
+      label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+      Application.ProcessMessages;
+
+      cdsinad.Append;
+
+      inad1.AsString  := Str_Lista[0];
+      inad2.AsString  := Str_Lista[1];
+      inad3.AsString  := Str_Lista[2];
+      inad4.AsString  := Str_Lista[3];
+      inad5.AsString  := Str_Lista[4];
+      inad6.AsString  := Str_Lista[5];
+      inad7.AsString  := Str_Lista[6];
+      inad8.AsString  := Str_Lista[7];
+      inad9.AsString  := Str_Lista[8];
+      inad10.AsString := Str_Lista[9];
+      inad11.AsString := Str_Lista[10];
+      inad12.AsString := Str_Lista[11];
+      inad13.AsString := Str_Lista[12];
+      inad14.AsString := Str_Lista[13];
+      inad15.AsString := Str_Lista[14];
+      inad16.AsString := Str_Lista[15];
+      inad17.AsString := Str_Lista[16];
+      inad18.AsString := Str_Lista[17];
+      inad19.AsString := Str_Lista[18];
+      inad20.AsString := Str_Lista[19];
+      inad21.AsString := Str_Lista[20];
+      inad22.AsString := Str_Lista[21];
+
+      cdsinad.post;
+    end;
+
+    cdsinad.first;
+    cdsinad.enablecontrols;
+
+    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+    DBGRID1.COLUMNS[8].WIDTH := 100;
+    DBGRID1.COLUMNS[9].WIDTH := 100;
+    DBGRID1.COLUMNS[10].WIDTH := 100;
+    DBGRID1.COLUMNS[11].WIDTH := 100;
+    DBGRID1.COLUMNS[12].WIDTH := 100;
+    DBGRID1.COLUMNS[13].WIDTH := 100;
+    DBGRID1.COLUMNS[14].WIDTH := 100;
+    DBGRID1.COLUMNS[15].WIDTH := 100;
+    DBGRID1.COLUMNS[16].WIDTH := 100;
+    DBGRID1.COLUMNS[17].WIDTH := 100;
+    DBGRID1.COLUMNS[18].WIDTH := 100;
+    DBGRID1.COLUMNS[19].WIDTH := 100;
+    DBGRID1.COLUMNS[20].WIDTH := 100;
+    DBGRID1.COLUMNS[21].WIDTH := 100;
+
+    dbgrid1.columns[0].title.Caption := cdsinad.fieldbyname('1').asstring;
+    dbgrid1.columns[1].title.Caption := cdsinad.fieldbyname('2').asstring;
+    dbgrid1.columns[2].title.Caption := cdsinad.fieldbyname('3').asstring;
+    dbgrid1.columns[3].title.Caption := cdsinad.fieldbyname('4').asstring;
+    dbgrid1.columns[4].title.Caption := cdsinad.fieldbyname('5').asstring;
+    dbgrid1.columns[5].title.Caption := cdsinad.fieldbyname('6').asstring;
+    dbgrid1.columns[6].title.Caption := cdsinad.fieldbyname('7').asstring;
+    dbgrid1.columns[7].title.Caption := cdsinad.fieldbyname('8').asstring;
+    dbgrid1.columns[8].title.Caption := cdsinad.fieldbyname('9').asstring;
+    dbgrid1.columns[9].title.Caption := cdsinad.fieldbyname('10').asstring;
+    dbgrid1.columns[10].title.Caption := cdsinad.fieldbyname('11').asstring;
+    dbgrid1.columns[11].title.Caption := cdsinad.fieldbyname('12').asstring;
+    dbgrid1.columns[12].title.Caption := cdsinad.fieldbyname('13').asstring;
+    dbgrid1.columns[13].title.Caption := cdsinad.fieldbyname('14').asstring;
+    dbgrid1.columns[14].title.Caption := cdsinad.fieldbyname('15').asstring;
+    dbgrid1.columns[15].title.Caption := cdsinad.fieldbyname('16').asstring;
+    dbgrid1.columns[16].title.Caption := cdsinad.fieldbyname('17').asstring;
+    dbgrid1.columns[17].title.Caption := cdsinad.fieldbyname('18').asstring;
+    dbgrid1.columns[18].title.Caption := cdsinad.fieldbyname('19').asstring;
+    dbgrid1.columns[19].title.Caption := cdsinad.fieldbyname('20').asstring;
+    dbgrid1.columns[20].title.Caption := cdsinad.fieldbyname('21').asstring;
+    dbgrid1.columns[21].title.Caption := cdsinad.fieldbyname('22').asstring;
+
+    cdsinad.delete;
+
+    Arq.Free;
+    Str_Lista.Free;
+  except showmessage('Ocorreu um erro na importação. Ln602'); end;
+end;
+
+procedure TFImportaExportaArquivo.btimporta_operClick(Sender: TObject);
+Var
+  Arq, Str_Lista : TStringList;
+  i: integer;
+  quantidade_registros: string;
+begin
+  try
+    cdsxls.close;
+    cdscadas.close;
+    cdsinad.close;
+    cdsoper.close;
+    cdstele.close;
+
+    Application.ProcessMessages;
+
+    label_progressgeral.caption := 'Progresso Geral:';
+
+    cdsoper.disablecontrols;
+
+    dbgrid1.DataSource := dsoper;
+
+    Arq := TStringList.Create;
+    Str_Lista := TStringList.Create;
+    Arq.LoadFromFile(OpenDialog.Filename);
+
+    Arq.Text := StringReplace(Arq.Text, '; ', ';', [rfReplaceAll]);
+
+    Str_Lista.Delimiter := ';';
+    Str_Lista.QuoteChar := ' ';
+    Str_Lista.StrictDelimiter := true;
+
+    try cdsoper.createdataset; except end;
+    cdsoper.EmptyDataSet;
+    cdsoper.open;
+
+    label_progressgeral.caption := 'Progresso Geral: (Carregando arquivo na memória. Aguarde, por favor!)';
+    ProgressBarGeral.Max := Arq.Count;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(Arq.Count);
+
+    for I := 0 to Arq.Count -1 do
+    begin
+      Str_Lista.DelimitedText := Arq.Strings[I];
+
+      ProgressBarGeral.Position := I;
+      label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+      Application.ProcessMessages;
+
+      cdsoper.Append;
+
+      cdsoper1.AsString  := Str_Lista[0];
+      cdsoper2.AsString  := Str_Lista[1];
+      cdsoper3.AsString  := Str_Lista[2];
+      cdsoper4.AsString  := Str_Lista[3];
+      cdsoper5.AsString  := Str_Lista[4];
+      cdsoper6.AsString  := Str_Lista[5];
+      cdsoper7.AsString  := Str_Lista[6];
+      cdsoper8.AsString  := Str_Lista[7];
+      cdsoper9.AsString  := Str_Lista[8];
+
+      cdsoper.post;
+    end;
+
+    cdsoper.first;
+
+    sleep(3000);
+
+    cdsoper.enablecontrols;
+
+    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+    DBGRID1.COLUMNS[8].WIDTH := 100;
+
+    dbgrid1.columns[0].title.Caption := cdsoper.fieldbyname('1').asstring;
+    dbgrid1.columns[1].title.Caption := cdsoper.fieldbyname('2').asstring;
+    dbgrid1.columns[2].title.Caption := cdsoper.fieldbyname('3').asstring;
+    dbgrid1.columns[3].title.Caption := cdsoper.fieldbyname('4').asstring;
+    dbgrid1.columns[4].title.Caption := cdsoper.fieldbyname('5').asstring;
+    dbgrid1.columns[5].title.Caption := cdsoper.fieldbyname('6').asstring;
+    dbgrid1.columns[6].title.Caption := cdsoper.fieldbyname('7').asstring;
+    dbgrid1.columns[7].title.Caption := cdsoper.fieldbyname('8').asstring;
+    dbgrid1.columns[8].title.Caption := cdsoper.fieldbyname('9').asstring;
+
+    cdsoper.delete;
+
+    Arq.Free;
+    Str_Lista.Free;
+  except showmessage('Ocorreu um erro na importação. Ln705'); end;
+end;
+
+procedure TFImportaExportaArquivo.btimporta_teleClick(Sender: TObject);
+Var
+  Arq, Str_Lista : TStringList;
+  i: integer;
+  quantidade_registros: string;
+begin
+  try
+    cdsxls.close;
+    cdscadas.close;
+    cdsinad.close;
+    cdsoper.close;
+    cdstele.close;
+
+    Application.ProcessMessages;
+
+    label_progressgeral.caption := 'Progresso Geral:';
+
+    cdstele.disablecontrols;
+
+    dbgrid1.DataSource := dstele;
+
+    Arq := TStringList.Create;
+    Str_Lista := TStringList.Create;
+    Arq.LoadFromFile(OpenDialog.Filename);
+
+    Arq.Text := StringReplace(Arq.Text, '; ', ';', [rfReplaceAll]);
+
+    Str_Lista.Delimiter := ';';
+    Str_Lista.QuoteChar := ' ';
+    Str_Lista.StrictDelimiter := true;
+
+    try cdstele.createdataset; except end;
+    cdstele.EmptyDataSet;
+    cdstele.open;
+
+    memo1.clear;
+
+    label_progressgeral.caption := 'Progresso Geral: (Carregando arquivo na memória. Aguarde, por favor!)';
+    ProgressBarGeral.Max := Arq.Count;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(Arq.Count);
+
+    for I := 0 to Arq.Count -1 do
+    begin
+      try
+        Str_Lista.DelimitedText := Arq.Strings[I];
+
+        ProgressBarGeral.Position := I;
+        label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+        Application.ProcessMessages;
+
+        cdstele.Append;
+
+        cdstele1.AsString  := Str_Lista[0];
+        cdstele2.AsString  := Str_Lista[1];
+        cdstele3.AsString  := Str_Lista[2];
+        cdstele4.AsString  := Str_Lista[3];
+        cdstele5.AsString  := Str_Lista[4];
+        cdstele6.AsString  := Str_Lista[5];
+        cdstele7.AsString  := Str_Lista[6];
+        cdstele8.AsString  := Str_Lista[7];
+
+        cdstele.post;
+      except memo1.lines.add(Str_Lista[1]) end;
+    end;
+
+    cdstele.first;
+    cdstele.enablecontrols;
+
+    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+
+    dbgrid1.columns[0].title.Caption := cdstele.fieldbyname('1').asstring;
+    dbgrid1.columns[1].title.Caption := cdstele.fieldbyname('2').asstring;
+    dbgrid1.columns[2].title.Caption := cdstele.fieldbyname('3').asstring;
+    dbgrid1.columns[3].title.Caption := cdstele.fieldbyname('4').asstring;
+    dbgrid1.columns[4].title.Caption := cdstele.fieldbyname('5').asstring;
+    dbgrid1.columns[5].title.Caption := cdstele.fieldbyname('6').asstring;
+    dbgrid1.columns[6].title.Caption := cdstele.fieldbyname('7').asstring;
+    dbgrid1.columns[7].title.Caption := cdstele.fieldbyname('8').asstring;
+
+    cdstele.delete;
+
+    Arq.Free;
+    Str_Lista.Free;
+  except showmessage('Ocorreu um erro na importação. Ln807'); end;
+end;
+
+procedure TFImportaExportaArquivo.btimporta_xlsClick(Sender: TObject);
+var
+  I: Integer;
+  quantidade_registros: string;
+begin
+  try
+    DBGRID1.DataSource := DSXLS;
+
+    ImportExcel1.ExcelFile := Opendialog.Filename;
+    ImportExcel1.ExcelParaStringGrid(StringGrid1, ProgressBarGeral);
+
+    Try cdsxls.CreateDataSet; except end;
+
+    cdsxls.open;
+    cdsxls.EmptyDataSet;
+    cdsxls.disablecontrols;
+
+    ProgressBarGeral.Max      := StringGrid1.RowCount;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(StringGrid1.RowCount-3);
+
+    label_progressgeral.caption := 'Progresso Geral: (Importando para as tabelas)';
+
+    try
+     for I := 3 to StringGrid1.RowCount do begin
+
+      ProgressBarGeral.Position := I;
+      label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+
+      Application.ProcessMessages;
+
+      cdsxls.append;
+
+      cdsxlsTIPO.AsString                       := StringGrid1.Cells[0,I];
+      cdsxlsNROPERAÇÃO.AsString                 := StringGrid1.Cells[1,I];
+      cdsxlsNOMEOPERAÇÃO.AsString               := StringGrid1.Cells[2,I];
+      cdsxlsAGENCIA.AsString                    := StringGrid1.Cells[3,I];
+      cdsxlsCONTA.AsString                      := StringGrid1.Cells[4,I];
+      cdsxlsPRODUTO.AsString                    := StringGrid1.Cells[5,I];
+      cdsxlsDTATUALIZADO.AsString               := StringGrid1.Cells[6,I];
+      cdsxlsDTVENCIMENTO.AsString               := StringGrid1.Cells[7,I];
+      cdsxlsVALOROPERAÇÃO.AsString              := StringGrid1.Cells[8,I];
+      cdsxlsVALORVENCIDO.AsString               := StringGrid1.Cells[9,I];
+      cdsxlsCONDNEGOCIAIS.AsString              := StringGrid1.Cells[10,I];
+      cdsxlsCPFCNPJ.AsString                    := StringGrid1.Cells[11,I];
+      cdsxlsMCI.AsString                        := StringGrid1.Cells[12,I];
+      cdsxlsNRFICHA.AsString                    := StringGrid1.Cells[13,I];
+      cdsxlsNOMEDOCLIENTE.AsString              := StringGrid1.Cells[14,I];
+      cdsxlsENDEREÇO.AsString                   := StringGrid1.Cells[15,I];
+      cdsxlsNUMERO.AsString                     := StringGrid1.Cells[16,I];
+      cdsxlsBAIRRO.AsString                     := StringGrid1.Cells[17,I];
+      cdsxlsCEP.AsString                        := StringGrid1.Cells[18,I];
+      cdsxlsCIDADE.AsString                     := StringGrid1.Cells[19,I];
+      cdsxlsUF.AsString                         := StringGrid1.Cells[20,I];
+      cdsxlsTELEFONE1.AsString                  := StringGrid1.Cells[21,I];
+      cdsxlsTELEFONE2.AsString                  := StringGrid1.Cells[22,I];
+      cdsxlsTELEFONE3.AsString                  := StringGrid1.Cells[23,I];
+      cdsxlsTELEFONE4.AsString                  := StringGrid1.Cells[24,I];
+      cdsxlsTELEFONE5.AsString                  := StringGrid1.Cells[25,I];
+      cdsxlsTELEFONE6.AsString                  := StringGrid1.Cells[26,I];
+      cdsxlsDATANASCIMENTO.AsString             := StringGrid1.Cells[27,I];
+      cdsxlsNATURALIDADE.AsString               := StringGrid1.Cells[28,I];
+      cdsxlsSEXO.AsString                       := StringGrid1.Cells[29,I];
+      cdsxlsESTADOCIVIL.AsString                := StringGrid1.Cells[30,I];
+      cdsxlsNOMEDOPAI.AsString                  := StringGrid1.Cells[31,I];
+      cdsxlsNOMEDAMÃE.AsString                  := StringGrid1.Cells[32,I];
+      cdsxlsNOMEAVALISTA1.AsString              := StringGrid1.Cells[33,I];
+      cdsxlsCPFCNPJAVALISTA1.AsString           := StringGrid1.Cells[34,I];
+      cdsxlsENDEREÇOAVALISTA1.AsString          := StringGrid1.Cells[35,I];
+      cdsxlsBAIRROAVALISTA1.AsString            := StringGrid1.Cells[36,I];
+      cdsxlsCEPAVALISTA1.AsString               := StringGrid1.Cells[37,I];
+      cdsxlsCIDADEAVALISTA1.AsString            := StringGrid1.Cells[38,I];
+      cdsxlsUFAVALISTA1.AsString                := StringGrid1.Cells[39,I];
+      cdsxlsTELEFONE1AVALISTA1.AsString         := StringGrid1.Cells[40,I];
+      cdsxlsTELEFONE2AVALISTA1.AsString         := StringGrid1.Cells[41,I];
+      cdsxlsNOMEAVALISTA2.AsString              := StringGrid1.Cells[42,I];
+      cdsxlsCPFCNPJAVALISTA2.AsString           := StringGrid1.Cells[43,I];
+      cdsxlsENDEREÇOAVALISTA2.AsString          := StringGrid1.Cells[44,I];
+      cdsxlsBAIRROAVALISTA2.AsString            := StringGrid1.Cells[45,I];
+      cdsxlsCEPAVALISTA2.AsString               := StringGrid1.Cells[46,I];
+      cdsxlsCIDADEAVALISTA2.AsString            := StringGrid1.Cells[47,I];
+      cdsxlsUFAVALISTA2.AsString                := StringGrid1.Cells[48,I];
+      cdsxlsTELEFONE1AVALISTA2.AsString         := StringGrid1.Cells[49,I];
+      cdsxlsTELEFONE2AVALISTA2.AsString         := StringGrid1.Cells[50,I];
+      cdsxlsNOMEAVALISTA3.AsString              := StringGrid1.Cells[51,I];
+      cdsxlsCPFCNPJAVALISTA3.AsString           := StringGrid1.Cells[52,I];
+      cdsxlsENDEREÇOAVALISTA3.AsString          := StringGrid1.Cells[53,I];
+      cdsxlsBAIRROAVALISTA3.AsString            := StringGrid1.Cells[54,I];
+      cdsxlsCEPAVALISTA3.AsString               := StringGrid1.Cells[55,I];
+      cdsxlsCIDADEAVALISTA3.AsString            := StringGrid1.Cells[56,I];
+      cdsxlsUFAVALISTA3.AsString                := StringGrid1.Cells[57,I];
+      cdsxlsTELEFONE1AVALISTA3.AsString         := StringGrid1.Cells[58,I];
+      cdsxlsTELEFONE2AVALISTA3.AsString         := StringGrid1.Cells[59,I];
+      cdsxlsNOMEAVALISTA4.AsString              := StringGrid1.Cells[60,I];
+      cdsxlsCPFCNPJAVALISTA4.AsString           := StringGrid1.Cells[61,I];
+      cdsxlsENDEREÇOAVALISTA4.AsString          := StringGrid1.Cells[62,I];
+      cdsxlsBAIRROAVALISTA4.AsString            := StringGrid1.Cells[63,I];
+      cdsxlsCEPAVALISTA4.AsString               := StringGrid1.Cells[64,I];
+      cdsxlsCIDADEAVALISTA4.AsString            := StringGrid1.Cells[65,I];
+      cdsxlsUFAVALISTA4.AsString                := StringGrid1.Cells[66,I];
+      cdsxlsTELEFONE1AVALISTA4.AsString         := StringGrid1.Cells[67,I];
+      cdsxlsTELEFONE2AVALISTA4.AsString         := StringGrid1.Cells[68,I];
+      cdsxlsNOMEAVALISTA5.AsString              := StringGrid1.Cells[69,I];
+      cdsxlsCPFCNPJAVALISTA5.AsString           := StringGrid1.Cells[70,I];
+      cdsxlsENDEREÇOAVALISTA5.AsString          := StringGrid1.Cells[71,I];
+      cdsxlsBAIRROAVALISTA5.AsString            := StringGrid1.Cells[72,I];
+      cdsxlsCEPAVALISTA5.AsString               := StringGrid1.Cells[73,I];
+      cdsxlsCIDADEAVALISTA5.AsString            := StringGrid1.Cells[74,I];
+      cdsxlsUFAVALISTA5.AsString                := StringGrid1.Cells[75,I];
+      cdsxlsTELEFONE1AVALISTA5.AsString         := StringGrid1.Cells[76,I];
+      cdsxlsTELEFONE2AVALISTA5.AsString         := StringGrid1.Cells[77,I];
+      cdsxlsNOMEAVALISTA6.AsString              := StringGrid1.Cells[78,I];
+      cdsxlsCPFCNPJAVALISTA6.AsString           := StringGrid1.Cells[79,I];
+      cdsxlsENDEREÇOAVALISTA6.AsString          := StringGrid1.Cells[80,I];
+      cdsxlsBAIRROAVALISTA6.AsString            := StringGrid1.Cells[81,I];
+      cdsxlsCEPAVALISTA6.AsString               := StringGrid1.Cells[82,I];
+      cdsxlsCIDADEAVALISTA6.AsString            := StringGrid1.Cells[83,I];
+      cdsxlsUFAVALISTA6.AsString                := StringGrid1.Cells[84,I];
+      cdsxlsTELEFONE1AVALISTA6.AsString         := StringGrid1.Cells[85,I];
+      cdsxlsTELEFONE2AVALISTA6.AsString         := StringGrid1.Cells[86,I];
+      cdsxlsPROFISSÃO.AsString                  := StringGrid1.Cells[87,I];
+      cdsxlsNOMELOCALDETRABALHO.AsString        := StringGrid1.Cells[88,I];
+      cdsxlsENDEREÇOLOCALDETRABALHO.AsString    := StringGrid1.Cells[89,I];
+      cdsxlsBAIRROLOCALDETRABALHO.AsString      := StringGrid1.Cells[90,I];
+      cdsxlsCEPLOCALDETRABALHO.AsString         := StringGrid1.Cells[91,I];
+      cdsxlsCIDADELOCALDETRABALHO.AsString      := StringGrid1.Cells[92,I];
+      cdsxlsUFLOCALDETRABALHO.AsString          := StringGrid1.Cells[93,I];
+      cdsxlsTELEFONE1LOCALDETRABALHO.AsString   := StringGrid1.Cells[94,I];
+      cdsxlsTELEFONE2LOCALDETRABALHO.AsString   := StringGrid1.Cells[95,I];
+      cdsxlsREFERENCIAPESSOAL.AsString          := StringGrid1.Cells[96,I];
+      cdsxlsTELEFONE1REFERENCIA.AsString        := StringGrid1.Cells[97,I];
+      cdsxlsTELEFONE2REFERENCIA.AsString        := StringGrid1.Cells[98,I];
+      cdsxlsREFERENCIAPESSOAL2.AsString         := StringGrid1.Cells[99,I];
+      cdsxlsTELEFONE1REFERENCIA2.AsString       := StringGrid1.Cells[100,I];
+      cdsxlsTELEFONE2REFERENCIA2.AsString       := StringGrid1.Cells[101,I];
+      cdsxlsREFERENCIAPESSOAL3.AsString         := StringGrid1.Cells[102,I];
+      cdsxlsTELEFONE1REFERENCIA3.AsString       := StringGrid1.Cells[103,I];
+      cdsxlsTELEFONE2REFERENCIA3.AsString       := StringGrid1.Cells[104,I];
+      cdsxlsSPCSERASA.AsString                  := StringGrid1.Cells[105,I];
+      cdsxlsEMAIL.AsString                      := StringGrid1.Cells[106,I];
+      cdsxlsDTEMISSÃO.AsString                  := StringGrid1.Cells[107,I];
+      cdsxlsVALORPROTESTO.AsString              := StringGrid1.Cells[108,I];
+      cdsxlsOBSOPERAÇÃO.AsString                := StringGrid1.Cells[109,I];
+      cdsxlsDTFIMTERCERIZAÇÃO.AsString          := StringGrid1.Cells[110,I];
+      cdsxlsVALORJUROS.AsString                 := StringGrid1.Cells[111,I];
+      cdsxlsCOD_CLASSIFICACAO_CLIENTE.AsString  := StringGrid1.Cells[112,I];
+      cdsxlsCOD_CLASSIFICACAO_OPERACAO.AsString := StringGrid1.Cells[113,I];
+
+      cdsxls.post;
+     end;
+    except showmessage('Arquivo não carregado. Erro Ln 320')  end;
+
+    try
+      cdsxls.first;
+      while not cdsxls.eof do begin
+        if cdsxlsNROPERAÇÃO.AsString = '' then cdsxls.delete else cdsxls.next;
+      end;
+//      EDTOTAL.TEXT := inttostr(cdsxls.recordcount - 3) + ' (c)';
+      cdsxls.first;
+    except showmessage('Arquivo não carregado. Erro Ln 622')  end;
+
+    cdsxls.enablecontrols;
+
+    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+    DBGRID1.COLUMNS[8].WIDTH := 100;
+    DBGRID1.COLUMNS[9].WIDTH := 100;
+    DBGRID1.COLUMNS[10].WIDTH := 100;
+    DBGRID1.COLUMNS[11].WIDTH := 100;
+    DBGRID1.COLUMNS[12].WIDTH := 100;
+    DBGRID1.COLUMNS[13].WIDTH := 100;
+    DBGRID1.COLUMNS[14].WIDTH := 100;
+    DBGRID1.COLUMNS[15].WIDTH := 100;
+    DBGRID1.COLUMNS[16].WIDTH := 100;
+    DBGRID1.COLUMNS[17].WIDTH := 100;
+    DBGRID1.COLUMNS[18].WIDTH := 100;
+    DBGRID1.COLUMNS[19].WIDTH := 100;
+    DBGRID1.COLUMNS[20].WIDTH := 100;
+    DBGRID1.COLUMNS[21].WIDTH := 100;
+  except showmessage('Ocorreu um erro na importação. Ln1002'); end;
+end;
+
+procedure TFImportaExportaArquivo.btn_novoClick(Sender: TObject);
+var
+  I, seq_cliente_codigo, codigo_cliente, seq_operacoes_codigo, seq_PARCELAS: Integer;
+  var_noperacao, quantidade_registros, var_credor, var_cliente, remessa: string;
+begin
+  memo3.clear;
+
+  unigetid.close;
+  unigetid.sql.text := 'SELECT SEQ_REMESSAS_IMPORT.nextval as Sequences FROM DUAL';
+  unigetid.open;
+
+  remessa := FormatDateTime('yyyyMMdd',now) + uniqcredor.fieldbyname('codigo').asstring + unigetid.FieldByName('Sequences').ASSTRING;
+  edtremessa.text := remessa;
+  edtdata.text := datetostr(now);
+//  try
+    DBGRID1.DataSource := dsxlsclioper;
+
+    ImportExcel1.ExcelFile := Opendialog.Filename;
+    ImportExcel1.ExcelParaStringGrid(StringGrid1, ProgressBarGeral);
+
+    cdsxlsx_nov2019.close;
+
+    Try cdsxlsx_nov2019.CreateDataSet; except end;
+
+    cdsxlsx_nov2019.open;
+    cdsxlsx_nov2019.EmptyDataSet;
+    cdsxlsx_nov2019.disablecontrols;
+
+    ProgressBarGeral.Max      := StringGrid1.RowCount;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(StringGrid1.RowCount-1);
+
+    edtregistros.text := quantidade_registros;
+
+    label_progressgeral.caption := 'Progresso Geral: (Importando para as tabelas)';
+
+    try frmdatamodule.uniconnection1.starttransaction; except end;
+
+//    try
+     for I := 1 to StringGrid1.RowCount-1 do begin
+      ProgressBarGeral.Position := I;
+      label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+
+      Application.ProcessMessages;
+
+      cdsxlsx_nov2019.append;
+      cdsxlsx_nov2019NOME.asstring           := StringGrid1.Cells[0,I];
+      cdsxlsx_nov2019CPFCNPJ.asstring        := StringGrid1.Cells[1,I];
+      cdsxlsx_nov2019TIPO.asstring           := StringGrid1.Cells[2,I];
+      cdsxlsx_nov2019SEXO.asstring           := StringGrid1.Cells[3,I];
+      cdsxlsx_nov2019DTNASCIMENTO.asstring   := StringGrid1.Cells[4,I];
+      cdsxlsx_nov2019DOCIDENTIDADE.asstring  := StringGrid1.Cells[5,I];
+      cdsxlsx_nov2019EMAIL1.asstring         := StringGrid1.Cells[6,I];
+      cdsxlsx_nov2019EMAIL2.asstring         := StringGrid1.Cells[7,I];
+      cdsxlsx_nov2019EMAIL3.asstring         := StringGrid1.Cells[8,I];
+      cdsxlsx_nov2019EMAIL4.asstring         := StringGrid1.Cells[9,I];
+      cdsxlsx_nov2019TELEFONE1.asstring      := StringGrid1.Cells[10,I];
+      cdsxlsx_nov2019TELEFONE2.asstring      := StringGrid1.Cells[11,I];
+      cdsxlsx_nov2019TELEFONE3.asstring      := StringGrid1.Cells[12,I];
+      cdsxlsx_nov2019TELEFONE4.asstring      := StringGrid1.Cells[13,I];
+      cdsxlsx_nov2019TELEFONE5.asstring      := StringGrid1.Cells[14,I];
+      cdsxlsx_nov2019TELEFONE6.asstring      := StringGrid1.Cells[15,I];
+      cdsxlsx_nov2019LOGRADOURO.asstring     := StringGrid1.Cells[16,I];
+      cdsxlsx_nov2019NUMERO.asstring         := StringGrid1.Cells[17,I];
+      cdsxlsx_nov2019COMPLEMENTO.asstring    := StringGrid1.Cells[18,I];
+      cdsxlsx_nov2019BAIRRO.asstring         := StringGrid1.Cells[19,I];
+      cdsxlsx_nov2019CIDADE.asstring         := StringGrid1.Cells[20,I];
+      cdsxlsx_nov2019ESTADO.asstring         := StringGrid1.Cells[21,I];
+      cdsxlsx_nov2019CEP.asstring            := StringGrid1.Cells[22,I];
+      cdsxlsx_nov2019OPERACAO.asstring       := StringGrid1.Cells[23,I];
+      cdsxlsx_nov2019DTVCTO.asstring         := StringGrid1.Cells[24,I];
+      cdsxlsx_nov2019VRNOMINAL.asstring      := StringGrid1.Cells[25,I];
+      cdsxlsx_nov2019SITUACAO.asstring       := StringGrid1.Cells[26,I];
+      cdsxlsx_nov2019DIASVENCIDOS.asstring   := StringGrid1.Cells[27,I];
+      cdsxlsx_nov2019DTRECEBIMENTO.asstring  := StringGrid1.Cells[28,I];
+      cdsxlsx_nov2019VRRECEBIDO.asstring     := StringGrid1.Cells[29,I];
+      cdsxlsx_nov2019FORMADEPGTO.asstring    := StringGrid1.Cells[30,I];
+      cdsxlsx_nov2019OBSERVACAO.asstring     := StringGrid1.Cells[31,I];
+
+      //identifica se o cliente está cadastrado - cpf
+
+      uniscriptconsulta.Close;
+      uniscriptconsulta.SQL.Text := 'select * from clientes where cpf_cnpj = :pcpf_cnpj';
+                                    uniscriptconsulta.parambyname('pcpf_cnpj').AsString := cdsxlsx_nov2019CPFCNPJ.asstring;
+      uniscriptconsulta.Open;
+
+      var_credor := uniqcredor.fieldbyname('codigo').asstring;
+
+      if uniscriptconsulta.RecordCount > 0 then begin
+        //está cadastrado, pega o código do cliente
+        codigo_cliente := uniscriptconsulta.fieldbyname('codigo').Value;
+      end else begin
+        //não está cadastrado, cadastra o cliente
+         unigetid.close;
+         unigetid.sql.text := 'SELECT SEQ_CLIENTES.nextval as Sequences FROM DUAL';
+         unigetid.open;
+         seq_cliente_codigo := unigetid.FieldByName('Sequences').Value;
+         unigetid.close;
+
+   //      try
+         uniscriptimporta.close;
+         uniscriptimporta.SQL.Text := 'insert into clientes ' +
+                                      '(codigo, nome, tipopessoa, cpf_cnpj, endereco,' +
+                                      'numero, setor, cidade, uf, cep, fone, fone_1, '+
+                                      'faxcel, faxcel_1, e_mail, e_mail1, nridentidade,' +
+                                      'dta_cad, usr_cad, dta_nascimento, sexo)' +
+                                      ' values ' +
+                                      '(:pcodigo,:pnome,:ptipopessoa,:pcpf_cnpj,:pendereco,' +
+                                      ':pnumero,:psetor,:pcidade,:puf,:pcep,:pfone,:pfone_1,'+
+                                      ':pfaxcel,:pfaxcel_1,:pe_mail,:pe_mail1,:pnridentidade,' +
+                                      ':pdta_cad,:pusr_cad,:pdta_nascimento,:psexo)';
+                                       uniscriptimporta.parambyname('pcodigo').Value := seq_cliente_codigo;
+                                       uniscriptimporta.parambyname('pnome').AsString := copy(cdsxlsx_nov2019NOME.asstring,0,50);
+                                       uniscriptimporta.parambyname('ptipopessoa').AsString := copy(cdsxlsx_nov2019TIPO.asstring,0,1);
+                                       uniscriptimporta.parambyname('pcpf_cnpj').AsString := copy(cdsxlsx_nov2019CPFCNPJ.asstring,0,14);
+                                       uniscriptimporta.parambyname('pendereco').AsString :=  copy(cdsxlsx_nov2019LOGRADOURO.asstring,0,80);
+                                       uniscriptimporta.parambyname('pnumero').AsString := copy(cdsxlsx_nov2019NUMERO.asstring,0,5);
+                                       uniscriptimporta.parambyname('psetor').AsString := copy(cdsxlsx_nov2019BAIRRO.asstring,0,25);
+                                       uniscriptimporta.parambyname('pcidade').AsString := copy(cdsxlsx_nov2019CIDADE.asstring,0,30);
+                                       uniscriptimporta.parambyname('puf').AsString := copy(cdsxlsx_nov2019ESTADO.asstring,0,2);
+                                       uniscriptimporta.parambyname('pcep').AsString := copy(cdsxlsx_nov2019CEP.asstring,0,9);
+                                       uniscriptimporta.parambyname('pfone').AsString := copy(cdsxlsx_nov2019TELEFONE1.asstring,0,14);
+                                       uniscriptimporta.parambyname('pfone_1').AsString := copy(cdsxlsx_nov2019TELEFONE2.asstring,0,14);
+                                       uniscriptimporta.parambyname('pfaxcel').AsString := copy(cdsxlsx_nov2019TELEFONE3.asstring,0,14);
+                                       uniscriptimporta.parambyname('pfaxcel_1').AsString := copy(cdsxlsx_nov2019TELEFONE4.asstring,0,14);
+                                       uniscriptimporta.parambyname('pe_mail').AsString := copy(cdsxlsx_nov2019EMAIL1.asstring,0,150);
+                                       uniscriptimporta.parambyname('pe_mail1').AsString := copy(cdsxlsx_nov2019EMAIL2.asstring,0,150);
+                                       uniscriptimporta.parambyname('pnridentidade').AsString := copy(cdsxlsx_nov2019DOCIDENTIDADE.asstring,0,20);
+                                       uniscriptimporta.parambyname('pdta_cad').AsDateTime := now;
+                                       uniscriptimporta.parambyname('pusr_cad').Value := frmmenu.usuariologado_codigo;
+                                       uniscriptimporta.parambyname('pdta_nascimento').AsString := copy(cdsxlsx_nov2019DTNASCIMENTO.asstring,0,20);
+                                       uniscriptimporta.parambyname('psexo').AsString := copy(cdsxlsx_nov2019SEXO.asstring,0,2);
+           uniscriptimporta.execsql;
+ //        except showmessage('Erro na importação. ln 1154') end;
+      end;
+
+      uniscriptconsulta.Close;
+
+      var_noperacao := cdsxlsx_nov2019OPERACAO.asstring;
+      var_noperacao := StringReplace(var_noperacao, '/', '',[rfReplaceAll, rfIgnoreCase]);
+      var_noperacao := StringReplace(var_noperacao, '-', '',[rfReplaceAll, rfIgnoreCase]);
+      var_noperacao := StringReplace(var_noperacao, '.', '',[rfReplaceAll, rfIgnoreCase]);
+      var_noperacao := StringReplace(var_noperacao, ' ', '',[rfReplaceAll, rfIgnoreCase]);
+      var_noperacao := StringReplace(var_noperacao, '|', '',[rfReplaceAll, rfIgnoreCase]);
+
+      VAR_CLIENTE := cdsxlsx_nov2019cpfcnpj.asstring;
+
+      //identifica se o boleto está cadastrado nroperacao
+      uniscriptconsulta.Close;
+      uniscriptconsulta.SQL.Text := 'select * from operacoes where nroperacao = :pnroperacao and cliente = :pcliente';
+                                    uniscriptconsulta.parambyname('pnroperacao').AsString := var_noperacao;
+                                    uniscriptconsulta.parambyname('pcliente').AsString := VAR_CLIENTE;
+      uniscriptconsulta.Open;
+        //não está cadastrado, cadastra a operação
+//      end else begin
+
+         unigetid.close;
+         unigetid.sql.text := 'SELECT SEQ_OPERACOES.nextval as Sequences FROM DUAL';
+         unigetid.open;
+         seq_operacoes_codigo := unigetid.FieldByName('Sequences').Value;
+         unigetid.close;
+
+         //try
+         //se for uma parcela, não vai para a tabela operações, e sim para a tabela parcelas
+         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) <> 'PARCELA' THEN begin
+            //está cadastrado, inativa ele e cadastra o novo
+            uniscriptconsulta.Close;
+
+            try
+              uniscriptupdate.SQL.Text := 'update operacoes set status = ''X'' where nroperacao = :pnroperacao and cliente = :pcliente';
+                                            uniscriptupdate.parambyname('pnroperacao').AsString := var_noperacao;
+                                            uniscriptupdate.parambyname('pcliente').AsString := VAR_CLIENTE;
+              uniscriptupdate.execsql;
+              uniscriptupdate.Close;
+
+            except end;
+            try
+              uniscriptupdate.SQL.Text := 'update parcelas set status = ''X'' where nroperacao = :pnroperacao and cliente = :pcliente';
+                                            uniscriptupdate.parambyname('pnroperacao').AsString := var_noperacao;
+                                            uniscriptupdate.parambyname('pcliente').AsString := VAR_CLIENTE;
+              uniscriptupdate.execsql;
+              uniscriptupdate.Close;
+
+            except end;
+            //FIM está cadastrado, inativa ele e cadastra o novo
+
+           uniscriptimporta.close;
+           uniscriptimporta.SQL.Text := 'insert into operacoes (REGISTRO, cliente, nroperacao, remessa, DATAVENCTO, VALORNOMINAL, status, usr_cad, DTA_CAD, credor) ' +
+                                        ' values ' +
+                                        '(:pregistro,:pcliente, :pnroperacao, :premessa, :pDATAVENCTO, :pVALORNOMINAL, :pstatus, :pusr_cad, :pDTA_CAD, :pcredor)';
+                                         uniscriptimporta.parambyname('pregistro').value := seq_operacoes_codigo;
+                                         if cdsxlsx_nov2019Cpfcnpj.asstring =  '' then cdsxlsx_nov2019Cpfcnpj.asstring := '0';
+                                         uniscriptimporta.parambyname('pcliente').asstring := cdsxlsx_nov2019Cpfcnpj.asstring;
+                                         if cdsxlsx_nov2019operacao.asstring = '' then cdsxlsx_nov2019operacao.asstring := inttostr(seq_operacoes_codigo) + cdsxlsx_nov2019Cpfcnpj.asstring;
+                                         uniscriptimporta.parambyname('pnroperacao').AsString := var_noperacao;
+                                         uniscriptimporta.parambyname('premessa').asstring := remessa;
+                                         uniscriptimporta.parambyname('pDATAVENCTO').AsString := cdsxlsx_nov2019DTVCTO.asstring;
+                                         try uniscriptimporta.parambyname('PVALORNOMINAL').AsFloat := cdsxlsx_nov2019vrnominal.AsFloat;
+                                         except uniscriptimporta.parambyname('PVALORNOMINAL').AsFloat := 0; end;
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'EM SER'          THEN uniscriptimporta.parambyname('pstatus').AsString := 'S';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'RENEGOCIADO'     THEN uniscriptimporta.parambyname('pstatus').AsString := 'R';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'NEGOCIADO'       THEN uniscriptimporta.parambyname('pstatus').AsString := 'N';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'ACORDO QUEBRADO' THEN uniscriptimporta.parambyname('pstatus').AsString := 'A';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'RETOMADO'        THEN uniscriptimporta.parambyname('pstatus').AsString := 'O';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'DEVOLVIDO'       THEN uniscriptimporta.parambyname('pstatus').AsString := 'D';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'LIQUIDADO'       THEN uniscriptimporta.parambyname('pstatus').AsString := 'L';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'LIQ. POR RENEG.' THEN uniscriptimporta.parambyname('pstatus').AsString := 'R';
+                                         if UPPERCASE(cdsxlsx_nov2019situacao.asstring) = 'NEGOCIACAO'      THEN uniscriptimporta.parambyname('pstatus').AsString := 'N';
+                                         uniscriptimporta.parambyname('pdta_cad').AsDate := date;
+                                         uniscriptimporta.parambyname('pusr_cad').AsFloat := strtofloat(FRMMenu.USUARIOLOGADO_CODIGO);
+                                         uniscriptimporta.parambyname('pcredor').AsString := var_credor;
+           uniscriptimporta.execsql;
+         end
+         else begin
+           unigetid.close;
+           unigetid.sql.text := 'SELECT SEQ_PARCELAS.nextval as Sequences FROM DUAL';
+           unigetid.open;
+           seq_PARCELAS := unigetid.FieldByName('Sequences').Value;
+           unigetid.close;
+
+           uniscript.close;
+           uniscript.SQL.Text := 'insert into parcelas (REGISTRO, CLIENTE, NROPERACAO,' +
+                                  'DATAVENCTO, DATAREFERENCIA, STATUS, VALORPREVISTO,' +
+                                  'COBRADOR, VALORORIGINAL, DATA_MODIF, TIPOPAGAMENTO, ' +
+                                  'VALORATUALIZADO, DATARECEBIMENTO, VALORREALIZADO) values (' +
+                                  ':pREGISTRO, :pCLIENTE, :pNROPERACAO,' +
+                                  ':pDATAVENCTO, :pDATAREFERENCIA, :pSTATUS, :pVALORPREVISTO,' +
+                                  ':pCOBRADOR, :pVALORORIGINAL, :pDATA_MODIF, :pTIPOPAGAMENTO, ' +
+                                  ':pVALORATUALIZADO, :pDATARECEBIMENTO, :pVALORREALIZADO)';
+                                  uniscript.parambyname('pregistro').AsFloat := seq_PARCELAS;
+                                  uniscript.parambyname('pCLIENTE').AsFloat := cdsxlsx_nov2019Cpfcnpj.asFLOAT;
+                                  uniscript.parambyname('pNROPERACAO').AsString := var_noperacao;
+                                  uniscript.parambyname('pDATAVENCTO').AsString := cdsxlsx_nov2019DTVCTO.asstring;
+                                  uniscript.parambyname('pDATAREFERENCIA').AsString := DATETOSTR(NOW);
+                                  uniscript.parambyname('pSTATUS').AsString := 'S';
+                                  uniscript.parambyname('pCOBRADOR').AsFloat := strtofloat(FRMMenu.USUARIOLOGADO_CODIGO);
+                                  try uniscript.parambyname('pVALORPREVISTO').AsFloat := cdsxlsx_nov2019vrnominal.AsFloat; except
+                                      uniscript.parambyname('pVALORPREVISTO').AsFloat := 0 end;
+                                  try uniscript.parambyname('pVALORATUALIZADO').AsFloat := cdsxlsx_nov2019vrnominal.AsFloat; except
+                                      uniscript.parambyname('pVALORATUALIZADO').AsFloat := 0 end;
+                                  try uniscript.parambyname('pVALORORIGINAL').AsFloat := cdsxlsx_nov2019vrnominal.AsFloat; except
+                                      uniscript.parambyname('pVALORORIGINAL').AsFloat := 0 end;
+                                  uniscript.parambyname('pDATA_MODIF').AsString := DATETOSTR(NOW);
+                                  if cdsxlsx_nov2019FORMADEPGTO.asstring = 'BOLETO' THEN uniscript.parambyname('pTIPOPAGAMENTO').AsString := '0';
+                                  if cdsxlsx_nov2019FORMADEPGTO.asstring = 'DEPÓSITO' THEN uniscript.parambyname('pTIPOPAGAMENTO').AsString := '1';
+                                  uniscript.parambyname('pDATARECEBIMENTO').AsString := cdsxlsx_nov2019DTRECEBIMENTO.AsString;
+                                  try uniscript.parambyname('pVALORREALIZADO').AsFloat := cdsxlsx_nov2019VRRECEBIDO.asfloat; except
+                                      uniscript.parambyname('pVALORREALIZADO').AsFloat := 0 end;
+           uniscript.execsql;
+         end;
+         //se for uma parcela, não vai para a tabela operações, e sim para a tabela parcelas
+         //except showmessage('1197'); end;
+//      end;
+
+
+      uniscriptimporta.close;
+      cdsxlsx_nov2019.edit;
+      try cdsxlsx_nov2019.post; except end;
+      memo3.lines.add('Registro: ' + inttostr(i) + ' - Operação: ' + inttostr(seq_operacoes_codigo) + ' - Remessa: ' + remessa);
+     end;
+//    except showmessage('Arquivo não importado. Ln 1206')  end;
+    cdsxlsx_nov2019.enablecontrols;
+
+{    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+    DBGRID1.COLUMNS[8].WIDTH := 100;
+    DBGRID1.COLUMNS[9].WIDTH := 100;
+    DBGRID1.COLUMNS[10].WIDTH := 100;
+    DBGRID1.COLUMNS[11].WIDTH := 100;
+    DBGRID1.COLUMNS[12].WIDTH := 100;
+    DBGRID1.COLUMNS[13].WIDTH := 100;
+    DBGRID1.COLUMNS[14].WIDTH := 100;
+    DBGRID1.COLUMNS[15].WIDTH := 100;
+    DBGRID1.COLUMNS[16].WIDTH := 100;
+    DBGRID1.COLUMNS[17].WIDTH := 100;
+    DBGRID1.COLUMNS[18].WIDTH := 100;
+    DBGRID1.COLUMNS[19].WIDTH := 100;
+    DBGRID1.COLUMNS[20].WIDTH := 100;
+    DBGRID1.COLUMNS[21].WIDTH := 100;
+    DBGRID1.COLUMNS[22].WIDTH := 100;
+    DBGRID1.COLUMNS[23].WIDTH := 100;
+    DBGRID1.COLUMNS[24].WIDTH := 100;
+    DBGRID1.COLUMNS[25].WIDTH := 100;
+    DBGRID1.COLUMNS[26].WIDTH := 100;
+    DBGRID1.COLUMNS[27].WIDTH := 100;
+    DBGRID1.COLUMNS[28].WIDTH := 100;
+    DBGRID1.COLUMNS[29].WIDTH := 100;
+    DBGRID1.COLUMNS[30].WIDTH := 100;
+}
+    try
+      uniscriptupdate.Close;
+      uniscriptupdate.SQL.Text := 'delete from operacoes where noperacao is null';
+      uniscriptupdate.execsql;
+      uniscriptupdate.Close;
+    except end;
+    try
+      frmdatamodule.uniconnection1.Commit;
+    except end;
+    //SEPARAR E-MAILS
+    //testar as alterações, ao invés das inclusões
+{  except
+    showmessage('Ocorreu um erro na importação. Ln 1236');
+    frmdatamodule.uniconnection1.RollBack;
+  end;
+}
+end;
+
+procedure TFImportaExportaArquivo.btimporta_clioperClick(Sender: TObject);
+var
+  I, seq_cliente_codigo, codigo_cliente, seq_operacoes_codigo: Integer;
+  var_noperacao, quantidade_registros, var_credor: string;
+begin
+//  try
+    DBGRID1.DataSource := dsxlsclioper;
+
+    ImportExcel1.ExcelFile := Opendialog.Filename;
+    ImportExcel1.ExcelParaStringGrid(StringGrid1, ProgressBarGeral);
+
+    cdsxlsclioper.close;
+
+    Try cdsxlsclioper.CreateDataSet; except end;
+
+    cdsxlsclioper.open;
+    cdsxlsclioper.EmptyDataSet;
+    cdsxlsclioper.disablecontrols;
+
+    ProgressBarGeral.Max      := StringGrid1.RowCount;
+    ProgressBarGeral.Position := 0;
+    quantidade_registros := inttostr(StringGrid1.RowCount-1);
+
+    label_progressgeral.caption := 'Progresso Geral: (Importando para as tabelas)';
+
+    try frmdatamodule.uniconnection1.starttransaction; except end;
+
+//    try
+     for I := 1 to StringGrid1.RowCount do begin
+
+      ProgressBarGeral.Position := I;
+      label_progressgeral.caption := 'Progresso Geral: (Importando ' + inttostr(i) + '/' + quantidade_registros + ')';
+
+      Application.ProcessMessages;
+
+      cdsxlsclioper.append;
+
+      cdsxlsclioperCLIENTE.asstring                      := StringGrid1.Cells[0,I];
+      cdsxlsclioperDTNASCIMENTO.asstring                 := StringGrid1.Cells[1,I];
+      cdsxlsclioperEMAIL.asstring                        := StringGrid1.Cells[2,I];
+      cdsxlsclioperFONE.asstring                         := StringGrid1.Cells[3,I];
+      cdsxlsclioperFONE2.asstring                        := StringGrid1.Cells[4,I];
+      cdsxlsclioperENDERECO.asstring                     := StringGrid1.Cells[5,I];
+      cdsxlsclioperNUMERO.asstring                       := StringGrid1.Cells[6,I];
+      cdsxlsclioperSETOR.asstring                        := StringGrid1.Cells[7,I];
+      cdsxlsclioperCIDADE.asstring                       := StringGrid1.Cells[8,I];
+      cdsxlsclioperUF.asstring                           := StringGrid1.Cells[9,I];
+      cdsxlsclioperCEP.asstring                          := StringGrid1.Cells[10,I];
+      cdsxlsclioperCPF_CNPJ.asstring                     := StringGrid1.Cells[11,I];
+      cdsxlsclioperIDENTIDADE.asstring                   := StringGrid1.Cells[12,I];
+      cdsxlsclioperFONE3.asstring                        := StringGrid1.Cells[13,I];
+      cdsxlsclioperFONE4.asstring                        := StringGrid1.Cells[14,I];
+      cdsxlsclioperOPERACAO.asstring                     := StringReplace(StringGrid1.Cells[15,I], '-', '',[rfReplaceAll, rfIgnoreCase]);
+      cdsxlsclioperVENCIMENTO.asstring                   := StringGrid1.Cells[16,I];
+      cdsxlsclioperVALOR_NOMINAL.asstring                := StringGrid1.Cells[17,I];
+      cdsxlsclioperSITUACAO.asstring                     := StringGrid1.Cells[18,I];
+      cdsxlsclioperRECEBIMENTO.asstring                  := StringGrid1.Cells[19,I];
+      cdsxlsclioperVALOR_RECEBIDO.asstring               := StringGrid1.Cells[20,I];
+
+      //identifica se o cliente está cadastrado - cpf
+      uniscriptconsulta.Close;
+      uniscriptconsulta.SQL.Text := 'select * from clientes where cpf_cnpj = :pcpf_cnpj';
+                                    uniscriptconsulta.parambyname('pcpf_cnpj').AsString := cdsxlsclioperCPF_CNPJ.asstring;
+      uniscriptconsulta.Open;
+
+      var_credor := uniqcredor.fieldbyname('codigo').asstring;//DBLookupComboBox1.Text;
+
+      if uniscriptconsulta.RecordCount > 0 then begin
+        //está cadastrado, pega o código do cliente
+        codigo_cliente := uniscriptconsulta.fieldbyname('codigo').Value;
+      end else begin
+        //não está cadastrado, cadastra o cliente
+         unigetid.close;
+         unigetid.sql.text := 'SELECT SEQ_CLIENTES.nextval as Sequences FROM DUAL';
+         unigetid.open;
+         seq_cliente_codigo := unigetid.FieldByName('Sequences').Value;
+         unigetid.close;
+
+   //      try
+         uniscriptimporta.close;
+         uniscriptimporta.SQL.Text := 'insert into clientes (codigo, nome, tipopessoa, cpf_cnpj, endereco,' +
+                                      'numero, cidade, uf, cep, fone, faxcel, fone_1, e_mail, nridentidade,' +
+                                      'motivoinadimplencia, dta_cad, usr_cad, origemdosdados)' +
+                                      ' values ' +
+                                      '(:pcodigo, :pnome, :ptipopessoa, :pcpf_cnpj, :pendereco,' +
+                                      ':pnumero, :pcidade, :puf, :pcep, :pfone, :pfaxcel, :pfone_1,' +
+                                      ':pe_mail, :pnridentidade, :pmotivoinadimplencia, :pdta_cad, :pusr_cad, :porigemdosdados)';
+                                       uniscriptimporta.parambyname('pcodigo').Value := seq_cliente_codigo;
+                                       uniscriptimporta.parambyname('pnome').AsString := cdsxlsclioperCLIENTE.asstring;
+                                       if length(cdsxlsclioperCPF_CNPJ.asstring) = 11 then uniscriptimporta.parambyname('ptipopessoa').AsString := 'F';
+                                       if length(cdsxlsclioperCPF_CNPJ.asstring) = 14 then uniscriptimporta.parambyname('ptipopessoa').AsString := 'J';
+                                       uniscriptimporta.parambyname('pcpf_cnpj').AsString := cdsxlsclioperCPF_CNPJ.asstring;
+                                       uniscriptimporta.parambyname('pendereco').AsString := cdsxlsclioperENDERECO.asstring;
+                                       uniscriptimporta.parambyname('pnumero').AsString := cdsxlscliopernumero.asstring;
+                                       uniscriptimporta.parambyname('pcidade').AsString := cdsxlscliopercidade.asstring;
+                                       uniscriptimporta.parambyname('puf').AsString := cdsxlsclioperuf.asstring;
+                                       uniscriptimporta.parambyname('pcep').AsString := cdsxlscliopercep.asstring;
+                                       uniscriptimporta.parambyname('pfone').AsString := cdsxlsclioperfone.asstring;
+                                       uniscriptimporta.parambyname('pfaxcel').AsString := cdsxlsclioperfone3.asstring;
+                                       uniscriptimporta.parambyname('pfone_1').AsString := cdsxlsclioperfone2.asstring;
+                                       uniscriptimporta.parambyname('pe_mail').AsString := cdsxlsclioperemail.asstring;
+                                       uniscriptimporta.parambyname('pnridentidade').AsString := cdsxlsclioperidentidade.asstring;
+                                       uniscriptimporta.parambyname('pmotivoinadimplencia').AsFloat := 1;
+                                       uniscriptimporta.parambyname('pdta_cad').AsDate := date;
+                                       uniscriptimporta.parambyname('pusr_cad').AsFloat := strtofloat(FRMMenu.USUARIOLOGADO_CODIGO);
+                                       uniscriptimporta.parambyname('porigemdosdados').AsString := var_credor;
+           uniscriptimporta.execsql;
+ //        except showmessage('Erro na importação. ln 1154') end;
+      end;
+
+      uniscriptconsulta.Close;
+
+      //identifica se o boleto está cadastrado nroperacao
+      uniscriptconsulta.Close;
+      uniscriptconsulta.SQL.Text := 'select * from operacoes where nroperacao = :pnroperacao and cliente = :pcliente';
+                                    uniscriptconsulta.parambyname('pnroperacao').AsString := cdsxlsclioperOPERACAO.asstring;
+                                    uniscriptconsulta.parambyname('pcliente').AsString := cdsxlscliopercpf_cnpj.asstring;
+      uniscriptconsulta.Open;
+        //está cadastrado, inativa ele e cadastra o novo
+      if uniscriptconsulta.RecordCount > 0 then begin
+        VAR_NOPERACAO := uniscriptconsulta.fieldbyname('nroperacao').Value;
+        //não está cadastrado, cadastra a operação
+      end else begin
+         unigetid.close;
+         unigetid.sql.text := 'SELECT SEQ_OPERACOES.nextval as Sequences FROM DUAL';
+         unigetid.open;
+         seq_operacoes_codigo := unigetid.FieldByName('Sequences').Value;
+         unigetid.close;
+
+         //try
+         uniscriptimporta.close;
+         uniscriptimporta.SQL.Text := 'insert into operacoes (REGISTRO, cliente, nroperacao, remessa, DATAVENCTO, VALORNOMINAL, status, usr_cad, DTA_CAD, TIPOOPERACAO, credor) ' +
+                                      ' values ' +
+                                      '(:pregistro,:pcliente, :pnroperacao, :premessa, :pDATAVENCTO, :pVALORNOMINAL, :pstatus, :pusr_cad, :pDTA_CAD, :pTIPOOPERACAO, :pcredor)';
+                                       uniscriptimporta.parambyname('pregistro').value := seq_operacoes_codigo;
+                                       if cdsxlsclioperCpf_cnpj.asstring =  '' then cdsxlsclioperCpf_cnpj.asstring := '0';
+                                       uniscriptimporta.parambyname('pcliente').asstring := cdsxlsclioperCpf_cnpj.asstring;
+                                       if cdsxlsclioperoperacao.asstring = '' then cdsxlsclioperoperacao.asstring := inttostr(seq_operacoes_codigo) + cdsxlsclioperCpf_cnpj.asstring;
+                                       uniscriptimporta.parambyname('pnroperacao').AsString := StringReplace(cdsxlsclioperoperacao.asstring, '/', '',[rfReplaceAll, rfIgnoreCase]);
+                                       uniscriptimporta.parambyname('premessa').asstring := '0';
+                                       uniscriptimporta.parambyname('pDATAVENCTO').AsString := cdsxlscliopervencimento.asstring;
+                                       uniscriptimporta.parambyname('PVALORNOMINAL').AsString := cdsxlscliopervalor_nominal.AsString;
+                                       uniscriptimporta.parambyname('PTIPOOPERACAO').AsString := cdsxlscliopersituacao.asstring;
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'EM SER'          THEN uniscriptimporta.parambyname('pstatus').AsString := 'S';
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'RETOMADO'        THEN uniscriptimporta.parambyname('pstatus').AsString := 'O';
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'LIQUIDADO'       THEN uniscriptimporta.parambyname('pstatus').AsString := 'L';
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'NEGOCIADO'       THEN uniscriptimporta.parambyname('pstatus').AsString := 'N';
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'RENEGOCIADO'     THEN uniscriptimporta.parambyname('pstatus').AsString := 'R';
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'ACORDO QUEBRADO' THEN uniscriptimporta.parambyname('pstatus').AsString := 'A';
+                                       if UPPERCASE(cdsxlscliopersituacao.asstring) = 'DEVOLVIDO'       THEN uniscriptimporta.parambyname('pstatus').AsString := 'D';
+                                       uniscriptimporta.parambyname('pdta_cad').AsDate := date;
+                                       uniscriptimporta.parambyname('pusr_cad').AsFloat := strtofloat(FRMMenu.USUARIOLOGADO_CODIGO);
+                                       uniscriptimporta.parambyname('pcredor').AsString := var_credor;
+           uniscriptimporta.execsql;
+         //except showmessage('1197'); end;
+      end;
+
+      uniscriptimporta.close;
+      cdsxlsclioper.post;
+     end;
+//    except showmessage('Arquivo não importado. Ln 1206')  end;
+
+    cdsxlsclioper.enablecontrols;
+
+    DBGRID1.COLUMNS[0].WIDTH := 100;
+    DBGRID1.COLUMNS[1].WIDTH := 100;
+    DBGRID1.COLUMNS[2].WIDTH := 100;
+    DBGRID1.COLUMNS[3].WIDTH := 100;
+    DBGRID1.COLUMNS[4].WIDTH := 100;
+    DBGRID1.COLUMNS[5].WIDTH := 100;
+    DBGRID1.COLUMNS[6].WIDTH := 100;
+    DBGRID1.COLUMNS[7].WIDTH := 100;
+    DBGRID1.COLUMNS[8].WIDTH := 100;
+    DBGRID1.COLUMNS[9].WIDTH := 100;
+    DBGRID1.COLUMNS[10].WIDTH := 100;
+    DBGRID1.COLUMNS[11].WIDTH := 100;
+    DBGRID1.COLUMNS[12].WIDTH := 100;
+    DBGRID1.COLUMNS[13].WIDTH := 100;
+    DBGRID1.COLUMNS[14].WIDTH := 100;
+    DBGRID1.COLUMNS[15].WIDTH := 100;
+    DBGRID1.COLUMNS[16].WIDTH := 100;
+    DBGRID1.COLUMNS[17].WIDTH := 100;
+    DBGRID1.COLUMNS[18].WIDTH := 100;
+    DBGRID1.COLUMNS[19].WIDTH := 100;
+    DBGRID1.COLUMNS[20].WIDTH := 100;
+
+    try frmdatamodule.uniconnection1.Commit; except end;
+    //SEPARAR E-MAILS
+    //testar as alterações, ao invés das inclusões
+{  except
+    showmessage('Ocorreu um erro na importação. Ln 1236');
+    frmdatamodule.uniconnection1.RollBack;
+  end;
+}
+end;
+
+procedure TFImportaExportaArquivo.FormActivate(Sender: TObject);
+begin
+uniQCredor.Open;
+uniQCredor.First;
+uniQCredor.Last;
+uniQCredor.First;
+end;
+
+procedure TFImportaExportaArquivo.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+uniQCredor.Close;
+end;
+
+procedure TFImportaExportaArquivo.FormShow(Sender: TObject);
+begin
+  fimportaexportaarquivo.cursor := crdefault;
+
+  pnlgeral.enabled := true;
+
+  cdsxls.close;
+  cdscadas.close;
+  cdsinad.close;
+  cdsoper.close;
+  cdstele.close;
+
+  ednome.clear;
+  progressbargeral.position := 0;
+end;
+
+end.

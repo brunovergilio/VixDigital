@@ -1,0 +1,196 @@
+unit uoperadoresgrupocadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.TabNotBk, AdvEdit, advlued, DBAdvLe, Vcl.DBCtrls, RzButton,
+  AdvCombo, Lucombo, dblucomb, Data.DB, MemDS, DBAccess, Uni, ACBrBase,
+  ACBrEnterTab, JvComponentBase, JvEnterTab, AdvOfficeTabSet,
+  AdvOfficeTabSetStylers, RzTabs, AdvOfficeButtons, DBAdvOfficeButtons,
+  AdvDBComboBox, Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid,
+  AdvDateTimePicker, AdvDBDateTimePicker, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, cxCustomListBox,
+  cxCheckListBox, cxDBCheckListBox, AdvDBLookupComboBox;
+
+type
+  Tfrmoperadoresgrupocadastro = class(TForm)
+    Panel3: TPanel;
+    Panel4: TPanel;
+    RzToolButton1: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    DBAdvLUEdit1: TDBAdvLUEdit;
+    DBAdvLUEdit2: TDBAdvLUEdit;
+    unigetid: TUniQuery;
+    Label2: TLabel;
+    RzToolButton9: TRzToolButton;
+    btnalterar: TRzToolButton;
+    RzToolButton3: TRzToolButton;
+    JvDBGrid1: TJvDBGrid;
+    UniQOperadorGrupoOperador: TUniQuery;
+    UniDSQOperadorGrupoOperador: TUniDataSource;
+    UniDSQUsuarios: TUniDataSource;
+    uniQUsuarios: TUniQuery;
+    UniQOperadorGrupoOperadorCODIGO: TFloatField;
+    UniQOperadorGrupoOperadorGRUPO: TFloatField;
+    UniQOperadorGrupoOperadorOPERADOR: TFloatField;
+    uniscript: TUniQuery;
+    UniQOperadorGrupoOperadorNOME: TStringField;
+    procedure FormShow(Sender: TObject);
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure AdvDBComboBox2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure RzToolButton9Click(Sender: TObject);
+    procedure btnalterarClick(Sender: TObject);
+    procedure RzToolButton3Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ALTERAINSERE: STRING;
+  end;
+
+var
+  frmoperadoresgrupocadastro: Tfrmoperadoresgrupocadastro;
+
+implementation
+
+{$R *.dfm}
+
+uses uDataModule, uoperadoresgrupo,uselecionaoperadores;
+
+procedure Tfrmoperadoresgrupocadastro.AdvDBComboBox2KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+KEY := 0;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.btnalterarClick(Sender: TObject);
+begin
+IF DBAdvLUEdit1.Text <> '' then
+    frmselecionaoperadores.showmodal else
+    showmessage('Antes de inserir, grave o grupo.');
+UniQOperadorGrupoOperador.Refresh;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.FormActivate(Sender: TObject);
+begin
+    UniQOperadorGrupoOperador.Close;
+    UniQOperadorGrupoOperador.Sql.Clear;
+    UniQOperadorGrupoOperador.Sql.Text := 'select operador_grupo_operadores.*, usuarios.nome from operador_grupo_operadores ' +
+                                          'inner join usuarios on operador_grupo_operadores.operador = usuarios.codigo';
+    UniQOperadorGrupoOperador.Open;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  alterainsere := '';
+  UniQOperadorGrupoOperador.Close;
+  UniQUsuarios.Close;
+  UniScript.Close;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.FormShow(Sender: TObject);
+begin
+DBAdvLUEdit2.SETFOCUS;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.RzToolButton1Click(Sender: TObject);
+begin
+  IF ALTERAINSERE = 'INSERE' THEN BEGIN
+    unigetid.close;
+    unigetid.sql.text := 'SELECT SEQ_OPERADOR_GRUPO.nextval as Sequences FROM DUAL';
+    unigetid.open;
+
+    frmoperadoresgrupo.uniqscript.edit;
+    DBAdvLUEdit1.Text := unigetid.FieldByName('Sequences').AsString;
+    frmoperadoresgrupo.uniqscript.post;
+
+    frmDataModule.UniConnection1.Commit;
+
+    unigetid.close;
+
+    ALTERAINSERE := '';
+  END
+  ELSE BEGIN
+    frmoperadoresgrupo.uniqscript.edit;
+    frmoperadoresgrupo.uniqscript.post;
+    frmDataModule.UniConnection1.Commit;
+
+    unigetid.close;
+
+    ALTERAINSERE := '';
+  END;
+
+  Close;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.RzToolButton2Click(Sender: TObject);
+begin
+  frmoperadoresgrupo.uniqscript.edit;
+  frmDataModule.UniConnection1.Rollback;
+  Close;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.RzToolButton3Click(Sender: TObject);
+begin
+  if Application.MessageBox('Esta operação é irreversível. Deseja continuar?','Atenção',MB_ICONHAND + MB_YESNO + MB_ICONQUESTION) = mrYES then
+    try UniQOperadorGrupoOperador.Delete; except end;
+UniQOperadorGrupoOperador.Refresh;
+end;
+
+procedure Tfrmoperadoresgrupocadastro.RzToolButton9Click(Sender: TObject);
+begin
+  IF DBAdvLUEdit1.Text <> '' then begin
+    UniQOperadorGrupoOperador.Close;
+    UniQOperadorGrupoOperador.Sql.Clear;
+    UniQOperadorGrupoOperador.Sql.Text := 'delete from operador_grupo_operadores where grupo = :grupo';
+                          UniQOperadorGrupoOperador.ParamByName('GRUPO').AsString := DBADVLUEDIT1.Text;
+    UniQOperadorGrupoOperador.ExecSQL;
+
+    UniQUsuarios.Close;
+    UniQUsuarios.Sql.Clear;
+    UniQUsuarios.Sql.Text := 'select * from usuarios where nivel = ''O''';
+    UniQUsuarios.Open;
+    UniQUsuarios.First;
+
+    UniScript.Close;
+    UniScript.Sql.Clear;
+    UniScript.Sql.Text := 'select * from operador_grupo_operadores';
+    UniScript.ExecSQL;
+
+    while not UniQUsuarios.Eof do begin
+      UniScript.open;
+      UniScript.insert;
+
+      unigetid.close;
+      unigetid.sql.text := 'SELECT SEQ_OPERADOR_GRUPO_OPERADORES.nextval as Sequences FROM DUAL';
+      unigetid.open;
+
+      UniScript.FieldbyName('CODIGO').Value := unigetid.FieldByName('Sequences').Value;
+      UniScript.FieldbyName('GRUPO').AsString := DBAdvLUEdit1.TEXT;
+      UniScript.FieldbyName('OPERADOR').Value := UniQUsuarios.FieldByName('CODIGO').Value;
+      UniScript.post;
+
+      UniQUsuarios.Next;
+    end;
+
+    UniQUsuarios.Close;
+    unigetid.close;
+
+    UniQOperadorGrupoOperador.Close;
+    UniQOperadorGrupoOperador.Sql.Clear;
+    UniQOperadorGrupoOperador.Sql.Text := 'select operador_grupo_operadores.*, usuarios.nome from operador_grupo_operadores ' +
+                                          'inner join usuarios on operador_grupo_operadores.operador = usuarios.codigo';
+    UniQOperadorGrupoOperador.Open;
+  end
+  else showmessage('Antes de inserir, grave o grupo.');
+UniQOperadorGrupoOperador.Refresh;
+end;
+
+end.

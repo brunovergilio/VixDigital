@@ -1,0 +1,71 @@
+unit uAgenciasCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AdvGlowButton, Vcl.ExtCtrls,
+  Vcl.StdCtrls, AdvEdit, advlued, DBAdvLe, Data.DB, AdvCombo, Lucombo, dblucomb, AdvGraphicCheckLabel,
+  DBAdvGraphicCheckLabel, MemDS, DBAccess, Uni;
+
+type
+  TfrmAgenciasCadastro = class(TForm)
+    Panel1: TPanel;
+    AdvGlowButton1: TAdvGlowButton;
+    AdvGlowButton2: TAdvGlowButton;
+    Panel2: TPanel;
+    GroupBox1: TGroupBox;
+    DBAdvLUEdit1: TDBAdvLUEdit;
+    DBAdvLUEdit2: TDBAdvLUEdit;
+    DBAdvLUEdit3: TDBAdvLUEdit;
+    UniDataSource1: TUniDataSource;
+    uniscript: TUniQuery;
+    procedure AdvGlowButton1Click(Sender: TObject);
+    procedure AdvGlowButton2Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAgenciasCadastro: TfrmAgenciasCadastro;
+
+implementation
+
+uses udatamodule;
+
+{$R *.dfm}
+
+procedure TfrmAgenciasCadastro.AdvGlowButton1Click(Sender: TObject);
+begin
+Try
+  uniscript.Edit;
+  uniscript.Post;
+  frmDataModule.UniConnection1.Commit;
+except showmessage('Erro ao gravar. Nl 58'); end;
+Close;
+end;
+
+procedure TfrmAgenciasCadastro.AdvGlowButton2Click(Sender: TObject);
+begin
+Try
+  uniscript.Cancel;
+except showmessage('Erro ao gravar. Nl 77'); end;
+Close;
+end;
+
+procedure TfrmAgenciasCadastro.FormActivate(Sender: TObject);
+begin
+try DBAdvLUEdit1.SetFocus; except end;
+end;
+
+procedure TfrmAgenciasCadastro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+try uniscript.Close; except end;
+end;
+
+end.

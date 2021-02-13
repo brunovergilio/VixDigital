@@ -1,0 +1,495 @@
+unit ucadastrodebancosempresas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.TabNotBk, AdvEdit, advlued, DBAdvLe, Vcl.DBCtrls, RzButton,
+  AdvCombo, Lucombo, dblucomb, Data.DB, MemDS, DBAccess, Uni, ACBrBase,
+  ACBrEnterTab, JvComponentBase, JvEnterTab, AdvOfficeTabSet,
+  AdvOfficeTabSetStylers, RzTabs, AdvOfficeButtons, DBAdvOfficeButtons,
+  AdvDBComboBox, Vcl.Grids, Vcl.DBGrids, JvExDBGrids, JvDBGrid, Vcl.Mask,
+  RzEdit, RzDBEdit;
+
+type
+  Tfrmcadastrodebancosempresas = class(TForm)
+    Panel3: TPanel;
+    Panel4: TPanel;
+    TabbedNotebook1: TTabbedNotebook;
+    Notebook1: TNotebook;
+    Notebook7: TNotebook;
+    Notebook8: TNotebook;
+    Notebook9: TNotebook;
+    DBAdvLUEdit1: TDBAdvLUEdit;
+    RzToolButton1: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    unigetid: TUniQuery;
+    DBAdvLUEdit3: TDBAdvLUEdit;
+    DBAdvLUEdit4: TDBAdvLUEdit;
+    DBAdvLUEdit5: TDBAdvLUEdit;
+    DBAdvLUEdit6: TDBAdvLUEdit;
+    DBAdvLUEdit7: TDBAdvLUEdit;
+    DBAdvLUEdit8: TDBAdvLUEdit;
+    DBAdvLUEdit9: TDBAdvLUEdit;
+    DBAdvLUEdit10: TDBAdvLUEdit;
+    DBAdvLUEdit11: TDBAdvLUEdit;
+    DBAdvLUEdit12: TDBAdvLUEdit;
+    DBAdvOfficeCheckBox1: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox2: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox3: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox4: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox5: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox8: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox9: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox10: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox11: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox12: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox6: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox13: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox14: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox7: TDBAdvOfficeCheckBox;
+    AdvDBComboBox1: TAdvDBComboBox;
+    DBAdvLUEdit13: TDBAdvLUEdit;
+    DBAdvLUEdit14: TDBAdvLUEdit;
+    Label1: TLabel;
+    DBAdvLUEdit15: TDBAdvLUEdit;
+    Label2: TLabel;
+    DBAdvLUEdit16: TDBAdvLUEdit;
+    DBAdvLUEdit17: TDBAdvLUEdit;
+    Label3: TLabel;
+    DBAdvLUEdit18: TDBAdvLUEdit;
+    DBAdvLUEdit19: TDBAdvLUEdit;
+    DBAdvLUEdit20: TDBAdvLUEdit;
+    Label4: TLabel;
+    DBAdvLUEdit21: TDBAdvLUEdit;
+    DBAdvLUEdit22: TDBAdvLUEdit;
+    Label5: TLabel;
+    DBAdvLUEdit23: TDBAdvLUEdit;
+    DBAdvLUEdit26: TDBAdvLUEdit;
+    DBAdvOfficeCheckBox15: TDBAdvOfficeCheckBox;
+    DBAdvOfficeCheckBox16: TDBAdvOfficeCheckBox;
+    Label6: TLabel;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    RzToolButton3: TRzToolButton;
+    RzToolButton4: TRzToolButton;
+    JvDBGrid1: TJvDBGrid;
+    DSQCadastroComissoes: TUniDataSource;
+    UniQCadastroComissoes: TUniQuery;
+    UniQCadastroComissoesCODIGO: TFloatField;
+    UniQCadastroComissoesCODIGO_CREDOR: TFloatField;
+    UniQCadastroComissoesNOME_CREDOR: TStringField;
+    UniQCadastroComissoesDIAS_INICIAL: TFloatField;
+    UniQCadastroComissoesDIAS_FINAL: TFloatField;
+    UniQCadastroComissoesCCM: TFloatField;
+    UniQCadastroComissoesCMULTA: TFloatField;
+    UniQCadastroComissoesCJUROS: TFloatField;
+    UniQCadastroComissoesCHONORARIO: TFloatField;
+    UniQCadastroComissoesCSALDO: TFloatField;
+    UniQCadastroComissoesCOPERADOR: TFloatField;
+    UniQCadastroComissoesACHECK: TStringField;
+    UniQCadastroComissoesAMULTA: TFloatField;
+    UniQCadastroComissoesAJUROS: TFloatField;
+    UniQCadastroComissoesAHONORARIO: TFloatField;
+    UniQCadastroComissoesAVALORHONOR: TFloatField;
+    UniQCadastroComissoesADESCONTO: TFloatField;
+    RzToolButton6: TRzToolButton;
+    Label7: TLabel;
+    Bevel3: TBevel;
+    Bevel4: TBevel;
+    DBMemo1: TDBMemo;
+    DBAdvOfficeCheckBox17: TDBAdvOfficeCheckBox;
+    DBRadioGroup1: TDBRadioGroup;
+    DBAdvLUEdit2: TDBAdvLUEdit;
+    RzDBNumericEdit1: TRzDBNumericEdit;
+    RzDBNumericEdit2: TRzDBNumericEdit;
+    DBAdvLUEdit24: TRzDBNumericEdit;
+    procedure FormShow(Sender: TObject);
+    procedure ChecaChecks;
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit2KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit3KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit4KeyPress(Sender: TObject; var Key: Char);
+    procedure DBAdvLUEdit5KeyPress(Sender: TObject; var Key: Char);
+    procedure AdvDBComboBox1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure RzToolButton3Click(Sender: TObject);
+    procedure RzToolButton6Click(Sender: TObject);
+    procedure RzToolButton4Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox15Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox16Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox1Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox3Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox5Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox9Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox11Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox10Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox12Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox13Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox14Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox7Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox2Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox4Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox8Click(Sender: TObject);
+    procedure DBAdvOfficeCheckBox6Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure DBAdvOfficeCheckBox17Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ALTERAINSERE: STRING;
+  end;
+
+var
+  frmcadastrodebancosempresas: Tfrmcadastrodebancosempresas;
+
+implementation
+
+{$R *.dfm}
+
+uses ubancosempresas, ucadastrodecomissoeseatualizacao, udatamodule;
+
+procedure Tfrmcadastrodebancosempresas.ChecaChecks;
+begin
+  DBAdvLUEdit13.Enabled := False;
+  DBAdvLUEdit14.Enabled := False;
+  DBAdvLUEdit15.Enabled := False;
+  DBAdvLUEdit16.Enabled := False;
+  DBAdvLUEdit17.Enabled := False;
+  DBAdvLUEdit18.Enabled := False;
+  DBAdvLUEdit19.Enabled := False;
+  DBAdvLUEdit20.Enabled := False;
+  DBAdvLUEdit21.Enabled := False;
+  DBAdvLUEdit22.Enabled := False;
+  DBAdvLUEdit23.Enabled := False;
+  DBAdvLUEdit24.Enabled := False;
+  RzDBNumericEdit1.Enabled := False;
+  RzDBNumericEdit2.Enabled := False;
+  DBAdvLUEdit26.Enabled := False;
+
+  if DBAdvOfficeCheckBox1.Checked = true then begin
+    DBAdvLUEdit13.Enabled := True;
+    DBAdvLUEdit14.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox2.Checked = true then begin
+    DBAdvLUEdit15.Enabled := True;
+    DBAdvLUEdit16.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox3.Checked = true then begin
+    DBAdvLUEdit17.Enabled := True;
+    DBAdvLUEdit18.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox4.Checked = true then begin
+    DBAdvLUEdit20.Enabled := True;
+    DBAdvLUEdit21.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox5.Checked = true then begin
+    DBAdvLUEdit19.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox9.Checked = true then begin
+    DBAdvLUEdit22.Enabled := True;
+    DBAdvLUEdit23.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox8.Checked = true then begin
+    DBAdvLUEdit24.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox6.Checked = true then begin
+    RzDBNumericEdit1.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox17.Checked = true then begin
+    RzDBNumericEdit2.Enabled := True;
+  end;
+
+  if DBAdvOfficeCheckBox7.Checked = true then begin
+    DBAdvLUEdit26.Enabled := True;
+  end;
+
+//  if DBAdvOfficeCheckBox16.checked = true then DBAdvOfficeCheckBox15.checked := false;
+//  if DBAdvOfficeCheckBox15.checked = true then DBAdvOfficeCheckBox16.checked := false;
+end;
+
+procedure Tfrmcadastrodebancosempresas.AdvDBComboBox1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+key := 0;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvLUEdit2KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvLUEdit3KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvLUEdit4KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvLUEdit5KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox10Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox11Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox12Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox13Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox14Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox15Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox16Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox17Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox1Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox2Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox3Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox4Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox5Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox6Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox7Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox8Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.DBAdvOfficeCheckBox9Click(
+  Sender: TObject);
+begin
+ChecaChecks;
+end;
+
+procedure Tfrmcadastrodebancosempresas.FormActivate(Sender: TObject);
+begin
+  checachecks;
+
+  try
+    UniQCadastroComissoes.Open;
+  except end;
+
+  if DBRadioGroup1.ItemIndex = -1 then DBRadioGroup1.ItemIndex := 0;
+end;
+
+procedure Tfrmcadastrodebancosempresas.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  frmcadastrodebancosempresas.alterainsere := '';
+end;
+
+procedure Tfrmcadastrodebancosempresas.FormKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if (Key = #13) then Perform(WM_NEXTDLGCTL,0,0);
+end;
+
+procedure Tfrmcadastrodebancosempresas.FormShow(Sender: TObject);
+begin
+TabbedNotebook1.PageIndex := 0;
+DBAdvLUEdit2.SETFOCUS;
+end;
+
+procedure Tfrmcadastrodebancosempresas.RzToolButton1Click(Sender: TObject);
+begin
+if not frmDataModule.UniConnection1.InTransaction then frmDataModule.UniConnection1.StartTransaction;
+   //try
+    BEGIN
+     // Do some actions with database. For example:
+        IF ALTERAINSERE = 'INSERE' THEN BEGIN
+          unigetid.close;
+          unigetid.sql.text := 'SELECT SEQ_BANCOS.nextval as Sequences FROM DUAL';
+          unigetid.open;
+
+          FRMCREDORES.uniQCredores.edit;
+          DBAdvLUEdit1.Text := unigetid.FieldByName('Sequences').AsString;
+          FRMCREDORES.uniQCredores.post;
+
+      //    FRMCREDORES.uniQBancosEmpresas.CommitUpdates;
+
+
+       // Commit the current transaction to reflect changes in database if no errors were raised
+       frmDataModule.UniConnection1.Commit;
+      unigetid.close;
+
+      ALTERAINSERE := '';
+    END
+    ELSE BEGIN
+      FRMCREDORES.uniQCredores.EDIT;
+      FRMCREDORES.uniQCredores.post;
+      frmDataModule.UniConnection1.Commit;
+      FRMCREDORES.uniQCredores.close;
+    END;
+  // except
+       // Rollback all changes in database made after StartTransaction if an error was raised
+  //     frmDataModule.UniConnection1.Rollback;
+   end;
+
+  Close;
+end;
+
+procedure Tfrmcadastrodebancosempresas.RzToolButton2Click(Sender: TObject);
+begin
+  FRMCREDORES.uniQCredores.Cancel;
+  Close;
+end;
+
+procedure Tfrmcadastrodebancosempresas.RzToolButton3Click(Sender: TObject);
+begin
+//  exit;
+  //checa se salvou, senão salva
+  if DBAdvLUEdit1.Text = '' then begin
+    Application.MessageBox('Grave o Credor antes de continuar.','Atenção',MB_ICONHAND + MB_OK + MB_ICONQUESTION);
+    exit;
+  end;
+  //fim checa se salvou, senão salva
+
+  uniQCadastroComissoes.Open;
+  uniQCadastroComissoes.Insert;
+  frmcomissaoeatualizacao.DBAdvLUEdit1.Text := DBAdvLUEdit1.Text;
+  frmcomissaoeatualizacao.DBAdvLUEdit2.Text := DBAdvLUEdit2.Text;
+
+  UniQCadastroComissoes.FIELDBYNAME('acheck').Value := 'FALSE';
+
+  frmcomissaoeatualizacao.DBAdvLUEdit7.Enabled := FALSE;
+  frmcomissaoeatualizacao.DBAdvLUEdit8.Enabled := FALSE;
+  frmcomissaoeatualizacao.DBAdvLUEdit9.Enabled := FALSE;
+  frmcomissaoeatualizacao.DBAdvLUEdit10.Enabled := FALSE;
+  frmcomissaoeatualizacao.DBAdvLUEdit11.Enabled := FALSE;
+  
+  frmcomissaoeatualizacao.alterainsere := 'INSERE';
+  frmcomissaoeatualizacao.ShowModal;
+  //frmcomissaoeatualizacao.alterainsere := '';
+end;
+
+procedure Tfrmcadastrodebancosempresas.RzToolButton4Click(Sender: TObject);
+begin
+//  exit;
+  //checa se tem em algum cadastro
+  if uniQCadastroComissoes.RecordCount = 0 then begin
+    exit;
+  end;
+  //fim checa se tem em algum cadastro
+  if Application.MessageBox('Esta operação é irreversível. Deseja continuar?','Atenção',MB_ICONHAND + MB_YESNO + MB_ICONQUESTION) = mrYES then
+    try uniQCadastroComissoes.Delete; except end;
+end;
+
+procedure Tfrmcadastrodebancosempresas.RzToolButton6Click(Sender: TObject);
+begin
+//  exit;
+  //checa se salvou, senão salva
+  if DBAdvLUEdit1.Text = '' then begin
+    Application.MessageBox('Grave o Credor antes de continuar.','Atenção',MB_ICONHAND + MB_OK + MB_ICONQUESTION);
+    exit;
+  end;
+  //fim checa se salvou, senão salva
+
+  //checa se tem em algum cadastro
+  if uniQCadastroComissoes.RecordCount = 0 then begin
+    exit;
+  end;
+  //fim checa se tem em algum cadastro
+
+  try
+    uniQCadastroComissoes.Edit;
+    frmcomissaoeatualizacao.alterainsere := 'ALTERA';
+    frmcomissaoeatualizacao.ShowModal;
+    frmcomissaoeatualizacao.alterainsere := '';
+  except
+
+  end;
+end;
+
+end.

@@ -1,0 +1,3386 @@
+unit upedidoloja;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, QuickRpt,
+  QRCtrls, Vcl.Imaging.pngimage, acPNG, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  Tfpedidoloja = class(TForm)
+    Panel13: TPanel;
+    Label37: TLabel;
+    GroupBox1: TGroupBox;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    GroupBox2: TGroupBox;
+    CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
+    CheckBox8: TCheckBox;
+    CheckBox9: TCheckBox;
+    GroupBox3: TGroupBox;
+    CheckBox10: TCheckBox;
+    CheckBox11: TCheckBox;
+    CheckBox12: TCheckBox;
+    CheckBox13: TCheckBox;
+    CheckBox14: TCheckBox;
+    CheckBox15: TCheckBox;
+    CheckBox16: TCheckBox;
+    CheckBox17: TCheckBox;
+    CheckBox18: TCheckBox;
+    CheckBox19: TCheckBox;
+    CheckBox20: TCheckBox;
+    CheckBox21: TCheckBox;
+    CheckBox22: TCheckBox;
+    GroupBox4: TGroupBox;
+    CheckBox43: TCheckBox;
+    CheckBox44: TCheckBox;
+    CheckBox45: TCheckBox;
+    CheckBox46: TCheckBox;
+    CheckBox47: TCheckBox;
+    GroupBox5: TGroupBox;
+    CheckBox38: TCheckBox;
+    CheckBox39: TCheckBox;
+    CheckBox40: TCheckBox;
+    CheckBox41: TCheckBox;
+    CheckBox42: TCheckBox;
+    GroupBox6: TGroupBox;
+    CheckBox23: TCheckBox;
+    CheckBox24: TCheckBox;
+    CheckBox25: TCheckBox;
+    CheckBox26: TCheckBox;
+    CheckBox27: TCheckBox;
+    CheckBox28: TCheckBox;
+    CheckBox29: TCheckBox;
+    CheckBox30: TCheckBox;
+    CheckBox31: TCheckBox;
+    CheckBox32: TCheckBox;
+    CheckBox33: TCheckBox;
+    CheckBox34: TCheckBox;
+    CheckBox35: TCheckBox;
+    CheckBox36: TCheckBox;
+    CheckBox37: TCheckBox;
+    CheckBox50: TCheckBox;
+    CheckBox51: TCheckBox;
+    Panel2: TPanel;
+    Label31: TLabel;
+    Image2: TImage;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label15: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label14: TLabel;
+    Label20: TLabel;
+    QRShape1: TQRShape;
+    QRShape3: TQRShape;
+    QRShape4: TQRShape;
+    ComboBox2: TComboBox;
+    ComboBox3: TComboBox;
+    ComboBox4: TComboBox;
+    ComboBox5: TComboBox;
+    Edit6: TEdit;
+    ComboBox6: TComboBox;
+    QRShape5: TQRShape;
+    ComboBox7: TComboBox;
+    Panel1: TPanel;
+    Image1: TImage;
+    QRShape2: TQRShape;
+    Button1: TButton;
+    Image51: TImage;
+    Label2: TLabel;
+    ComboBox1: TComboBox;
+    CheckBox52: TCheckBox;
+    CheckBox53: TCheckBox;
+    CheckBox54: TCheckBox;
+    CheckBox55: TCheckBox;
+    CheckBox56: TCheckBox;
+    CheckBox57: TCheckBox;
+    CheckBox58: TCheckBox;
+    CheckBox59: TCheckBox;
+    Memo2: TMemo;
+    CheckBox60: TCheckBox;
+    CheckBox61: TCheckBox;
+    QRShape6: TQRShape;
+    CheckBox62: TCheckBox;
+    CheckBox63: TCheckBox;
+    CheckBox64: TCheckBox;
+    CheckBox65: TCheckBox;
+    Panel3: TPanel;
+    GroupBox7: TGroupBox;
+    CheckBox48: TCheckBox;
+    CheckBox49: TCheckBox;
+    GroupBox8: TGroupBox;
+    Label1: TLabel;
+    Memo1: TMemo;
+    procedure cores_fecha;
+    procedure conta_complementos;
+    procedure conta_coberturas;
+    procedure conta_frutas;
+    procedure TOTALIZA;
+    procedure HIDEN;
+    procedure Button1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
+    procedure Image51Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
+    procedure CheckBox3Click(Sender: TObject);
+    procedure CheckBox4Click(Sender: TObject);
+    procedure CheckBox5Click(Sender: TObject);
+    procedure CheckBox6Click(Sender: TObject);
+    procedure CheckBox7Click(Sender: TObject);
+    procedure CheckBox8Click(Sender: TObject);
+    procedure CheckBox9Click(Sender: TObject);
+    procedure CheckBox10Click(Sender: TObject);
+    procedure CheckBox11Click(Sender: TObject);
+    procedure CheckBox12Click(Sender: TObject);
+    procedure CheckBox13Click(Sender: TObject);
+    procedure CheckBox14Click(Sender: TObject);
+    procedure CheckBox15Click(Sender: TObject);
+    procedure CheckBox16Click(Sender: TObject);
+    procedure CheckBox17Click(Sender: TObject);
+    procedure CheckBox18Click(Sender: TObject);
+    procedure CheckBox19Click(Sender: TObject);
+    procedure CheckBox20Click(Sender: TObject);
+    procedure CheckBox21Click(Sender: TObject);
+    procedure CheckBox22Click(Sender: TObject);
+    procedure CheckBox23Click(Sender: TObject);
+    procedure CheckBox24Click(Sender: TObject);
+    procedure CheckBox25Click(Sender: TObject);
+    procedure CheckBox26Click(Sender: TObject);
+    procedure CheckBox27Click(Sender: TObject);
+    procedure CheckBox28Click(Sender: TObject);
+    procedure CheckBox29Click(Sender: TObject);
+    procedure CheckBox30Click(Sender: TObject);
+    procedure CheckBox31Click(Sender: TObject);
+    procedure CheckBox32Click(Sender: TObject);
+    procedure CheckBox33Click(Sender: TObject);
+    procedure CheckBox34Click(Sender: TObject);
+    procedure CheckBox35Click(Sender: TObject);
+    procedure CheckBox36Click(Sender: TObject);
+    procedure CheckBox37Click(Sender: TObject);
+    procedure CheckBox38Click(Sender: TObject);
+    procedure CheckBox39Click(Sender: TObject);
+    procedure CheckBox40Click(Sender: TObject);
+    procedure CheckBox41Click(Sender: TObject);
+    procedure CheckBox42Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure CheckBox43Click(Sender: TObject);
+    procedure CheckBox46Click(Sender: TObject);
+    procedure CheckBox44Click(Sender: TObject);
+    procedure CheckBox47Click(Sender: TObject);
+    procedure CheckBox45Click(Sender: TObject);
+    procedure CheckBox49Click(Sender: TObject);
+    procedure CheckBox48Click(Sender: TObject);
+    procedure CheckBox52Click(Sender: TObject);
+    procedure CheckBox53Click(Sender: TObject);
+    procedure CheckBox54Click(Sender: TObject);
+    procedure CheckBox55Click(Sender: TObject);
+    procedure CheckBox56Click(Sender: TObject);
+    procedure CheckBox57Click(Sender: TObject);
+    procedure CheckBox50Click(Sender: TObject);
+    procedure CheckBox51Click(Sender: TObject);
+    procedure CheckBox58Click(Sender: TObject);
+    procedure CheckBox59Click(Sender: TObject);
+    procedure CheckBox60Click(Sender: TObject);
+    procedure CheckBox61Click(Sender: TObject);
+    procedure CheckBox62Click(Sender: TObject);
+    procedure CheckBox63Click(Sender: TObject);
+    procedure CheckBox64Click(Sender: TObject);
+    procedure CheckBox65Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fpedidoloja: Tfpedidoloja;
+  contador: integer;
+  total: real;
+  
+implementation
+
+{$R *.dfm}
+
+uses udm, uprocura2, UMENU, senha_cancelamento, ufechamesa;
+
+procedure Tfpedidoloja.conta_frutas;
+begin
+CONTADOR := 0;
+IF CHECKBOX38.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX39.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX40.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX61.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX41.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX42.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+end;
+
+procedure Tfpedidoloja.TOTALIZA;
+begin
+total := 0;
+
+//IF (CHECKBOX50.CHECKED = FALSE) AND (CHECKBOX51.CHECKED = FALSE) THEN CHECKBOX50.CHECKED := TRUE;
+
+IF CHECKBOX56.CHECKED  = TRUE THEN TOTAL := TOTAL + 2;
+IF CHECKBOX57.CHECKED  = TRUE THEN TOTAL := TOTAL + 3;
+
+//AÇAÍ
+IF CHECKBOX1.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 7.5;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 15;
+    IF CHECKBOX52.CHECKED  = TRUE THEN TOTAL := TOTAL + 15;
+    IF CHECKBOX54.CHECKED  = TRUE THEN TOTAL := TOTAL + 18;
+    IF CHECKBOX53.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+    IF CHECKBOX55.CHECKED  = TRUE THEN TOTAL := TOTAL + 22;//28
+
+{    IF CHECKBOX54.CHECKED  = TRUE THEN
+      BEGIN      
+        IF CHECKBOX50.CHECKED = TRUE THEN TOTAL := TOTAL + 22;
+        IF CHECKBOX51.CHECKED = TRUE THEN TOTAL := TOTAL + 18;    
+      END;
+}  END;
+
+//FROZEN
+IF CHECKBOX2.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 14;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 17;
+    IF CHECKBOX62.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+  END;
+
+//CUPUAÇU
+IF CHECKBOX3.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 14;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 17;
+    IF CHECKBOX62.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+  END;
+
+//AÇAÍ DIET
+IF CHECKBOX4.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 14;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 17;
+    IF CHECKBOX62.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+  END;
+
+//SALADA DE FRUTA
+IF CHECKBOX5.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 7.5;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 15;
+    IF CHECKBOX52.CHECKED  = TRUE THEN TOTAL := TOTAL + 15;
+    IF CHECKBOX54.CHECKED  = TRUE THEN TOTAL := TOTAL + 18;
+    IF CHECKBOX53.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+    IF CHECKBOX55.CHECKED  = TRUE THEN TOTAL := TOTAL + 22;//28
+  END;
+
+//FROZEN ZERO
+IF CHECKBOX63.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 14;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 16;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 19;
+  END;
+//AÇAÍ/FROZEN
+IF CHECKBOX64.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 14;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 17;
+    IF CHECKBOX62.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+  END;
+//AÇAÍ/CUPUAÇU
+IF CHECKBOX65.CHECKED THEN
+  BEGIN
+    IF CHECKBOX6.CHECKED  = TRUE THEN TOTAL := TOTAL + 10;
+    IF CHECKBOX7.CHECKED  = TRUE THEN TOTAL := TOTAL + 12;
+    IF CHECKBOX8.CHECKED  = TRUE THEN TOTAL := TOTAL + 14;
+    IF CHECKBOX9.CHECKED  = TRUE THEN TOTAL := TOTAL + 17;
+    IF CHECKBOX62.CHECKED  = TRUE THEN TOTAL := TOTAL + 25;
+  END;       
+
+IF CHECKBOX43.CHECKED = TRUE THEN TOTAL := TOTAL + 2.5;
+IF CHECKBOX44.CHECKED = TRUE THEN TOTAL := TOTAL + 2.5;
+IF CHECKBOX45.CHECKED = TRUE THEN TOTAL := TOTAL + 0.5;
+IF CHECKBOX46.CHECKED = TRUE THEN TOTAL := TOTAL + 2;
+IF CHECKBOX47.CHECKED = TRUE THEN TOTAL := TOTAL + 2.5;
+IF CHECKBOX48.CHECKED = TRUE THEN TOTAL := TOTAL + 3;
+IF CHECKBOX49.CHECKED = TRUE THEN TOTAL := TOTAL + 2.5;
+
+LABEL1.CAPTION := FORMATFLOAT('0.00',TOTAL);
+end;
+
+procedure Tfpedidoloja.HIDEN;
+begin
+
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+
+CHECKBOX6.VISIBLE := FALSE;
+CHECKBOX7.VISIBLE := FALSE;
+CHECKBOX8.VISIBLE := FALSE;
+CHECKBOX9.VISIBLE := FALSE;
+CHECKBOX62.VISIBLE := FALSE;
+CHECKBOX52.VISIBLE := FALSE;
+CHECKBOX54.VISIBLE := FALSE;
+CHECKBOX53.VISIBLE := FALSE;
+CHECKBOX55.VISIBLE := FALSE;
+
+//AÇAÍ OU SALADA DE FRUTAS
+IF (CHECKBOX1.CHECKED) OR (CHECKBOX5.CHECKED) THEN
+  BEGIN
+    CHECKBOX6.VISIBLE := TRUE;
+    CHECKBOX7.VISIBLE := TRUE;
+    CHECKBOX8.VISIBLE := TRUE;
+    CHECKBOX9.VISIBLE := TRUE;
+    CHECKBOX52.VISIBLE := TRUE;
+    CHECKBOX54.VISIBLE := TRUE;
+    CHECKBOX53.VISIBLE := TRUE;
+    CHECKBOX55.VISIBLE := TRUE;
+  END;
+
+//FROZEN, CUPUAÇU, AÇAÍ DIET
+IF (CHECKBOX2.CHECKED) OR (CHECKBOX3.CHECKED) OR (CHECKBOX4.CHECKED) THEN
+  BEGIN
+    CHECKBOX6.VISIBLE := TRUE;
+    CHECKBOX7.VISIBLE := TRUE;
+    CHECKBOX8.VISIBLE := TRUE;
+    CHECKBOX9.VISIBLE := TRUE;
+    CHECKBOX62.VISIBLE := TRUE;
+  END;
+
+//FROZEN ZERO
+IF CHECKBOX63.CHECKED THEN
+  BEGIN
+    CHECKBOX6.VISIBLE := TRUE;
+    CHECKBOX7.VISIBLE := TRUE;
+    CHECKBOX8.VISIBLE := TRUE;
+    CHECKBOX9.VISIBLE := TRUE;
+  END;
+
+//AÇAÍ/FROZEN E AÇAÍ/CUPUAÇU
+IF (CHECKBOX64.CHECKED) OR (CHECKBOX65.CHECKED) THEN
+  BEGIN
+    CHECKBOX6.VISIBLE := TRUE;
+    CHECKBOX7.VISIBLE := TRUE;
+    CHECKBOX8.VISIBLE := TRUE;
+    CHECKBOX9.VISIBLE := TRUE;
+    CHECKBOX62.VISIBLE := TRUE;
+  END;
+end;
+
+procedure Tfpedidoloja.conta_complementos;
+begin
+CONTADOR := 0;
+IF CHECKBOX10.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX11.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX12.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX13.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX14.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX15.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX16.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX17.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX18.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX19.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX20.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX21.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX22.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX58.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX59.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX60.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+end;
+
+procedure Tfpedidoloja.conta_coberturas;
+begin
+CONTADOR := 0;
+IF CHECKBOX23.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX24.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX25.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX26.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX27.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX28.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX29.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX30.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX31.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX32.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX33.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX34.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX35.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX36.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+IF CHECKBOX37.CHECKED = TRUE THEN CONTADOR := CONTADOR + 1;
+end;
+
+procedure Tfpedidoloja.CheckBox10Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX10.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox11Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX11.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox12Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX12.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox13Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX13.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox14Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX14.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox15Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX15.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox16Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX16.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox17Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX17.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox18Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX18.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox19Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX19.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox1Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox20Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX20.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox21Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX21.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox22Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX22.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox23Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX23.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox24Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX24.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox25Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX25.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox26Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX26.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox27Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX27.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox28Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX28.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox29Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX29.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox2Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox30Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX30.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox31Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX31.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox32Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX32.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox33Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX33.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox34Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX34.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox35Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX35.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox36Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX36.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox37Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COBERTURAS;
+IF CONTADOR > 2 THEN
+  BEGIN
+    CHECKBOX37.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 2 Coberturas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox38Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_FRUTAS;
+IF CONTADOR > 3 THEN
+  BEGIN
+    CHECKBOX38.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 3 Frutas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox39Click(Sender: TObject);
+begin                                                        
+FPEDIDOLOJA.CONTA_FRUTAS;
+IF CONTADOR > 3 THEN
+  BEGIN
+    CHECKBOX39.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 3 Frutas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox3Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox40Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_FRUTAS;
+IF CONTADOR > 3 THEN
+  BEGIN
+    CHECKBOX40.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 3 Frutas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox41Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_FRUTAS;
+IF CONTADOR > 3 THEN
+  BEGIN
+    CHECKBOX41.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 3 Frutas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox42Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_FRUTAS;
+IF CONTADOR > 3 THEN
+  BEGIN
+    CHECKBOX42.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 3 Frutas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox43Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox44Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox45Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox46Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox47Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox48Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox49Click(Sender: TObject);
+begin
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox4Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox50Click(Sender: TObject);
+begin
+IF CheckBox50.CHECKED = FALSE THEN
+  BEGIN
+    IF CHECKBOX54.CHECKED = TRUE THEN CHECKBOX54.CHECKED := FALSE;
+  END;
+  
+IF CheckBox50.CHECKED = TRUE THEN CHECKBOX51.CHECKED := FALSE;
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox51Click(Sender: TObject);
+begin
+IF CheckBox51.CHECKED = FALSE THEN
+  BEGIN
+    IF CHECKBOX54.CHECKED = TRUE THEN CHECKBOX54.CHECKED := FALSE;
+  END;
+  
+IF CheckBox51.CHECKED = TRUE THEN CHECKBOX50.CHECKED := FALSE;
+TOTALIZA;
+end;
+
+procedure Tfpedidoloja.CheckBox52Click(Sender: TObject);
+begin
+//IF CHECKBOX1.CHECKED = TRUE THEN
+//BEGIN
+  IF CHECKBOX52.CHECKED = TRUE THEN
+    BEGIN
+      CHECKBOX6.CHECKED := FALSE;
+      CHECKBOX7.CHECKED := FALSE;
+      CHECKBOX8.CHECKED := FALSE;
+      CHECKBOX9.CHECKED := FALSE;
+      CHECKBOX62.CHECKED := FALSE;
+      CHECKBOX53.CHECKED := FALSE;
+      CHECKBOX54.CHECKED := FALSE;
+      CHECKBOX55.CHECKED := FALSE;
+    END;
+  TOTALIZA;
+{END;
+ELSE
+BEGIN
+  CHECKBOX6.CHECKED := FALSE;
+  CHECKBOX7.CHECKED := FALSE;
+  CHECKBOX8.CHECKED := FALSE;
+  CHECKBOX9.CHECKED := FALSE;
+  CHECKBOX62.CHECKED := FALSE;
+  CHECKBOX53.CHECKED := FALSE;
+  CHECKBOX54.CHECKED := FALSE;
+  CHECKBOX55.CHECKED := FALSE;
+  IF CHECKBOX52.CHECKED = TRUE THEN 
+    BEGIN
+      CHECKBOX52.CHECKED := FALSE;
+      SHOWMESSAGE('Tamanho disponível apenas com Açaí.');
+    END;
+END;
+}end;
+
+procedure Tfpedidoloja.CheckBox53Click(Sender: TObject);
+begin
+//IF CHECKBOX1.CHECKED = TRUE THEN
+//  BEGIN
+    IF CHECKBOX53.CHECKED = TRUE THEN
+      BEGIN
+        CHECKBOX6.CHECKED := FALSE;
+        CHECKBOX7.CHECKED := FALSE;
+        CHECKBOX8.CHECKED := FALSE;
+        CHECKBOX9.CHECKED := FALSE;
+        CHECKBOX62.CHECKED := FALSE;
+        CHECKBOX52.CHECKED := FALSE;
+        CHECKBOX54.CHECKED := FALSE;
+        CHECKBOX55.CHECKED := FALSE;
+      END;
+    TOTALIZA;
+{  END
+  ELSE
+BEGIN
+  CHECKBOX6.CHECKED := FALSE;
+  CHECKBOX7.CHECKED := FALSE;
+  CHECKBOX8.CHECKED := FALSE;
+  CHECKBOX9.CHECKED := FALSE;
+  CHECKBOX62.CHECKED := FALSE;
+  CHECKBOX52.CHECKED := FALSE;
+  CHECKBOX54.CHECKED := FALSE;
+  CHECKBOX55.CHECKED := FALSE;
+  IF CHECKBOX53.CHECKED = TRUE THEN 
+    BEGIN
+      CHECKBOX53.CHECKED := FALSE;
+      SHOWMESSAGE('Tamanho disponível apenas com Açaí.');
+    END;
+}//END;
+end;
+
+procedure Tfpedidoloja.CheckBox54Click(Sender: TObject);
+begin
+
+//IF (CHECKBOX50.CHECKED = FALSE) AND (CHECKBOX51.CHECKED = FALSE) THEN CHECKBOX50.CHECKED := TRUE;
+
+//IF CHECKBOX1.CHECKED = TRUE THEN
+//BEGIN
+IF CHECKBOX54.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX6.CHECKED := FALSE;
+    CHECKBOX7.CHECKED := FALSE;
+    CHECKBOX8.CHECKED := FALSE;
+    CHECKBOX9.CHECKED := FALSE;
+    CHECKBOX62.CHECKED := FALSE;
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+    CHECKBOX55.CHECKED := FALSE;
+  END;
+TOTALIZA;
+//END;
+{ELSE
+BEGIN
+  CHECKBOX6.CHECKED := FALSE;
+  CHECKBOX7.CHECKED := FALSE;
+  CHECKBOX8.CHECKED := FALSE;
+  CHECKBOX9.CHECKED := FALSE;
+  CHECKBOX62.CHECKED := FALSE;
+  CHECKBOX52.CHECKED := FALSE;
+  CHECKBOX53.CHECKED := FALSE;
+  CHECKBOX55.CHECKED := FALSE;
+{  IF CHECKBOX54.CHECKED = TRUE THEN 
+    BEGIN
+      CHECKBOX54.CHECKED := FALSE;
+      SHOWMESSAGE('Tamanho disponível apenas com Açaí.');
+    END;
+}//END;
+end;
+
+procedure Tfpedidoloja.CheckBox55Click(Sender: TObject);
+begin
+//IF CHECKBOX1.CHECKED = TRUE THEN
+//BEGIN
+IF CHECKBOX55.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX6.CHECKED := FALSE;
+    CHECKBOX7.CHECKED := FALSE;
+    CHECKBOX8.CHECKED := FALSE;
+    CHECKBOX9.CHECKED := FALSE;
+    CHECKBOX62.CHECKED := FALSE;
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX54.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+  END;
+TOTALIZA;
+{END
+ELSE
+BEGIN
+  CHECKBOX6.CHECKED := FALSE;
+  CHECKBOX7.CHECKED := FALSE;
+  CHECKBOX8.CHECKED := FALSE;
+  CHECKBOX9.CHECKED := FALSE;
+  CHECKBOX62.CHECKED := FALSE;
+  CHECKBOX53.CHECKED := FALSE;
+  CHECKBOX54.CHECKED := FALSE;
+  CHECKBOX52.CHECKED := FALSE;
+  IF CHECKBOX55.CHECKED = TRUE THEN 
+    BEGIN
+      CHECKBOX55.CHECKED := FALSE;
+      SHOWMESSAGE('Tamanho disponível apenas com Açaí.');
+    END;
+}//END;
+end;
+
+procedure Tfpedidoloja.CheckBox56Click(Sender: TObject);
+begin
+TOTALIZA;
+CHECKBOX57.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox57Click(Sender: TObject);
+begin
+TOTALIZA;
+CHECKBOX56.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox58Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX58.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox59Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX59.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox5Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox60Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_COMPLEMENTOS;
+IF CONTADOR > 5 THEN
+  BEGIN
+    CHECKBOX60.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 5 Complementos!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox61Click(Sender: TObject);
+begin
+FPEDIDOLOJA.CONTA_FRUTAS;
+IF CONTADOR > 3 THEN
+  BEGIN
+    CHECKBOX61.CHECKED := FALSE;
+    SHOWMESSAGE('Favor escolher apenas 3 Frutas!');    
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox62Click(Sender: TObject);
+begin
+TOTALIZA;
+{IF CHECKBOX1.CHECKED = TRUE THEN 
+  BEGIN
+    CHECKBOX1.CHECKED := FALSE;
+    SHOWMESSAGE('Tamanho indisponível para Açaí.');
+    Exit;
+  END;
+
+IF CHECKBOX5.CHECKED = TRUE THEN 
+  BEGIN
+    CHECKBOX5.CHECKED := FALSE;
+    SHOWMESSAGE('Tamanho indisponível para Salada de Fruta.');
+    Exit;
+  END;
+}
+IF CHECKBOX62.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX7.CHECKED := FALSE;
+    CHECKBOX8.CHECKED := FALSE;
+    CHECKBOX9.CHECKED := FALSE;
+    CHECKBOX6.CHECKED := FALSE;
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+    CHECKBOX54.CHECKED := FALSE;
+    CHECKBOX55.CHECKED := FALSE;
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox63Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox64Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox65Click(Sender: TObject);
+begin
+TOTALIZA;
+HIDEN;
+TOTALIZA;
+HIDEN;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE;
+end;
+
+procedure Tfpedidoloja.CheckBox6Click(Sender: TObject);
+begin
+TOTALIZA;
+IF CHECKBOX6.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX7.CHECKED := FALSE;
+    CHECKBOX8.CHECKED := FALSE;
+    CHECKBOX9.CHECKED := FALSE;   
+    CHECKBOX62.CHECKED := FALSE;   
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+    CHECKBOX54.CHECKED := FALSE;
+    CHECKBOX55.CHECKED := FALSE;
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox7Click(Sender: TObject);
+begin
+TOTALIZA;
+IF CHECKBOX7.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX6.CHECKED := FALSE;
+    CHECKBOX8.CHECKED := FALSE;
+    CHECKBOX9.CHECKED := FALSE;
+    CHECKBOX62.CHECKED := FALSE;
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+    CHECKBOX54.CHECKED := FALSE;
+    CHECKBOX55.CHECKED := FALSE;
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox8Click(Sender: TObject);
+begin
+TOTALIZA;
+IF CHECKBOX8.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX7.CHECKED := FALSE;
+    CHECKBOX6.CHECKED := FALSE;
+    CHECKBOX9.CHECKED := FALSE;
+    CHECKBOX62.CHECKED := FALSE;
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+    CHECKBOX54.CHECKED := FALSE;
+    CHECKBOX55.CHECKED := FALSE;
+  END;
+end;
+
+procedure Tfpedidoloja.CheckBox9Click(Sender: TObject);
+begin
+TOTALIZA;
+IF CHECKBOX9.CHECKED = TRUE THEN
+  BEGIN
+    CHECKBOX7.CHECKED := FALSE;
+    CHECKBOX8.CHECKED := FALSE;
+    CHECKBOX6.CHECKED := FALSE;
+    CHECKBOX62.CHECKED := FALSE;
+    CHECKBOX52.CHECKED := FALSE;
+    CHECKBOX53.CHECKED := FALSE;
+    CHECKBOX54.CHECKED := FALSE;
+    CHECKBOX55.CHECKED := FALSE;
+  END;
+end;
+
+procedure Tfpedidoloja.cores_fecha;
+begin
+LABEL31.Caption := '';
+LABEL4.Caption := '';
+LABEL21.Caption := '';
+LABEL22.Caption := '';
+LABEL23.Caption := '';
+LABEL24.Caption := '';
+LABEL25.Caption := '';
+LABEL26.Caption := '';
+
+COMBOBOX5.Text := '';
+COMBOBOX2.Text := '';
+COMBOBOX3.Text := '';
+COMBOBOX4.Text := '';
+COMBOBOX6.Text := '';
+COMBOBOX7.Text := '';
+EDIT6.Text := '';
+
+FMENU.EDIT1.TEXT := '';
+
+FMENU.EDIT5.Text := FDM.IBQORCAMENTONUMERONF.VALUE;
+
+//COLOCANDO OS ENTREGADORES NO COMBO
+FDM.IBQENTREGADOR.ACTIVE := FALSE;
+FDM.IBQENTREGADOR.SQL.Text := 'SELECT * FROM TRANSPOR';
+FDM.IBQENTREGADOR.ACTIVE := TRUE;
+
+FDM.IBQENTREGADOR.FIRST;
+
+while NOT FDM.IBQENTREGADOR.Eof do
+  BEGIN
+    COMBOBOX5.Items.Add(FDM.IBQENTREGADORNOME.Value);
+    FDM.IBQENTREGADOR.NEXT;
+  END;
+
+CHECKBOX1.CHECKED := FALSE;
+CHECKBOX2.CHECKED := FALSE;
+CHECKBOX3.CHECKED := FALSE; 
+CHECKBOX4.CHECKED := FALSE;
+CHECKBOX5.CHECKED := FALSE;
+CHECKBOX6.CHECKED := FALSE;
+CHECKBOX7.CHECKED := FALSE;
+CHECKBOX8.CHECKED := FALSE;
+CHECKBOX9.CHECKED := FALSE;
+CHECKBOX62.CHECKED := FALSE;
+CHECKBOX10.CHECKED := FALSE;
+CHECKBOX11.CHECKED := FALSE;
+CHECKBOX12.CHECKED := FALSE;
+CHECKBOX13.CHECKED := FALSE;
+CHECKBOX14.CHECKED := FALSE;
+CHECKBOX15.CHECKED := FALSE;
+CHECKBOX16.CHECKED := FALSE;
+CHECKBOX17.CHECKED := FALSE;
+CHECKBOX18.CHECKED := FALSE;
+CHECKBOX19.CHECKED := FALSE;
+CHECKBOX20.CHECKED := FALSE;
+CHECKBOX21.CHECKED := FALSE;
+CHECKBOX22.CHECKED := FALSE;
+CHECKBOX58.CHECKED := FALSE;
+CHECKBOX59.CHECKED := FALSE;
+CHECKBOX60.CHECKED := FALSE;
+CHECKBOX23.CHECKED := FALSE;
+CHECKBOX24.CHECKED := FALSE;
+CHECKBOX25.CHECKED := FALSE;
+CHECKBOX26.CHECKED := FALSE;
+CHECKBOX27.CHECKED := FALSE;
+CHECKBOX28.CHECKED := FALSE;
+CHECKBOX29.CHECKED := FALSE;
+CHECKBOX30.CHECKED := FALSE;
+CHECKBOX31.CHECKED := FALSE;
+CHECKBOX32.CHECKED := FALSE;
+CHECKBOX33.CHECKED := FALSE;
+CHECKBOX34.CHECKED := FALSE;
+CHECKBOX35.CHECKED := FALSE;
+CHECKBOX36.CHECKED := FALSE;
+CHECKBOX37.CHECKED := FALSE;
+CHECKBOX38.CHECKED := FALSE;
+CHECKBOX39.CHECKED := FALSE;
+CHECKBOX40.CHECKED := FALSE;
+CHECKBOX61.CHECKED := FALSE;
+CHECKBOX41.CHECKED := FALSE;
+CHECKBOX42.CHECKED := FALSE;
+CHECKBOX43.CHECKED := FALSE;
+CHECKBOX44.CHECKED := FALSE;
+CHECKBOX45.CHECKED := FALSE;
+CHECKBOX46.CHECKED := FALSE;
+CHECKBOX47.CHECKED := FALSE;
+CHECKBOX48.CHECKED := FALSE;
+CHECKBOX49.CHECKED := FALSE;
+CHECKBOX50.CHECKED := FALSE;
+CHECKBOX51.CHECKED := FALSE;
+CHECKBOX52.CHECKED := FALSE;
+CHECKBOX53.CHECKED := FALSE;
+CHECKBOX54.CHECKED := FALSE;
+CHECKBOX55.CHECKED := FALSE;
+CHECKBOX56.CHECKED := FALSE;
+CHECKBOX57.CHECKED := FALSE;
+CHECKBOX63.CHECKED := FALSE;
+CHECKBOX64.CHECKED := FALSE;
+CHECKBOX65.CHECKED := FALSE;
+
+CHECKBOX6.VISIBLE := FALSE;
+CHECKBOX7.VISIBLE := FALSE;
+CHECKBOX8.VISIBLE := FALSE;
+CHECKBOX9.VISIBLE := FALSE;
+CHECKBOX62.VISIBLE := FALSE;
+CHECKBOX52.VISIBLE := FALSE;
+CHECKBOX54.VISIBLE := FALSE;
+CHECKBOX53.VISIBLE := FALSE;
+CHECKBOX55.VISIBLE := FALSE;
+
+LABEL1.CAPTION := '0,00'
+end;
+
+
+procedure Tfpedidoloja.Button1Click(Sender: TObject);
+begin
+APPLICATION.TERMINATE;
+end;
+
+procedure Tfpedidoloja.FormActivate(Sender: TObject);
+begin
+IF FMENU.LABEL16.Caption = 'ALTERANDO' THEN
+  BEGIN
+    fpedidoloja.cores_fecha;
+
+    FDM.IBQITENS005.ACTIVE := FALSE;
+    FDM.IBQITENS005.SQL.Text := 'DELETE FROM ITENS005 WHERE NUMERONF = ' + #39 + FDM.IBQORCAMENTONUMERONF.VALUE + #39;
+    FDM.IBQITENS005.EXECSQL;
+    FDM.IBQITENS005.ACTIVE := FALSE;
+    
+    IF FDM.IBQORCAMENTOCB1.VALUE = 'True' THEN CHECKBOX1.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB2.VALUE = 'True' THEN CHECKBOX2.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB3.VALUE = 'True' THEN CHECKBOX3.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB4.VALUE = 'True' THEN CHECKBOX4.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB5.VALUE = 'True' THEN CHECKBOX5.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB63.VALUE = 'True' THEN CHECKBOX63.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB64.VALUE = 'True' THEN CHECKBOX64.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB65.VALUE = 'True' THEN CHECKBOX65.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB6.VALUE = 'True' THEN CHECKBOX6.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB7.VALUE = 'True' THEN CHECKBOX7.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB8.VALUE = 'True' THEN CHECKBOX8.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB9.VALUE = 'True' THEN CHECKBOX9.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB62.VALUE = 'True' THEN CHECKBOX62.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB10.VALUE = 'True' THEN CHECKBOX10.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB11.VALUE = 'True' THEN CHECKBOX11.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB12.VALUE = 'True' THEN CHECKBOX12.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB13.VALUE = 'True' THEN CHECKBOX13.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB14.VALUE = 'True' THEN CHECKBOX14.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB15.VALUE = 'True' THEN CHECKBOX15.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB16.VALUE = 'True' THEN CHECKBOX16.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB17.VALUE = 'True' THEN CHECKBOX17.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB18.VALUE = 'True' THEN CHECKBOX18.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB19.VALUE = 'True' THEN CHECKBOX19.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB20.VALUE = 'True' THEN CHECKBOX20.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB21.VALUE = 'True' THEN CHECKBOX21.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB22.VALUE = 'True' THEN CHECKBOX22.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB58.VALUE = 'True' THEN CHECKBOX58.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB59.VALUE = 'True' THEN CHECKBOX59.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB60.VALUE = 'True' THEN CHECKBOX60.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB23.VALUE = 'True' THEN CHECKBOX23.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB24.VALUE = 'True' THEN CHECKBOX24.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB25.VALUE = 'True' THEN CHECKBOX25.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB26.VALUE = 'True' THEN CHECKBOX26.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB27.VALUE = 'True' THEN CHECKBOX27.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB28.VALUE = 'True' THEN CHECKBOX28.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB29.VALUE = 'True' THEN CHECKBOX29.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB30.VALUE = 'True' THEN CHECKBOX30.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB31.VALUE = 'True' THEN CHECKBOX31.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB32.VALUE = 'True' THEN CHECKBOX32.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB33.VALUE = 'True' THEN CHECKBOX33.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB34.VALUE = 'True' THEN CHECKBOX34.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB35.VALUE = 'True' THEN CHECKBOX35.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB36.VALUE = 'True' THEN CHECKBOX36.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB37.VALUE = 'True' THEN CHECKBOX37.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB38.VALUE = 'True' THEN CHECKBOX38.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB39.VALUE = 'True' THEN CHECKBOX39.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB40.VALUE = 'True' THEN CHECKBOX40.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB61.VALUE = 'True' THEN CHECKBOX61.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB41.VALUE = 'True' THEN CHECKBOX41.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB42.VALUE = 'True' THEN CHECKBOX42.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB43.VALUE = 'True' THEN CHECKBOX43.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB44.VALUE = 'True' THEN CHECKBOX44.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB45.VALUE = 'True' THEN CHECKBOX45.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB46.VALUE = 'True' THEN CHECKBOX46.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB47.VALUE = 'True' THEN CHECKBOX47.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB48.VALUE = 'True' THEN CHECKBOX48.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB49.VALUE = 'True' THEN CHECKBOX49.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB50.VALUE = 'True' THEN CHECKBOX50.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB51.VALUE = 'True' THEN CHECKBOX51.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB52.VALUE = 'True' THEN CHECKBOX52.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB53.VALUE = 'True' THEN CHECKBOX53.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB54.VALUE = 'True' THEN CHECKBOX54.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB55.VALUE = 'True' THEN CHECKBOX55.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB56.VALUE = 'True' THEN CHECKBOX56.CHECKED := TRUE;
+    IF FDM.IBQORCAMENTOCB57.VALUE = 'True' THEN CHECKBOX57.CHECKED := TRUE;
+    
+    FDM.IBQCLIFOR.ACTIVE := FALSE;
+    FDM.IBQCLIFOR.SQL.Text := 'SELECT * FROM CLIFOR WHERE NOME = ' + #39 + FDM.IBQORCAMENTOCLIENTE.VALUE + #39;
+    FDM.IBQCLIFOR.ACTIVE := TRUE;
+    
+    //VAI LANÇAR OS DADOS LÁ NO ORÇAMENTO E NOS LABELS DA TELA DE VENDAS
+    FPEDIDOLOJA.LABEL31.CAPTION := FDM.IBQCLIFORFONE.VALUE;
+    FPEDIDOLOJA.LABEL21.CAPTION := FDM.IBQCLIFORNOME.VALUE;
+    FPEDIDOLOJA.LABEL22.CAPTION := FDM.IBQCLIFORENDERE.VALUE;
+    FPEDIDOLOJA.LABEL23.CAPTION := FDM.IBQCLIFORIDENTIFICADOR1.VALUE; //COMPLEMENTO
+    FPEDIDOLOJA.LABEL25.CAPTION := FDM.IBQCLIFOROBS.VALUE;  //REFERÊNCIA
+    FPEDIDOLOJA.LABEL24.CAPTION := FDM.IBQCLIFORCOMPLE.VALUE;
+    FPEDIDOLOJA.LABEL26.CAPTION := FDM.IBQCLIFORCIDADE.VALUE;
+
+    //FDM.IBQCLIFOR.ACTIVE := FALSE;
+
+    FPEDIDOLOJA.LABEL1.CAPTION := FORMATFLOAT('0.00',FDM.IBQORCAMENTOTOTAL.VALUE);
+    FPEDIDOLOJA.COMBOBOX7.TEXT := 'ABERTO';
+    FPEDIDOLOJA.COMBOBOX6.TEXT := INTTOSTR(FDM.IBQORCAMENTOMESA.VALUE);
+    FPEDIDOLOJA.EDIT6.TEXT := FDM.IBQORCAMENTOOBSERVACAO.VALUE;
+    FPEDIDOLOJA.COMBOBOX5.TEXT := FDM.IBQORCAMENTOENTREGADOR.VALUE;
+    FPEDIDOLOJA.COMBOBOX2.TEXT := FDM.IBQORCAMENTOTEMPODEENTREGA.VALUE;
+    FPEDIDOLOJA.COMBOBOX3.TEXT := FDM.IBQORCAMENTOFORMA.VALUE;          
+    FPEDIDOLOJA.COMBOBOX4.TEXT := FDM.IBQORCAMENTOTROCO.VALUE;
+  END                    
+ELSE 
+  BEGIN
+    fpedidoloja.cores_fecha;
+    FProcura2.SHOWMODAL;
+  END;
+  
+HIDEN; //APAGA OS TAMANHOS
+end;
+
+procedure Tfpedidoloja.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+IF KEY = VK_F6 THEN
+  BEGIN
+    Image51Click(Sender);
+  END;
+IF KEY = VK_F7 THEN
+  BEGIN
+    Image1Click(Sender);
+  END;
+end;
+
+procedure Tfpedidoloja.Image1Click(Sender: TObject);
+VAR
+ALTURA, REGISTROS : INTEGER;
+DATAMASK1, DATASQL1, DATASQL2, D1, M1, A1,
+CB1,CB2,CB3,CB4,CB5,cb63,CB64,cb65,CB6,CB7,CB8,CB9,CB62,CB10,CB11,CB12,CB13,CB14,CB15,
+CB16,CB17,CB18,CB19,CB20,CB21,CB22,CB58,CB59,CB60,CB23,CB24,CB25,CB26,CB27,CB28,CB29,CB30,
+CB31,CB32,CB33,CB34,CB35,CB36,CB37,CB38,CB39,CB40,CB61,CB41,CB42,CB43,CB44,CB45,
+CB46,CB47,CB48,CB49,CB50,CB51,CB52,CB53,CB54,CB55,CB56,CB57: STRING;
+begin
+
+
+TOTALIZA;
+
+
+IF (CHECKBOX1.CHECKED = FALSE) AND
+   (CHECKBOX2.CHECKED = FALSE) AND
+   (CHECKBOX3.CHECKED = FALSE) AND
+   (CHECKBOX4.CHECKED = FALSE) AND
+   (CHECKBOX63.CHECKED = FALSE) AND
+   (CHECKBOX64.CHECKED = FALSE) AND
+   (CHECKBOX65.CHECKED = FALSE) AND
+   (CHECKBOX5.CHECKED = FALSE) THEN
+   BEGIN
+      SHOWMESSAGE('Favor escolher um Produto!');
+      Exit;
+   END;
+
+IF (CHECKBOX6.CHECKED = FALSE) AND
+   (CHECKBOX7.CHECKED = FALSE) AND
+   (CHECKBOX8.CHECKED = FALSE) AND
+   (CHECKBOX9.CHECKED = FALSE) AND
+   (CHECKBOX62.CHECKED = FALSE) AND
+   (CHECKBOX52.CHECKED = FALSE) AND
+   (CHECKBOX53.CHECKED = FALSE) AND
+   (CHECKBOX54.CHECKED = FALSE) AND
+   (CHECKBOX55.CHECKED = FALSE) THEN
+   BEGIN
+      SHOWMESSAGE('Favor escolher um Tamanho!');
+      Exit;
+   END;
+
+IF COMBOBOX7.TEXT = '' THEN COMBOBOX7.TEXT := 'ABERTO';
+
+TOTAL := 0;
+
+//INVERTE AS DATAS
+DATAMASK1 := DATETOSTR(NOW);
+D1 := COPY(DATAMASK1,0,2);
+M1 := COPY(DATAMASK1,4,2);
+A1 := COPY(DATAMASK1,7,4);
+DATASQL1 := M1 + '/' + D1 + '/' + A1;
+
+IF FMENU.LABEL16.CAPTION <> 'FECHADO' THEN
+    TRY
+          TOTAL := STRTOFLOAT(LABEL1.CAPTION);
+
+          IF CHECKBOX1.CHECKED = TRUE THEN CB1 := 'True' else CB1 := 'False';         
+          IF CHECKBOX2.CHECKED = TRUE THEN CB2 := 'True' else CB2 := 'False';         
+          IF CHECKBOX3.CHECKED = TRUE THEN CB3 := 'True' else CB3 := 'False';        
+          IF CHECKBOX4.CHECKED = TRUE THEN CB4 := 'True' else CB4 := 'False';     
+          IF CHECKBOX5.CHECKED = TRUE THEN CB5 := 'True' else CB5 := 'False';       
+          IF CHECKBOX63.CHECKED = TRUE THEN CB63 := 'True' else CB63 := 'False';       
+          IF CHECKBOX64.CHECKED = TRUE THEN CB64 := 'True' else CB64 := 'False';       
+          IF CHECKBOX65.CHECKED = TRUE THEN CB65 := 'True' else CB65 := 'False';       
+          IF CHECKBOX6.CHECKED = TRUE THEN CB6 := 'True' else CB6 := 'False';     
+          IF CHECKBOX7.CHECKED = TRUE THEN CB7 := 'True' else CB7 := 'False';       
+          IF CHECKBOX8.CHECKED = TRUE THEN CB8 := 'True' else CB8 := 'False';      
+          IF CHECKBOX9.CHECKED = TRUE THEN CB9 := 'True' else CB9 := 'False';      
+          IF CHECKBOX62.CHECKED = TRUE THEN CB62 := 'True' else CB62 := 'False';      
+          IF CHECKBOX10.CHECKED = TRUE THEN CB10 := 'True' else CB10 := 'False';    
+          IF CHECKBOX11.CHECKED = TRUE THEN CB11 := 'True' else CB11 := 'False';  
+          IF CHECKBOX12.CHECKED = TRUE THEN CB12 := 'True' else CB12 := 'False';  
+          IF CHECKBOX13.CHECKED = TRUE THEN CB13 := 'True' else CB13 := 'False';  
+          IF CHECKBOX14.CHECKED = TRUE THEN CB14 := 'True' else CB14 := 'False';  
+          IF CHECKBOX15.CHECKED = TRUE THEN CB15 := 'True' else CB15 := 'False';  
+          IF CHECKBOX16.CHECKED = TRUE THEN CB16 := 'True' else CB16 := 'False';     
+          IF CHECKBOX17.CHECKED = TRUE THEN CB17 := 'True' else CB17 := 'False';  
+          IF CHECKBOX18.CHECKED = TRUE THEN CB18 := 'True' else CB18 := 'False';   
+          IF CHECKBOX19.CHECKED = TRUE THEN CB19 := 'True' else CB19 := 'False';   
+          IF CHECKBOX20.CHECKED = TRUE THEN CB20 := 'True' else CB20 := 'False';      
+          IF CHECKBOX21.CHECKED = TRUE THEN CB21 := 'True' else CB21 := 'False';     
+          IF CHECKBOX22.CHECKED = TRUE THEN CB22 := 'True' else CB22 := 'False';         
+          IF CHECKBOX58.CHECKED = TRUE THEN CB58 := 'True' else CB58 := 'False';         
+          IF CHECKBOX59.CHECKED = TRUE THEN CB59 := 'True' else CB59 := 'False';         
+          IF CHECKBOX60.CHECKED = TRUE THEN CB60 := 'True' else CB60 := 'False';         
+          IF CHECKBOX23.CHECKED = TRUE THEN CB23 := 'True' else CB23 := 'False';           
+          IF CHECKBOX24.CHECKED = TRUE THEN CB24 := 'True' else CB24 := 'False';          
+          IF CHECKBOX25.CHECKED = TRUE THEN CB25 := 'True' else CB25 := 'False';             
+          IF CHECKBOX26.CHECKED = TRUE THEN CB26 := 'True' else CB26 := 'False';                 
+          IF CHECKBOX27.CHECKED = TRUE THEN CB27 := 'True' else CB27 := 'False';             
+          IF CHECKBOX28.CHECKED = TRUE THEN CB28 := 'True' else CB28 := 'False';                
+          IF CHECKBOX29.CHECKED = TRUE THEN CB29 := 'True' else CB29 := 'False';            
+          IF CHECKBOX30.CHECKED = TRUE THEN CB30 := 'True' else CB30 := 'False';         
+          IF CHECKBOX31.CHECKED = TRUE THEN CB31 := 'True' else CB31 := 'False';         
+          IF CHECKBOX32.CHECKED = TRUE THEN CB32 := 'True' else CB32 := 'False';            
+          IF CHECKBOX33.CHECKED = TRUE THEN CB33 := 'True' else CB33 := 'False';                 
+          IF CHECKBOX34.CHECKED = TRUE THEN CB34 := 'True' else CB34 := 'False';              
+          IF CHECKBOX35.CHECKED = TRUE THEN CB35 := 'True' else CB35 := 'False';             
+          IF CHECKBOX36.CHECKED = TRUE THEN CB36 := 'True' else CB36 := 'False';                
+          IF CHECKBOX37.CHECKED = TRUE THEN CB37 := 'True' else CB37 := 'False';             
+          IF CHECKBOX38.CHECKED = TRUE THEN CB38 := 'True' else CB38 := 'False';               
+          IF CHECKBOX39.CHECKED = TRUE THEN CB39 := 'True' else CB39 := 'False';              
+          IF CHECKBOX40.CHECKED = TRUE THEN CB40 := 'True' else CB40 := 'False';            
+          IF CHECKBOX61.CHECKED = TRUE THEN CB61 := 'True' else CB61 := 'False';            
+          IF CHECKBOX41.CHECKED = TRUE THEN CB41 := 'True' else CB41 := 'False';              
+          IF CHECKBOX42.CHECKED = TRUE THEN CB42 := 'True' else CB42 := 'False';            
+          IF CHECKBOX43.CHECKED = TRUE THEN CB43 := 'True' else CB43 := 'False';           
+          IF CHECKBOX44.CHECKED = TRUE THEN CB44 := 'True' else CB44 := 'False';               
+          IF CHECKBOX45.CHECKED = TRUE THEN CB45 := 'True' else CB45 := 'False';            
+          IF CHECKBOX46.CHECKED = TRUE THEN CB46 := 'True' else CB46 := 'False';                
+          IF CHECKBOX47.CHECKED = TRUE THEN CB47 := 'True' else CB47 := 'False';               
+          IF CHECKBOX48.CHECKED = TRUE THEN CB48 := 'True' else CB48 := 'False';                 
+          IF CHECKBOX49.CHECKED = TRUE THEN CB49 := 'True' else CB49 := 'False';               
+          IF CHECKBOX50.CHECKED = TRUE THEN CB50 := 'True' else CB50 := 'False';               
+          IF CHECKBOX51.CHECKED = TRUE THEN CB51 := 'True' else CB51 := 'False';    
+          IF CHECKBOX52.CHECKED = TRUE THEN CB52 := 'True' else CB52 := 'False';    
+          IF CHECKBOX53.CHECKED = TRUE THEN CB53 := 'True' else CB53 := 'False';    
+          IF CHECKBOX54.CHECKED = TRUE THEN CB54 := 'True' else CB54 := 'False';    
+          IF CHECKBOX55.CHECKED = TRUE THEN CB55 := 'True' else CB55 := 'False';    
+          IF CHECKBOX56.CHECKED = TRUE THEN CB56 := 'True' else CB56 := 'False';    
+          IF CHECKBOX57.CHECKED = TRUE THEN CB57 := 'True' else CB57 := 'False';    
+
+          IF LABEL21.CAPTION= '' THEN LABEL21.CAPTION:= 'Não Informado';
+          IF COMBOBOX5.Text = '' THEN COMBOBOX5.TEXT := 'Não Informado';
+          IF COMBOBOX2.Text = '' THEN COMBOBOX2.TEXT := 'Não Informado';
+          IF COMBOBOX3.Text = '' THEN COMBOBOX3.TEXT := 'Não Informado';
+          IF COMBOBOX4.Text = '' THEN COMBOBOX4.TEXT := 'R$ 0,00';
+          IF COMBOBOX6.Text = '' THEN COMBOBOX6.TEXT := '00';
+          IF COMBOBOX7.Text = '' THEN COMBOBOX7.TEXT := 'ABERTO';
+
+          FDM.IBQORCAMENTO.Active := FALSE;
+          FDM.IBQORCAMENTO.SQL.Text :=  'UPDATE ORCAMENTO SET ' +
+                                        'B1 = ' + #39 + '0.00' + #39 +
+                                        ', B2 = ' + #39 + '0.00' + #39 +
+                                        ', B3 = ' + #39 + '0.00' + #39 +
+                                        ', CLIENTE = ' + #39 + LABEL21.CAPTION + #39 +
+                                        ', ENTREGADOR = ' + #39 + COMBOBOX5.Text + #39 +
+                                        ', VENDEDOR = ' + #39 + FMENU.EDIT10.TEXT + #39 +
+                                        ', TEMPODEENTREGA = ' + #39 + COMBOBOX2.Text + #39 +
+                                        ', FORMA = ' + #39 + COMBOBOX3.Text + #39 +
+                                        ', EMISSAO = ' + #39 + DATASQL1 + #39 +
+                                        ', SAIDAH = ' + #39 + TIMETOSTR(NOW) + #39 +
+                                        ', TROCO = ' + #39 + COMBOBOX4.Text + #39 +
+                                        ', TOTAL = ' + #39 + StringReplace(FORMATFLOAT('0.00', TOTAL), ',', '.', [rfReplaceAll, rfIgnoreCase]) + #39 +
+                                        ', OBSERVACAO = ' + #39 + EDIT6.Text + #39 +
+                                        ', MESA = ' + #39 + COMBOBOX6.Text + #39 +
+                                        ', STATUS = ' + #39 + COMBOBOX7.Text + #39 +
+                                        ', CB1 = ' + #39 + CB1 + #39 +
+                                        ', CB2 = ' + #39 + CB2 + #39 +
+                                        ', CB3 = ' + #39 + CB3 + #39 +
+                                        ', CB4 = ' + #39 + CB4 + #39 +
+                                        ', CB5 = ' + #39 + CB5 + #39 +
+                                        ', CB63 = ' + #39 + CB63 + #39 +
+                                        ', CB64 = ' + #39 + CB64 + #39 +
+                                        ', CB65 = ' + #39 + CB65 + #39 +
+                                        ', CB6 = ' + #39 + CB6 + #39 +
+                                        ', CB7 = ' + #39 + CB7 + #39 +
+                                        ', CB8 = ' + #39 + CB8 + #39 +
+                                        ', CB9 = ' + #39 + CB9 + #39 +
+                                        ', CB62 = ' + #39 + CB62 + #39 +
+                                        ', CB10 = ' + #39 + CB10 + #39 +
+                                        ', CB11 = ' + #39 + CB11 + #39 +
+                                        ', CB12 = ' + #39 + CB12 + #39 +
+                                        ', CB13 = ' + #39 + CB13 + #39 +
+                                        ', CB14 = ' + #39 + CB14 + #39 +
+                                        ', CB15 = ' + #39 + CB15 + #39 +
+                                        ', CB16 = ' + #39 + CB16 + #39 +
+                                        ', CB17 = ' + #39 + CB17 + #39 +
+                                        ', CB18 = ' + #39 + CB18 + #39 +
+                                        ', CB19 = ' + #39 + CB19 + #39 +
+                                        ', CB20 = ' + #39 + CB20 + #39 +
+                                        ', CB21 = ' + #39 + CB21 + #39 +
+                                        ', CB22 = ' + #39 + CB22 + #39 +
+                                        ', CB58 = ' + #39 + CB58 + #39 +
+                                        ', CB59 = ' + #39 + CB59 + #39 +
+                                        ', CB60 = ' + #39 + CB60 + #39 +
+                                        ', CB23 = ' + #39 + CB23 + #39 +
+                                        ', CB24 = ' + #39 + CB24 + #39 +
+                                        ', CB25 = ' + #39 + CB25 + #39 +
+                                        ', CB26 = ' + #39 + CB26 + #39 +
+                                        ', CB27 = ' + #39 + CB27 + #39 +
+                                        ', CB28 = ' + #39 + CB28 + #39 +
+                                        ', CB29 = ' + #39 + CB29 + #39 +
+                                        ', CB30 = ' + #39 + CB30 + #39 +
+                                        ', CB31 = ' + #39 + CB31 + #39 +
+                                        ', CB32 = ' + #39 + CB32 + #39 +
+                                        ', CB33 = ' + #39 + CB33 + #39 +
+                                        ', CB34 = ' + #39 + CB34 + #39 +
+                                        ', CB35 = ' + #39 + CB35 + #39 +
+                                        ', CB36 = ' + #39 + CB36 + #39 +
+                                        ', CB37 = ' + #39 + CB37 + #39 +
+                                        ', CB38 = ' + #39 + CB38 + #39 +
+                                        ', CB39 = ' + #39 + CB39 + #39 +
+                                        ', CB40 = ' + #39 + CB40 + #39 +
+                                        ', CB61 = ' + #39 + CB61 + #39 +
+                                        ', CB41 = ' + #39 + CB41 + #39 +
+                                        ', CB42 = ' + #39 + CB42 + #39 +
+                                        ', CB43 = ' + #39 + CB43 + #39 +
+                                        ', CB44 = ' + #39 + CB44 + #39 +
+                                        ', CB45 = ' + #39 + CB45 + #39 +
+                                        ', CB46 = ' + #39 + CB46 + #39 +
+                                        ', CB47 = ' + #39 + CB47 + #39 +
+                                        ', CB48 = ' + #39 + CB48 + #39 +
+                                        ', CB49 = ' + #39 + CB49 + #39 +
+                                        ', CB50 = ' + #39 + CB50 + #39 +
+                                        ', CB51 = ' + #39 + CB51 + #39 +
+                                        ', CB52 = ' + #39 + CB52 + #39 +
+                                        ', CB53 = ' + #39 + CB53 + #39 +
+                                        ', CB54 = ' + #39 + CB54 + #39 +
+                                        ', CB55 = ' + #39 + CB55 + #39 +
+                                        ', CB56 = ' + #39 + CB56 + #39 +
+                                        ', CB57 = ' + #39 + CB57 + #39 +
+                                        ' WHERE NUMERONF = ' + #39 + FMENU.EDIT6.Text + #39;
+          FDM.IBQORCAMENTO.EXECSQL;  
+          
+          //LANÇANDO OS ITENS NA TABELA ITENS005
+          {
+          CB1  : AÇAÍ
+          CB2  : FROZEN
+          CB3  : CUPUAÇU
+          CB4  : AÇAÍ DIET
+          CB5  : SALADA DE FRUTAS
+          CB63  : FROZEN ZERO
+          CB64  : AÇAÍ/FROZEN
+          CB65  : AÇAÍ/CUPUAÇU
+          CB6  : 250 ML
+          CB7  : 300 ML
+          CB8  : 500 ML
+          CB9  : 700 ML
+          CB62  : 1 LITRO
+          CB10 : PAÇOCA
+          CB11 : AMENDOIM
+          CB12 : GRANOLA
+          CB13 : LEITE EM PÓ
+          CB14 : LEITE CONDENSADO
+          CB15 : SUCRILHOS
+          CB16 : OVOMALTINE
+          CB17 : FLOCOS DE ARROZ
+          CB18 : GRANULADO CHOCOLATE
+          CB19 : GOTAS DE CHOCOLATE
+          CB20 : CHOCOBALL
+          CB21 : COCO RALADO
+          CB22 : NESTON
+          CB58 : CREME DE AVELÃ
+          CB59 : DOCE DE LEITE
+          CB60 : DOCE DE CHOCOLATE
+          CB23 : AMORA
+          CB24 : CHOCOLATE
+          CB25 : TUTTI FRUTTI
+          CB26 : MORANGO
+          CB27 : UVA
+          CB28 : MARACUJÁ
+          CB29 : MEL
+          CB30 : MENTA
+          CB31 : KIWI
+          CB32 : CARAMELO
+          CB33 : LIMÃO
+          CB34 : AÇAÍ
+          CB35 : BAUNILHA
+          CB36 : LEITE CONDENSADO
+          CB37 : BANANA CARAMELIZADA
+          CB38 : BANANA
+          CB39 : MORANGO
+          CB40 : KIWI
+          CB61 : UVA
+          CB41 : ABACAXI
+          CB42 : MANGA
+          CB43 : FROZEN (BOLA)
+          CB44 : CUPUAÇU (BOLA)
+          CB45 : BIS
+          CB46 : MM'S
+          CB47 : SORVETE (BOLA)
+          CB48 : ÁGUA SEM GÁS
+          CB49 : ÁGUA COM GÁS
+          CB50 : TAÇA
+          CB51 : VIAGEM
+          CB52 : 1L PURO
+          CB53 : 2L PURO
+          CB54 : 1L COM COMPLEMENTO
+          CB55 : 1 TAÇA //2L COMPLETO
+          CB56: TX DE ENTREGA 2,00
+          CB57: TX DE ENTREGA 3,00
+          }    
+{          IF CB6 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              IF CHECKBOX1.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 250ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 7.5;
+                  FDM.IBTITENS005TOTAL.VALUE := 7.5;
+                END;
+              IF CHECKBOX2.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 250ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 10;
+                  FDM.IBTITENS005TOTAL.VALUE := 10;
+                END;
+              IF CHECKBOX3.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 250ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 10;
+                  FDM.IBTITENS005TOTAL.VALUE := 10;
+                END;
+              IF CHECKBOX4.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 250ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 10;
+                  FDM.IBTITENS005TOTAL.VALUE := 10;
+                END;
+              IF CHECKBOX5.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 250ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 10;
+                  FDM.IBTITENS005TOTAL.VALUE := 10;
+                END;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+          
+          IF CB7 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              IF CHECKBOX1.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 300ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 10;
+                  FDM.IBTITENS005TOTAL.VALUE := 10;
+                END;
+              IF CHECKBOX2.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 300ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 12;
+                  FDM.IBTITENS005TOTAL.VALUE := 12;
+                END;
+              IF CHECKBOX3.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 300ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 12;
+                  FDM.IBTITENS005TOTAL.VALUE := 12;
+                END;
+              IF CHECKBOX4.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 300ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 12;
+                  FDM.IBTITENS005TOTAL.VALUE := 12;
+                END;
+              IF CHECKBOX5.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 300ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 12;
+                  FDM.IBTITENS005TOTAL.VALUE := 12;
+                END;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+          
+          IF CB8 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+               IF CHECKBOX1.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 500ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 12;
+                  FDM.IBTITENS005TOTAL.VALUE := 12;
+                END;
+              IF CHECKBOX2.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 500ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 14;
+                  FDM.IBTITENS005TOTAL.VALUE := 14;
+                END;
+              IF CHECKBOX3.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 500ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 14;
+                  FDM.IBTITENS005TOTAL.VALUE := 14;
+                END;
+              IF CHECKBOX4.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 500ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 14;
+                  FDM.IBTITENS005TOTAL.VALUE := 14;
+                END;
+              IF CHECKBOX5.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 500ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 14;
+                  FDM.IBTITENS005TOTAL.VALUE := 14;
+                END;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+          
+          IF CB9 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              IF CHECKBOX1.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 700ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 15;
+                  FDM.IBTITENS005TOTAL.VALUE := 15;
+                END;
+              IF CHECKBOX2.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 700ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 15;
+                  FDM.IBTITENS005TOTAL.VALUE := 15;
+                END;
+              IF CHECKBOX3.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 700ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 15;
+                  FDM.IBTITENS005TOTAL.VALUE := 15;
+                END;
+              IF CHECKBOX4.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 700ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 15;
+                  FDM.IBTITENS005TOTAL.VALUE := 15;
+                END;
+              IF CHECKBOX5.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 700ml';
+                  FDM.IBTITENS005UNITARIO.VALUE := 15;
+                  FDM.IBTITENS005TOTAL.VALUE := 15;
+                END;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+          
+          IF CB62 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              IF CHECKBOX2.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 1 LITRO';
+                  FDM.IBTITENS005UNITARIO.VALUE := 25;
+                  FDM.IBTITENS005TOTAL.VALUE := 25;
+                END;
+              IF CHECKBOX3.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 1 LITRO';
+                  FDM.IBTITENS005UNITARIO.VALUE := 25;
+                  FDM.IBTITENS005TOTAL.VALUE := 25;
+                END;
+              IF CHECKBOX4.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 1 LITRO';
+                  FDM.IBTITENS005UNITARIO.VALUE := 25;
+                  FDM.IBTITENS005TOTAL.VALUE := 25;
+                END;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+          
+          IF CB52 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+//SÓ PODE SER AÇAÍ
+              FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 LITRO PURO';
+              FDM.IBTITENS005UNITARIO.VALUE := 15;
+              FDM.IBTITENS005TOTAL.VALUE := 15;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+            END;                                     
+            
+          IF CB53 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+//SÓ PODE SER AÇAÍ
+              FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 2 LITROS PURO';
+              FDM.IBTITENS005UNITARIO.VALUE := 25;
+              FDM.IBTITENS005TOTAL.VALUE := 25;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+            END;                                     
+            
+          IF CB54 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+//SÓ PODE SER AÇAÍ
+{              IF (CHECKBOX50.CHECKED = FALSE) AND (CHECKBOX51.CHECKED = FALSE) THEN CHECKBOX50.CHECKED := TRUE;
+              
+              IF CHECKBOX50.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 LITRO COMPLETO TAÇA';
+                  FDM.IBTITENS005UNITARIO.VALUE := 22;
+                  FDM.IBTITENS005TOTAL.VALUE := 22;
+                END;
+              IF CHECKBOX51.CHECKED = TRUE THEN 
+                BEGIN
+                  FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 LITRO COMPLETO VIAGEM';
+                  FDM.IBTITENS005UNITARIO.VALUE := 18;
+                  FDM.IBTITENS005TOTAL.VALUE := 18;
+                END;
+}
+{              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+            END;                                     
+            
+          IF CB55 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+//SÓ PODE SER AÇAÍ
+//              FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 2 LITROS COMPLETO';
+              FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 TAÇA';
+              FDM.IBTITENS005UNITARIO.VALUE := 22; //28
+              FDM.IBTITENS005TOTAL.VALUE := 22;  //28
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+            END;                                     
+}  
+
+//AÇAÍ
+          IF CB1 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 7.5;
+                 FDM.IBTITENS005TOTAL.VALUE := 7.5;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 15;
+                 FDM.IBTITENS005TOTAL.VALUE := 15;
+               END;
+
+              IF CHECKBOX52.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 LITRO PURO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 15;
+                 FDM.IBTITENS005TOTAL.VALUE := 15;
+               END;
+
+              IF CHECKBOX53.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 2 LITROS PURO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+
+              IF CHECKBOX54.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 LITRO C/ COMPLEM';
+                 FDM.IBTITENS005UNITARIO.VALUE := 18;
+                 FDM.IBTITENS005TOTAL.VALUE := 18;
+               END;
+
+              IF CHECKBOX55.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ 1 TAÇA';
+                 FDM.IBTITENS005UNITARIO.VALUE := 22;
+                 FDM.IBTITENS005TOTAL.VALUE := 22;
+               END;
+
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//SALADA DE FRUTAS
+          IF CB5 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 7.5;
+                 FDM.IBTITENS005TOTAL.VALUE := 7.5;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 15;
+                 FDM.IBTITENS005TOTAL.VALUE := 15;
+               END;
+
+              IF CHECKBOX52.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 1 LITRO PURO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 15;
+                 FDM.IBTITENS005TOTAL.VALUE := 15;
+               END;
+
+              IF CHECKBOX53.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 2 LITROS PURO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+
+              IF CHECKBOX54.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 1 LITRO C/ COMPLEM';
+                 FDM.IBTITENS005UNITARIO.VALUE := 18;
+                 FDM.IBTITENS005TOTAL.VALUE := 18;
+               END;
+
+              IF CHECKBOX55.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'SALADA DE FRUTAS 1 TAÇA';
+                 FDM.IBTITENS005UNITARIO.VALUE := 22;
+                 FDM.IBTITENS005TOTAL.VALUE := 22;
+               END;
+
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//FROZEN
+          IF CB2 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 14;
+                 FDM.IBTITENS005TOTAL.VALUE := 14;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 17;
+                 FDM.IBTITENS005TOTAL.VALUE := 17;
+               END;
+
+              IF CHECKBOX62.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN 1 LITRO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+               
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//CUPUAÇU
+          IF CB3 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 14;
+                 FDM.IBTITENS005TOTAL.VALUE := 14;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 17;
+                 FDM.IBTITENS005TOTAL.VALUE := 17;
+               END;
+
+              IF CHECKBOX62.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'CUPUAÇU 1 LITRO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+               
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//AÇAÍ DIET
+          IF CB4 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 14;
+                 FDM.IBTITENS005TOTAL.VALUE := 14;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 17;
+                 FDM.IBTITENS005TOTAL.VALUE := 17;
+               END;
+
+              IF CHECKBOX62.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ DIET 1 LITRO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+               
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//FROZEN ZERO
+          IF CB63 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN ZERO 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN ZERO 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 14;
+                 FDM.IBTITENS005TOTAL.VALUE := 14;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN ZERO 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 16;
+                 FDM.IBTITENS005TOTAL.VALUE := 16;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'FROZEN ZERO 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 19;
+                 FDM.IBTITENS005TOTAL.VALUE := 19;
+               END;
+               
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//AÇAÍ/FROZEN
+          IF CB64 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/FROZEN 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/FROZEN 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/FROZEN 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 14;
+                 FDM.IBTITENS005TOTAL.VALUE := 14;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/FROZEN 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 17;
+                 FDM.IBTITENS005TOTAL.VALUE := 17;
+               END;
+
+              IF CHECKBOX62.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/FROZEN 1 LITRO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+               
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+//AÇAÍ/CUPUAÇU
+          IF CB65 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+
+              IF CHECKBOX6.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/CUPUAÇU 250ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 10;
+                 FDM.IBTITENS005TOTAL.VALUE := 10;
+               END;
+
+              IF CHECKBOX7.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/CUPUAÇU 300ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 12;
+                 FDM.IBTITENS005TOTAL.VALUE := 12;
+               END;
+
+              IF CHECKBOX8.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/CUPUAÇU 500ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 14;
+                 FDM.IBTITENS005TOTAL.VALUE := 14;
+               END;
+
+              IF CHECKBOX9.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/CUPUAÇU 700ml';
+                 FDM.IBTITENS005UNITARIO.VALUE := 17;
+                 FDM.IBTITENS005TOTAL.VALUE := 17;
+               END;
+
+              IF CHECKBOX62.CHECKED = TRUE THEN
+               BEGIN
+                 FDM.IBTITENS005DESCRICAO.VALUE := 'AÇAÍ/CUPUAÇU 1 LITRO';
+                 FDM.IBTITENS005UNITARIO.VALUE := 25;
+                 FDM.IBTITENS005TOTAL.VALUE := 25;
+               END;
+               
+              FDM.IBTITENS005ANVISA.VALUE := 1;
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+            END;                                     
+
+
+            
+
+            
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+          
+          IF CB10 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO PAÇOCA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB11 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO AMENDOIM';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB12 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO GRANOLA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END; 
+
+          IF CB13 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO LEITE EM PÓ';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB14 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO LEITE CONDENSADO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+           IF CB15 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO SUCRILHOS';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB16 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO OVOMALTINE';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB17 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO FLOCOS DE ARROZ';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB18 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO GRANULADO CHOCOLATE';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB19 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO GOTAS DE CHOCOLATE';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB20 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO CHOCOBALL';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB21 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO COCO RALADO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB22 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO NESTON';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+
+          IF CB58 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO CREME DE AVELÃ';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;               
+                                  
+          IF CB59 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO DOCE DE LEITE';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+            
+          IF CB60 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COMPLEMENTO DOCE DE CHOCOLATE';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 2;
+            END;                                     
+            
+          IF CB23 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA AMORA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB24 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA CHOCOLATE';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB25 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA TUTTI FRUTTI';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB26 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA MORANGO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB27 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA UVA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB28 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA MARACUJÁ';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB29 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA MEL';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB30 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA MENTA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB31 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA KIWI';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB32 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA CARAMELO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB33 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA LIMÃO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB34 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA AÇAÍ';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+           IF CB35 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA BAUNILHA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB36 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA LEITE CONDENSADO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB37 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'COBERTURA BANANA CARAMELIZADA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 4;
+            END;                                     
+
+          IF CB38 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'FRUTA BANANA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 3;
+            END;                                     
+
+          IF CB39 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'FRUTA MORANGO';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 3;
+            END;                                     
+
+          IF CB40 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'FRUTA KIWI';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 3;
+            END;                                     
+
+          IF CB61 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'FRUTA UVA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 3;
+            END;                                     
+
+          IF CB41 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'FRUTA ABACAXI';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 3;
+            END;                                     
+
+          IF CB42 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'FRUTA MANGA';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0;
+              FDM.IBTITENS005TOTAL.VALUE := 0;
+              FDM.IBTITENS005ANVISA.VALUE := 3;
+            END;                                     
+
+          IF CB43 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ADICIONAL FROZEN (BOLA)';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 2.5;
+              FDM.IBTITENS005TOTAL.VALUE := 2.5;
+              FDM.IBTITENS005ANVISA.VALUE := 5;
+            END;                                     
+
+          IF CB44 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ADICIONAL CUPUAÇU (BOLA)';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 2.5;
+              FDM.IBTITENS005TOTAL.VALUE := 2.5;
+              FDM.IBTITENS005ANVISA.VALUE := 5;
+            END;                                     
+
+          IF CB45 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ADICIONAL BIS';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 0.5;
+              FDM.IBTITENS005TOTAL.VALUE := 0.5;
+              FDM.IBTITENS005ANVISA.VALUE := 5;
+            END;                                     
+
+          IF CB46 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ADICIONAL MMs';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 2;
+              FDM.IBTITENS005TOTAL.VALUE := 2;
+              FDM.IBTITENS005ANVISA.VALUE := 5;
+            END;                                     
+
+          IF CB47 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ADICIONAL SORVETE (BOLA)';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 2.5;
+              FDM.IBTITENS005TOTAL.VALUE := 2.5;
+              FDM.IBTITENS005ANVISA.VALUE := 5;
+            END;                                     
+
+          IF CB48 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ÁGUA SEM GÁS';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 2.5;
+              FDM.IBTITENS005TOTAL.VALUE := 2.5;
+              FDM.IBTITENS005ANVISA.VALUE := 6;
+            END;                                     
+
+          IF CB49 = 'True' THEN
+            BEGIN
+              FDM.IBQGENITENS005.Active := FALSE;
+              FDM.IBQGENITENS005.SQL.Text := 'select gen_id(G_ITENS005,1) from rdb$database';
+              FDM.IBQGENITENS005.Active := TRUE;
+              FDM.IBTITENS005.OPEN;
+              FDM.IBTITENS005.Append;          
+              FDM.IBTITENS005NUMERONF.VALUE := FMENU.EDIT6.Text;    
+              FDM.IBTITENS005REGISTRO.Value := FPROCURA2.DBEDIT2.TEXT;
+              FDM.IBTITENS005DESCRICAO.VALUE := 'ÁGUA COM GÁS';
+              FDM.IBTITENS005MEDIDA.VALUE := 'UN';
+              FDM.IBTITENS005QUANTIDADE.VALUE := 1;
+              FDM.IBTITENS005UNITARIO.VALUE := 3;
+              FDM.IBTITENS005TOTAL.VALUE := 3;
+              FDM.IBTITENS005ANVISA.VALUE := 6;
+            END;                                 
+
+          FDM.IBTITENS005.Post;
+          FDM.IBTITENS005.ApplyUpdates();
+          FDM.IBTransaction1.Commitretaining;
+          FDM.IBTITENS005.ACTIVE := FALSE;
+
+          FDM.IBQORCAMENTO.Active := FALSE;
+          FDM.IBQORCAMENTO.SQL.Text := 'SELECT * FROM ORCAMENTO WHERE NUMERONF = ''' + FMENU.EDIT6.TEXT + '''';
+          FDM.IBQORCAMENTO.Active := TRUE;           
+
+          FDM.IBQITENS005.Active := FALSE;
+          FDM.IBQITENS005.SQL.Text := 'SELECT * FROM ITENS005 WHERE NUMERONF = ''' + FMENU.EDIT6.TEXT + '''';
+          FDM.IBQITENS005.Active := TRUE; 
+
+          fdm.QUICKREP1.Height := 680 + (FDM.IBQITENS005.RecordCount * 30);
+
+          IF LABEL37.CAPTION = 'Pedido Loja' THEN FFECHAMESA.EDIT10.TEXT := 'LOJA';
+          IF LABEL37.CAPTION = 'Pedido Delivery' THEN FFECHAMESA.EDIT10.TEXT := 'DELIVERY';
+          
+          FFECHAMESA.SHOWMODAL;
+          
+          FDM.IBQORCAMENTO.Active := FALSE;
+          FDM.IBQORCAMENTO.SQL.Text := 'SELECT * FROM ORCAMENTO WHERE NUMERONF = ''' + FMENU.EDIT6.TEXT + '''';
+          FDM.IBQORCAMENTO.Active := TRUE;           
+
+          FDM.IBQITENS005.Active := FALSE;
+          FDM.IBQITENS005.SQL.Text := 'SELECT * FROM ITENS005 WHERE NUMERONF = ''' + FMENU.EDIT6.TEXT + ''' ORDER BY ANVISA';
+          FDM.IBQITENS005.Active := TRUE; 
+
+          If MessageBox(Handle, 'Deseja imprimir o pedido?', 'Favor confirmar...', 
+          MB_YESNO+MB_SYSTEMMODAL+MB_ICONQUESTION+MB_DEFBUTTON1) = ID_YES Then
+          FDM.QUICKREP1.PREVIEWMODAL;         
+
+          FDM.IBQORCAMENTO.Close;
+          FDM.IBQITENS005.Close;
+
+          FMENU.CORES_FECHA;
+
+          FMENU.ComboBox1Change(Sender);
+
+          CLOSE;
+    EXCEPT SHOWMESSAGE('Não foi possível gravar o pedido. Por favor, entre em contato com o suporte.');
+    END;
+end;
+
+procedure Tfpedidoloja.Image2Click(Sender: TObject);
+begin
+FPROCURA2.SHOWMODAL;
+end;
+
+procedure Tfpedidoloja.Image51Click(Sender: TObject);
+begin
+//fsenha_cancelamento.showmodal;
+CLOSE;
+end;
+
+end.

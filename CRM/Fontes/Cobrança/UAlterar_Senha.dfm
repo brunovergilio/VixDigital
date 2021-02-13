@@ -1,0 +1,225 @@
+object FAlterar_Senha: TFAlterar_Senha
+  Left = 315
+  Top = 103
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Alterar Senha'
+  ClientHeight = 371
+  ClientWidth = 289
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel
+    Left = 8
+    Top = 84
+    Width = 107
+    Height = 26
+    Caption = 'Senha Atual:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 157
+    Width = 101
+    Height = 26
+    Caption = 'Nova Senha'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Top = 232
+    Width = 246
+    Height = 26
+    Caption = 'Confirma'#231#227'o da Nova Senha:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Edt_SenhaAtual: TEdit
+    Left = 8
+    Top = 116
+    Width = 261
+    Height = 34
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Calibri'
+    Font.Style = []
+    MaxLength = 30
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 0
+    OnKeyDown = Edt_SenhaAtualKeyDown
+  end
+  object Edt_SenhaNova: TEdit
+    Left = 8
+    Top = 188
+    Width = 261
+    Height = 34
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Calibri'
+    Font.Style = []
+    MaxLength = 30
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 1
+    OnKeyDown = Edt_SenhaNovaKeyDown
+  end
+  object Edt_SenhaNovaConfirmacao: TEdit
+    Left = 8
+    Top = 261
+    Width = 261
+    Height = 34
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Calibri'
+    Font.Style = []
+    MaxLength = 30
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 2
+    OnKeyDown = Edt_SenhaNovaConfirmacaoKeyDown
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 289
+    Height = 70
+    Align = alTop
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    TabOrder = 3
+    object Label1: TLabel
+      Left = 12
+      Top = 25
+      Width = 71
+      Height = 26
+      Caption = 'Usu'#225'rio:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Calibri'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LbNomeUsuario: TLabel
+      Left = 101
+      Top = 24
+      Width = 184
+      Height = 20
+      AutoSize = False
+      Caption = 'LbNomeUsuario'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Calibri'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 321
+    Width = 289
+    Height = 50
+    Align = alBottom
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 4
+    object RzToolButton1: TRzToolButton
+      AlignWithMargins = True
+      Left = 15
+      Top = 3
+      Width = 120
+      Height = 40
+      Cursor = crHandPoint
+      GradientColorStyle = gcsSystem
+      Flat = False
+      ShowCaption = True
+      Transparent = False
+      UseToolbarButtonSize = False
+      UseToolbarShowCaption = False
+      UseToolbarVisualStyle = False
+      VisualStyle = vsWinXP
+      Caption = 'Gravar'
+      Color = 13273922
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -15
+      Font.Name = 'Roboto'
+      Font.Style = []
+      ParentFont = False
+      OnClick = RzToolButton1Click
+    end
+    object RzToolButton2: TRzToolButton
+      AlignWithMargins = True
+      Left = 150
+      Top = 3
+      Width = 120
+      Height = 40
+      Cursor = crHandPoint
+      GradientColorStyle = gcsSystem
+      Flat = False
+      ShowCaption = True
+      Transparent = False
+      UseToolbarButtonSize = False
+      UseToolbarShowCaption = False
+      UseToolbarVisualStyle = False
+      VisualStyle = vsWinXP
+      Caption = 'Cancelar'
+      Color = 13273922
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -15
+      Font.Name = 'Roboto'
+      Font.Style = []
+      ParentFont = False
+      OnClick = RzToolButton2Click
+    end
+  end
+  object uniscript: TFDQuery
+    Connection = frmDataModule.UniConnection1
+    SQL.Strings = (
+      'select * from usuarios')
+    Left = 112
+    Top = 88
+  end
+  object uniscriptaltera: TFDQuery
+    Connection = frmDataModule.UniConnection1
+    SQL.Strings = (
+      'select * from usuarios')
+    Left = 112
+    Top = 152
+  end
+  object UniDataSource1: TDataSource
+    DataSet = uniscript
+    Left = 272
+    Top = 104
+  end
+end

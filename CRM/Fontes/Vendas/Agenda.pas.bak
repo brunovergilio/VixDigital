@@ -1,0 +1,97 @@
+unit Agenda;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  ExtCtrls, ComCtrls, StdCtrls, Calendar, Buttons, DBCtrls,
+  Data.DB, DBAccess, Uni, MemDS, RzButton, Vcl.Grids, Vcl.DBGrids, JvExDBGrids,
+  JvDBGrid, AdvDateTimePicker;
+
+type
+  TfmAgenda = class(TForm)
+    Label2: TLabel;
+    JvDBGrid1: TJvDBGrid;
+    Panel1: TPanel;
+    btnalterar: TRzToolButton;
+    Panel2: TPanel;
+    Label1: TLabel;
+    RzToolButton1: TRzToolButton;
+    Edit1: TEdit;
+    AdvDateTimePicker1: TAdvDateTimePicker;
+    uniQAgenda: TUniQuery;
+    UniDSQAgenda: TUniDataSource;
+    RzToolButton2: TRzToolButton;
+    Label3: TLabel;
+    Edit2: TEdit;
+    RzToolButton4: TRzToolButton;
+    UniQUser: TUniQuery;
+    UniQUserCODIGO: TFloatField;
+    UniQUserNOME: TStringField;
+    UniQUserNIVEL: TStringField;
+    UniDSQUser: TUniDataSource;
+    uniQAgendaDATA: TDateTimeField;
+    uniQAgendaHORA: TDateTimeField;
+    uniQAgendaUSUARIO: TFloatField;
+    uniQAgendaBLOQUEADO: TStringField;
+    uniQAgendaCLIENTE: TFloatField;
+    uniQAgendaCUMPRIDO: TStringField;
+    uniQAgendaAVISAR: TStringField;
+    uniQAgendaTEMPOANTESDEAVISAR: TFloatField;
+    uniQAgendaNOME: TStringField;
+    uniQAgendaOBS: TBlobField;
+    uniQAgendaPRIORIDADE: TStringField;
+    uniQAgendaDATA_MODIF: TDateTimeField;
+    uniQAgendaDTA_CAD: TDateTimeField;
+    uniQAgendaUSR_CAD: TFloatField;
+    uniQAgendaUSR_CUMPRIDO: TFloatField;
+    uniQAgendaDTA_CUMPRIDO: TStringField;
+    uniQAgendaREGISTRO: TFloatField;
+    uniQAgendaEVENTO: TStringField;
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnalterarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmAgenda: TfmAgenda;
+
+implementation
+
+{$R *.DFM}
+
+uses uDataModule, uagendacadastro, umenu;
+
+procedure TfmAgenda.btnalterarClick(Sender: TObject);
+begin
+  frmagendacadastro.uniQAgenda.Close;
+  frmagendacadastro.uniQAgenda.Sql.Text := 'select * from agenda where registro = :pregistro';
+  frmagendacadastro.uniQAgenda.ParambyName('pregistro').AsString := uniQAgenda.fieldbyname('registro').asstring;
+  frmagendacadastro.uniQAgenda.Open;
+  frmagendacadastro.uniQAgenda.Edit;
+
+  frmagendacadastro.ShowModal;
+  fmagenda.FormActivate(Sender);
+  uniQAgenda.refresh;
+end;
+
+procedure TfmAgenda.FormActivate(Sender: TObject);
+begin
+  uniquser.Close;
+  uniquser.Sql.Text := 'select * from usuarios where upper(codigo) = :pcodigo';
+                        uniquser.ParambyName('pcodigo').AsString := FRMMenu.usuariologado_codigo;
+  uniquser.Open;
+
+  uniQAGENDA.Open;
+end;
+
+procedure TfmAgenda.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  uniquser.Close;
+end;
+
+end.

@@ -1,0 +1,33 @@
+object frmDataModule: TfrmDataModule
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 105
+  Width = 328
+  object UniConnection1: TUniConnection
+    AutoCommit = False
+    ProviderName = 'MySQL'
+    Port = 3306
+    Database = 'crmvix'
+    Options.DisconnectedMode = True
+    DefaultTransaction = UniTransaction1
+    Username = 'sistema'
+    Server = '127.0.0.1'
+    LoginPrompt = False
+    Left = 32
+    Top = 24
+    EncryptedPassword = '91FF99FF9AFF8CFF9CFF9EFF91FFCDFFCFFFCEFFC8FF'
+  end
+  object OracleUniProvider1_: TOracleUniProvider
+    Left = 264
+    Top = 24
+  end
+  object UniTransaction1: TUniTransaction
+    DefaultConnection = UniConnection1
+    Left = 136
+    Top = 24
+  end
+  object MySQLUniProvider1: TMySQLUniProvider
+    Left = 208
+    Top = 24
+  end
+end

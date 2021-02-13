@@ -1,0 +1,51 @@
+LOGICA PARA SISTEMA DE AÇAÍ
+
+
+1 - Na tela caixa geral colocar um opção de imprimir por data o caixa geral! com as informações de sangria e suprimento saindo no relatório!
+
+2 - Criar níveis de acesso ao sistema! Com bloqueio de sangria, para quem não tem acesso adm bloquear tudo relacionado a financeiro deixar o usuario padrão so podemos inserir comandas e fechar as comandas! o usuario adm faz tudo!
+
+3 - Relatório detalhado de fechamento de caixa por usuário, Ex; saber quantidade de atendimento de cada usuário.
+
+4 - Relatório de produtos vendidos, Ex; Quantas taças de 500ml foram vendidas dia/mês.
+
+
+=======================================================================================================================================================================
+
+
+1 - Relatório de produtos vendidos, Ex; Quantas taças de 500ml foram vendidas dia/mês.
+
+2 - Relatório detalhado de fechamento de caixa por usuário, Ex; saber quantidade de atendimento de cada usuário. 
+
+3 - Entrada de produtos na loja, Ex; quantas caixas de açaí, potes de 1litro de açaí, pote 250ml açaí com brigadeiro...
+
+4 - Busca de pedido anterior do cliente, Ex; cliente pede sempre a mesma coisa.
+
+5 - Relatório por cliente, Ex; saber frequência do cliente.
+
+6 - Criar senha individual para funcionários, patrões e gerentes.
+
+7 - Restringir acesso financeiro/total de vendas para usuário/funcionário, acesso somente para entrada de produtos,venda balcão e abastecimento caixa.
+
+8 - Abrir campo para descrição de sangria, Ex; saiu 2,00 para pão.
+
+9 - Criar liberação de pedido por senha no pedido, Ex; praça de alimentação  do OK não terá como achar o cliente.
+
+10 - Acrescentar Pote de 1 litro de sorvete; Sabores (Morango,Côco e chocolate). Valor 15,00 cada.
+
+11 - Permitir inserir na mesma mesa mais de uma comanda, podendo fechar individualmente ou coletivamente.
+
+12 - Relatório de caixa esta dando diferença de novo, eles tira e fecham diário bate depois quando tentam tirar o mensal os valores não batem.
+
+13 - Criar uma forma de exportar uma comanda direto pro NFC-e é algo que ela pede desde de muito tempo mais eu fico dando o migué nela será conseguiriamos fazer isso 
+seria no mesmo metodo da pre venda ao exportar pra faturar!
+
+=======================================================================================================================================================================
+
+precisamos criar um método de fechamento de caixa, onde nos lançamentos de caixa tenha opção de descrever tanto o suprimento quanto a sangria inserindo a descrição pra que esta sendo aquele lançamento. Precisamos também no fechamento de caixa criar um método. Uma vez eu fiz num cliente assim onde no fechamento de caixa o usuário informava no fechamento qual a quantidade de dinheiro deu naquele dia, assim depois o sistema ao clicar em ok ele checava as informações venda debito, vendas credito e vendas em dinheiro e com isso ele cruzava as informações com o valor informado pelo operador no fechamento do caixa... assim o sistema finalizava e gerava um relatório informando se o caixa bateu, se faltou ou se passou e depois o admin consultava esses relatórios para comparar as informações.
+
+=======================================================================================================================================================================
+
+Criar uma tela pro usuario adm para atualização de preço dos produtos e adicionais.
+
+Urgente, precisamos criar uma tabela de preço uma pra venda taça e uma pra venda viagem ao selecionar o tipo da comanda ele inseri o preço de acordo com a tabela... e uma tela pra manipular esses dados nessa tabela pra nao ter que lançar manual... que possamos manipular inserir e remover quando quisermos tamanho e preço pra viagem e na taça! o sistema hj precisa hj lançar no codigo fonte e depois no banco manual isso ta causando um atraso porque hj mesmo eles precisam e não tem como fazer!
